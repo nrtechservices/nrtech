@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N'RTECH INTERNET — High Speed Fiber</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+
+    <style>
+        :root {
+            --primary: #d49a37; /* Warm Gold */
+            --primary-dark: #B87333;
+            --text-dark: #1a1a1a;
+            --text-light: #6b7280;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-client {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        .btn-client:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f0e6d6 100%);
+            padding: 80px 5%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212, 154, 55, 0.4);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: var(--primary-dark);
+        }
+
+        /* --- FEATURES --- */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 5%;
+            flex-wrap: wrap;
+            margin-top: -50px;
+        }
+
+        .feature-box {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-box i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* --- ABOUT US --- */
+        .about-section {
+            padding: 80px 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        .about-card {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border-top: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(212, 154, 55, 0.15);
+            background: white;
+        }
+
+        .about-card i {
+            font-size: 45px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        /* --- PLANS SECTION (ENHANCED & ANIMATED) --- */
+        .plans-section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 50px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px; /* Increased gap for glowing effects */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Custom Animations for Plans */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes intenseGlow {
+            0% { box-shadow: 0 0 10px rgba(212, 154, 55, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(212, 154, 55, 0.8), 0 0 10px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 10px rgba(212, 154, 55, 0.3); }
+        }
+
+        .plan-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid #eee;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Stagger the floating animation so they don't move exactly together */
+        .plan-card:nth-child(1) { animation-delay: 0.0s; }
+        .plan-card:nth-child(2) { animation-delay: 0.5s; }
+        .plan-card:nth-child(3) { animation-delay: 1.0s; }
+        .plan-card:nth-child(4) { animation-delay: 1.5s; }
+        .plan-card:nth-child(5) { animation-delay: 2.0s; }
+        .plan-card:nth-child(6) { animation-delay: 2.5s; }
+
+        .plan-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(212, 154, 55, 0.3);
+            z-index: 10;
+            animation-play-state: paused;
+        }
+
+        .plan-card.popular {
+            border: 2px solid var(--primary);
+            background: linear-gradient(to bottom, #fff, #fff8e1);
+            animation: float 4s ease-in-out infinite, intenseGlow 3s infinite;
+        }
+
+        .plan-card.vip {
+            border: 2px solid var(--primary);
+            background: linear-gradient(to bottom, #222, #050505);
+            color: white;
+            animation: float 3s ease-in-out infinite, intenseGlow 2s infinite;
+        }
+
+        .plan-card.vip:hover {
+            box-shadow: 0 25px 60px rgba(212, 154, 55, 0.9);
+        }
+
+        .plan-card.vip .plan-name, 
+        .plan-card.vip .plan-price, 
+        .plan-card.vip .plan-speed,
+        .plan-card.vip li,
+        .plan-card.vip .plan-price span {
+            color: white !important;
+        }
+        
+        .plan-card.vip .install-fee {
+            background: #333;
+            color: #ddd;
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(212, 154, 55, 0.5);
+        }
+
+        .plan-icon {
+            font-size: 45px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            opacity: 0.9;
+            transition: transform 0.3s;
+        }
+        
+        .plan-card:hover .plan-icon {
+            transform: scale(1.2);
+        }
+
+        .plan-card.vip .plan-icon {
+            color: var(--primary);
+            filter: drop-shadow(0 0 15px rgba(212,154,55,0.6));
+            font-size: 50px;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin: 10px 0;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .plan-speed {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 20px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .plan-features li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .plan-features li i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 15px;
+        }
+
+        .install-fee {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .select-btn {
+            background: var(--text-dark);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            transition: background 0.3s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+
+        .plan-card.popular .select-btn, .plan-card.vip .select-btn {
+            background: var(--primary);
+        }
+
+        .select-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .disclaimer {
+            margin-top: 35px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            border: 1px solid #ffeeba;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        /* --- COVERAGE AREA --- */
+        .coverage {
+            background: #222;
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .coverage h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .locations {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .location-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--primary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .location-tag:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 154, 55, 0.4);
+        }
+
+        /* --- FAQ SECTION --- */
+        .faq-section {
+            padding: 80px 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+
+        .faq-item {
+            background: var(--bg-light);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px 20px;
+            max-height: 300px; /* Safe upper limit for transition */
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* --- APPLICATION FORM MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 3px solid var(--primary);
+            animation: slideDown 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.2s;
+            z-index: 10;
+        }
+        
+        .close-modal:hover { color: red; }
+
+        .modal-content h3 {
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .payment-terms-box {
+            background: #e8f4fd;
+            border-left: 4px solid #007bff;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0 25px 0;
+            font-size: 0.9rem;
+            color: #004085;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(212, 154, 55, 0.3);
+        }
+
+        /* MAP STYLES */
+        .map-wrapper {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .map-tools {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f1f1;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .btn-locate {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn-locate:hover { background: #0056b3; }
+        #map {
+            height: 220px; 
+            width: 100%; 
+            z-index: 1;
+        }
+
+        .ups-toggle {
+            background: #fdf8ef;
+            border: 1px solid var(--primary);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .ups-toggle input {
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+
+        .submit-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-whatsapp {
+            background: #25D366; color: white; padding: 15px; border: none; border-radius: 8px;
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; display: flex; justify-content: center;
+            align-items: center; gap: 10px; transition: background 0.3s;
+        }
+        .btn-whatsapp:hover { background: #1ebe57; }
+
+        .btn-messenger {
+            background: #0084FF; color: white; padding: 15px; border: none; border-radius: 8px;
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; display: flex; justify-content: center;
+            align-items: center; gap: 10px; transition: background 0.3s;
+        }
+        .btn-messenger:hover { background: #0073e6; }
+
+        /* --- CUSTOM ALERT NOTIFICATION --- */
+        .custom-alert-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 9999; display: none;
+            justify-content: center; align-items: center; backdrop-filter: blur(3px);
+        }
+        .custom-alert-box {
+            background: white; padding: 30px; border-radius: 15px;
+            text-align: center; max-width: 350px; width: 90%;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 5px solid #e74c3c;
+        }
+        @keyframes popIn { 
+            0% { transform: scale(0.8); opacity: 0; } 
+            100% { transform: scale(1); opacity: 1; } 
+        }
+        .custom-alert-icon { font-size: 50px; color: #e74c3c; margin-bottom: 15px; }
+        .custom-alert-box h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--text-dark); }
+        .custom-alert-box p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 20px; }
+        .custom-alert-btn {
+            background: var(--text-dark); color: white; border: none; padding: 10px 25px;
+            border-radius: 25px; font-weight: bold; cursor: pointer; transition: background 0.3s;
+        }
+        .custom-alert-btn:hover { background: var(--primary); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--white); padding: 40px 5%; text-align: center; border-top: 1px solid #ddd;
+        }
+        .contact-info { font-size: 1.2rem; margin-bottom: 20px; font-weight: bold; }
+        .contact-info a { color: var(--primary-dark); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+        
+                @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 115, 51, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(19, 115, 51, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 115, 51, 0); }
+        }
+
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-110%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Automatically hides the floating banner on small screens to avoid blocking the UI */
+        @media (max-width: 576px) {
+            #promoSticky { display: none !important; }
+        }
+
+        /* Dynamic plan profile indicator classes */
+        .plan-card:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .plan-card:nth-child(1):hover::before { background: #9ca3af; } /* Basic Gray */
+        .plan-card:nth-child(3):hover::before { background: #ef4444; } /* Gamer Red */
+        .plan-card:nth-child(4):hover::before { background: #3b82f6; } /* Premium Blue */
+        .plan-card:nth-child(5):hover::before { background: #10b981; } /* Business Green */
+
+/* --- ENHANCED GENERAL EFFECTS --- */
+.hero h1 span {
+    text-shadow: 0 0 15px rgba(212, 154, 55, 0.4);
+    animation: goldGlow 3s ease-in-out infinite alternative;
+}
+
+@keyframes goldGlow {
+    from { text-shadow: 0 0 10px rgba(212, 154, 55, 0.3); }
+    to { text-shadow: 0 0 25px rgba(212, 154, 55, 0.8), 0 0 10px rgba(255, 215, 0, 0.4); }
+}
+
+/* --- CLIENT LOGIN MODAL SYSTEM --- */
+.login-avatar {
+    width: 70px;
+    height: 70px;
+    background: #fff8e1;
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 20px;
+    border: 2px solid var(--primary);
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+.remember-forgot a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">
+            <i class="fas fa-wifi"></i> N'RTECH
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#plans">Plans</a>
+            <a href="#coverage">Coverage</a>
+            <a href="#faq">FAQ</a> <!-- Added FAQ link -->
+            <a href="client.html" class="btn-client">Client Portal</a>
+
+        </div>
+    </nav>
+
+        <section class="hero" id="home">
+        <h1>Connect to the World<br>with <span>N'RTECH Fiber</span></h1>
+        <p>Reliable, affordable, and high-speed internet for your home and business.</p>
+        
+        <!-- NEW CLIENT LOGIN BUTTON -->
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
+            <a href="client.html" class="cta-button" style="background: var(--text-dark);">
+    <i class="fas fa-user-lock"></i> Client Login
+</a>
+
+
+            <a href="#plans" class="cta-button">View Fiber Plans</a>
+        </div>
+    </section>
+
+
+    <section class="features">
+        <div class="feature-box">
+            <i class="fas fa-bolt"></i>
+            <h3>High Speed</h3>
+            <p>Experience lag-free gaming and buffer-free streaming with our optimized fiber network.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-headset"></i>
+            <h3>Local Support</h3>
+            <p>We are a local ISP. We respond faster and care more about our neighbors.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-wallet"></i>
+            <h3>Affordable</h3>
+            <p>Flexible installation options starting as low as ₱1,500 with friendly billing terms.</p>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <h2 class="section-title">Who We Are</h2>
+        <p class="section-subtitle">Connecting communities in Northern Mindanao with reliable fiber internet.</p>
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-network-wired"></i>
+                <h3>Introduction</h3>
+                <p>N'RTECH INTERNET SERVICES is your dedicated local ISP based in Tubod. We believe everyone deserves seamless, modern connectivity without the exorbitant price tags and data caps.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Our Mission</h3>
+                <p>To provide consistently fast, highly reliable, and affordable internet services while maintaining exceptional local customer support for every household and business in our coverage.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-eye"></i>
+                <h3>Our Vision</h3>
+                <p>To become the most trusted internet service provider in our local, bridging the digital divide and empowering communities one connection at a time.</p>
+            </div>
+        </div>
+    </section>
+    
+   <!-- FLOATING PROMO BANNER -->
+    <div id="promoSticky" style="position: fixed; bottom: 20px; left: 20px; background: var(--text-dark); color: white; padding: 15px 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border-left: 5px solid var(--primary); z-index: 999; display: flex; align-items: center; gap: 15px; animation: slideInLeft 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+        <div>
+            <span style="background: var(--primary); font-size: 0.75rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Limited Offer</span>
+            <p style="margin-top: 4px; font-size: 0.9rem; font-weight: 600;">Apply today & get free internet use until the 20th!</p>
+        </div>
+        <button onclick="document.getElementById('promoSticky').style.display='none';" style="background: transparent; border: none; color: #aaa; cursor: pointer; font-size: 1.2rem; padding: 0 5px; transition: color 0.2s;">×</button>
+    </div>
+
+    <!-- STATS COUNTER BANNER -->
+    <section style="padding: 40px 5%; background: var(--bg-light); border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-around; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; gap: 30px; text-align: center;">
+            <div>
+                <h3 style="font-size: 2.5rem; color: var(--primary-dark); font-weight: 800; margin-bottom: 5px;">99.9%</h3>
+                <p style="color: var(--text-light); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Fiber Uptime</p>
+            </div>
+            <div style="border-left: 1px solid #ddd; padding-left: 30px;">
+                <h3 style="font-size: 2.5rem; color: var(--primary-dark); font-weight: 800; margin-bottom: 5px;">1-3 Days</h3>
+                <p style="color: var(--text-light); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Fast Installation</p>
+            </div>
+            <div style="border-left: 1px solid #ddd; padding-left: 30px;">
+                <h3 style="font-size: 2.5rem; color: var(--primary-dark); font-weight: 800; margin-bottom: 5px;">24/7</h3>
+                <p style="color: var(--text-light); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Station Monitoring</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NETWORK STATUS BAR -->
+    <div style="background: #e6f4ea; border-bottom: 1px solid #ceead6; padding: 8px 5%; display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 0.9rem;">
+        <span style="height: 10px; width: 10px; background-color: #137333; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #137333; animation: pulse 1.8s infinite;"></span>
+        <span style="color: #137333; font-weight: 600;">N'RTECH Live Status:</span> 
+        <span style="color: #202124;">All systems operational in Tubod, San Vicente, Patudan, & Pualas.</span>
+    </div>
+
+
+    <!-- SPEED CALCULATOR SECTION -->
+    <section class="calculator-section" style="padding: 60px 5%; background: var(--white); text-align: center; border-bottom: 1px solid #ddd;">
+        <h2 class="section-title">Not Sure What Speed You Need?</h2>
+        <p class="section-subtitle" style="margin-bottom: 30px;">Tell us your device count, and we will recommend the perfect plan for your household.</p>
+        
+        <div style="max-width: 500px; margin: 0 auto; background: var(--bg-light); padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eef;">
+            <label style="font-weight: bold; display: block; margin-bottom: 15px; font-size: 1.1rem;">How many devices will connect at the same time?</label>
+            
+            <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 25px; flex-wrap: wrap;">
+                <button type="button" class="calc-btn" onclick="calculatePlan(1, 4)" style="background: white; border: 2px solid #ccc; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: all 0.3s;">1 - 4 Devices</button>
+                <button type="button" class="calc-btn" onclick="calculatePlan(5, 12)" style="background: white; border: 2px solid #ccc; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: all 0.3s;">5 - 12 Devices</button>
+                <button type="button" class="calc-btn" onclick="calculatePlan(13, 20)" style="background: white; border: 2px solid #ccc; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: all 0.3s;">13 - 20 Devices</button>
+                <button type="button" class="calc-btn" onclick="calculatePlan(21, 100)" style="background: white; border: 2px solid #ccc; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: all 0.3s;">21+ Devices</button>
+            </div>
+
+            <div id="calcResult" style="display: none; padding: 20px; background: #fff8e1; border-radius: 12px; border: 1px dashed var(--primary); animation: slideDown 0.3s ease-out;">
+                <p style="font-size: 0.95rem; color: var(--text-light); text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;">Our Recommendation</p>
+                <h4 id="recPlanName" style="font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 5px;">Family Plan</h4>
+                <p id="recPlanDesc" style="font-size: 1rem; color: var(--text-dark); margin-bottom: 15px;">Up to 15 Mbps — Perfect for steady streaming & social media browsing.</p>
+                <a id="recPlanLink" href="#plans" class="cta-button" style="padding: 8px 25px; font-size: 0.95rem;">View Price & Apply</a>
+            </div>
+        </div>
+    </section>
+
+
+        
+
+
+
+    <section class="plans-section" id="plans">
+        <h2 class="section-title">Choose Your Speed</h2>
+        <p class="section-subtitle">No data caps. No hidden charges. Just pure internet.</p>
+
+    <!-- SPEED INTERPRETATION GUIDE -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto 40px; padding: 0 15px;">
+        <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
+            <div style="background: #eef3ff; color: #3b82f6; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-gamepad"></i></div>
+            <div style="text-align: left;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Ping & Gaming</h4>
+                <p style="font-size: 0.8rem; color: var(--text-light);">Optimized routing paths for standard MOBA servers.</p>
+            </div>
+        </div>
+        <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
+            <div style="background: #fef2f2; color: #ef4444; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-tv"></i></div>
+            <div style="text-align: left;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 2px;">4K/HD Streaming</h4>
+                <p style="font-size: 0.8rem; color: var(--text-light);">No stuttering on Smart TVs or mobile screens.</p>
+            </div>
+        </div>
+        <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
+            <div style="background: #ecfdf5; color: #10b981; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-graduation-cap"></i></div>
+            <div style="text-align: left;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Online Education</h4>
+                <p style="font-size: 0.8rem; color: var(--text-light);">Lag-free continuous audio/video rooms.</p>
+            </div>
+        </div>
+    </div>
+
+
+        <div class="plans-grid">
+            
+            <div class="plan-card">
+                <i class="fas fa-wifi plan-icon"></i>
+                <h3 class="plan-name">Basic</h3>
+                <div class="plan-price">₱499<span>/mo</span></div>
+                <div class="plan-speed">Up to 10 Mbps</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Unlimited Data</li>
+                    <li><i class="fas fa-check"></i> Good for Browsing</li>
+                    <li><i class="fas fa-check"></i> Social Media Ready</li>
+                    <li><i class="fas fa-check"></i> 3-7 Devices</li>
+                </ul>
+                <div class="install-fee">Install Starts at: ₱1,500*</div>
+                <button class="select-btn" onclick="openApplyModal('Basic')">Apply Now</button>
+            </div>
+
+            <div class="plan-card popular">
+                <div class="badge">BEST SELLER</div>
+                <i class="fas fa-users plan-icon"></i>
+                <h3 class="plan-name">Family</h3>
+                <div class="plan-price">₱699<span>/mo</span></div>
+                <div class="plan-speed">Up to 15 Mbps</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Unlimited Data</li>
+                    <li><i class="fas fa-check"></i> HD Streaming</li>
+                    <li><i class="fas fa-check"></i> Online Classes</li>
+                    <li><i class="fas fa-check"></i> 5-12 Devices</li>
+                </ul>
+                <div class="install-fee">Install Starts at: ₱1,500*</div>
+                <button class="select-btn" onclick="openApplyModal('Family')">Apply Now</button>
+            </div>
+
+            <div class="plan-card">
+                <i class="fas fa-gamepad plan-icon"></i>
+                <h3 class="plan-name">Gamer</h3>
+                <div class="plan-price">₱899<span>/mo</span></div>
+                <div class="plan-speed">Up to 20 Mbps</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Low Latency Gaming</li>
+                    <li><i class="fas fa-check"></i> 4K Streaming</li>
+                    <li><i class="fas fa-check"></i> Work from Home</li>
+                    <li><i class="fas fa-check"></i> 12+ Devices</li>
+                </ul>
+                <div class="install-fee">Install Starts at: ₱1,800*</div>
+                <button class="select-btn" onclick="openApplyModal('Gamer')">Apply Now</button>
+            </div>
+
+            <div class="plan-card">
+                <i class="fas fa-rocket plan-icon"></i>
+                <h3 class="plan-name">Premium</h3>
+                <div class="plan-price">₱1,099<span>/mo</span></div>
+                <div class="plan-speed">Up to 30 Mbps</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Heavy Usage</li>
+                    <li><i class="fas fa-check"></i> Multiple HD Streams</li>
+                    <li><i class="fas fa-check"></i> Fast Downloads</li>
+                    <li><i class="fas fa-check"></i> Priority Support</li>
+                </ul>
+                <div class="install-fee">Install Starts at: ₱2,000*</div>
+                <button class="select-btn" onclick="openApplyModal('Premium')">Apply Now</button>
+            </div>
+
+            <div class="plan-card">
+                <i class="fas fa-briefcase plan-icon"></i>
+                <h3 class="plan-name">Business</h3>
+                <div class="plan-price">₱1,299<span>/mo</span></div>
+                <div class="plan-speed">Up to 40 Mbps</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Business Grade</li>
+                    <li><i class="fas fa-check"></i> Maximum Reliability</li>
+                    <li><i class="fas fa-check"></i> Connect 15+ Devices</li>
+                    <li><i class="fas fa-check"></i> Dedicated Line</li>
+                </ul>
+                <div class="install-fee">Install Starts at: ₱2,000*</div>
+                <button class="select-btn" onclick="openApplyModal('Business')">Apply Now</button>
+            </div>
+
+            <div class="plan-card vip">
+                <div class="badge" style="background: white; color: black;">POWERED BY N'RTECH</div>
+                <i class="fas fa-crown plan-icon"></i>
+                <h3 class="plan-name">VIP ULTIMATE</h3>
+                <div class="plan-price">₱1,899<span>/mo</span></div>
+                <div class="plan-speed">Up to 80 Mbps</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-bolt" style="color:white;"></i> Extreme Speed</li>
+                    <li><i class="fas fa-check"></i> Priority Bandwidth</li>
+                    <li><i class="fas fa-check"></i> 30+ Devices</li>
+                    <li><i class="fas fa-gift"></i> <strong>FREE Mini UPS!</strong></li>
+                </ul>
+                <div class="install-fee">Install Starts at: ₱2,500*</div>
+                <button class="select-btn" onclick="openApplyModal('VIP ULTIMATE')">Apply VIP Now</button>
+            </div>
+
+        </div>
+
+        <div class="disclaimer">
+            <strong>* Installation Fee Note:</strong> The prices listed above are <em>starting payments</em>. The final installation fee depends on your specific area and location (distance from main box). Please message us for an accurate quote.
+        </div>
+    </section>
+
+    <!-- PAYMENT CHANNELS SECTION -->
+    <section style="padding: 60px 5%; text-align: center; background: #fff;">
+        <h2 class="section-title">Easy Billing & Payment Options</h2>
+        <p class="section-subtitle">Settle your bills cleanly every 20th of the month via our integrated local channels.</p>
+        
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 900px; margin: 0 auto;">
+            <div style="background: var(--bg-light); padding: 20px; border-radius: 12px; border: 1px solid #eee; display: flex; align-items: center; gap: 15px; min-width: 250px; flex: 1;">
+                <div style="background: #1e3a8a; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;"><i class="fas fa-wallet"></i></div>
+                <div style="text-align: left;">
+                    <h4 style="font-size: 1rem; color: var(--text-dark);">GCash / Maya</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-light);">Instant digital confirmation via QR scanning.</p>
+                </div>
+            </div>
+            <div style="background: var(--bg-light); padding: 20px; border-radius: 12px; border: 1px solid #eee; display: flex; align-items: center; gap: 15px; min-width: 250px; flex: 1;">
+                <div style="background: #b45309; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;"><i class="fas fa-store"></i></div>
+                <div style="text-align: left;">
+                    <h4 style="font-size: 1rem; color: var(--text-dark);">Over-The-Counter</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-light);">Ramirez Famiy House.</p>
+                </div>
+            </div>
+            <div style="background: var(--bg-light); padding: 20px; border-radius: 12px; border: 1px solid #eee; display: flex; align-items: center; gap: 15px; min-width: 250px; flex: 1;">
+                <div style="background: #047857; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;"><i class="fas fa-university"></i></div>
+                <div style="text-align: left;">
+                    <h4 style="font-size: 1rem; color: var(--text-dark);">Online Bank Transfer</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-light);">Direct secure routing via InstaPay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="coverage" id="coverage">
+        <h2>Currently Serving Areas</h2>
+        <p>We are rapidly expanding our fiber network in Lanao del Norte.</p>
+        
+        <div class="locations">
+            <div class="location-tag"><i class="fas fa-map-marker-alt"></i> San Vicente</div>
+            <div class="location-tag"><i class="fas fa-map-marker-alt"></i> Patudan</div>
+            <div class="location-tag"><i class="fas fa-map-marker-alt"></i> Pualas</div>
+            <div class="location-tag" style="background: transparent; border: 1px dashed #777; color: #aaa;">More areas soon...</div>
+        </div>
+    </section>
+
+    
+
+    <!-- NEW FAQ SECTION -->
+    <section class="faq-section" id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Got questions? We've got answers to help you get connected faster.</p>
+
+        <div class="faq-container">
+                        <!-- ADVANCE POINTS FAQ -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What is the Advance Points system and how do I redeem rewards?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    If you love planning ahead, this is for you! When you pay your bill *before* your billing cycle drops, you earn <strong>Advance Points</strong>. These points accumulate in your client portal and can be converted into awesome rewards like temporary speed boosts, custom N'RTECH merch, or even a completely free month of internet!
+                </div>
+            </div>
+
+            <!-- ON-TIME POINTS FAQ -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What are On-Time Points and how do I unlock secret discounts?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We reward consistency! Settling your bill exactly on or before your due date (the 20th of the month) automatically earns you <strong>On-Time Points</strong>. Accumulating these points unlocks our exclusive <strong>Secret Discounts</strong>—giving you surprise price cuts on your monthly subscription or heavy discounts on hardware upgrades like our Mini UPS.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How long does the installation process take?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Once your application is submitted and approved, standard installation takes between <strong>1 to 3 business days</strong>, depending on your location and weather conditions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    When is my monthly due date?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Your official monthly billing cycle will always start on the <strong>20th of the month</strong>. Any connection time before your first 20th is free of charge!
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Do you have data caps or throttling?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <strong>No.</strong> All of our plans come with purely Unlimited Data. You can stream, download, and game as much as you want without worrying about hidden caps.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Do I need to buy my own router?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    No need! The basic Modem/Wi-Fi Router is already included in your initial installation package. If you have a large house, we can assist you in adding extra routers or mesh networks for a fee.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What happens to my connection during brownouts?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Since we use purely fiber optic technology, our main lines remain active even during local grid power outages. As long as you have a backup power source (like a <strong>Mini UPS</strong>, power bank, or generator) to power your home router, your internet will stay connected!
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <div class="custom-alert-overlay" id="customAlert">
+        <div class="custom-alert-box">
+            <i class="fas fa-exclamation-circle custom-alert-icon"></i>
+            <h4>Missing Information</h4>
+            <p id="customAlertMessage">Please fill out your Name, Address, and Phone Number before submitting.</p>
+            <button class="custom-alert-btn" onclick="closeCustomAlert()">Got it</button>
+        </div>
+    </div>
+    
+        <!-- APPLICATION SUCCESS TRACKER MODAL -->
+    <div class="custom-alert-overlay" id="trackerModal" style="z-index: 10000;">
+        <div class="custom-alert-box" style="max-width: 450px; border-top: 5px solid #25D366; text-align: left;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="background: #e6f4ea; color: #137333; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 10px;">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h4 style="font-size: 1.4rem; margin-bottom: 5px;">Application Package Formatted!</h4>
+                <p style="font-size: 0.9rem; color: var(--text-light);">We are redirecting you to submit your details.</p>
+            </div>
+            
+            <div style="position: relative; padding-left: 30px; margin-bottom: 20px;">
+                <div style="position: absolute; left: 9px; top: 5px; bottom: 5px; width: 2px; background: #ddd;"></div>
+                
+                <!-- Step 1 -->
+                <div style="position: relative; margin-bottom: 20px;">
+                    <span style="position: absolute; left: -30px; top: 2px; width: 20px; height: 20px; background: #25D366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;"><i class="fas fa-check"></i></span>
+                    <strong style="font-size: 0.95rem; color: var(--text-dark);">Step 1: Copied to Clipboard</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 2px;">Your dynamic form layout data is saved and ready to paste.</p>
+                </div>
+                <!-- Step 2 -->
+                <div style="position: relative; margin-bottom: 20px;">
+                    <span style="position: absolute; left: -30px; top: 2px; width: 20px; height: 20px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; animation: pulse 1s infinite;"><i class="fas fa-comment"></i></span>
+                    <strong style="font-size: 0.95rem; color: var(--text-dark);">Step 2: Paste in Chat & Send</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 2px;">Once the app opens, paste your details directly into our inbox.</p>
+                </div>
+                <!-- Step 3 -->
+                <div style="position: relative;">
+                    <span style="position: absolute; left: -30px; top: 2px; width: 20px; height: 20px; background: #eee; color: #aaa; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;"><i class="fas fa-truck"></i></span>
+                    <strong style="font-size: 0.95rem; color: #888;">Step 3: Line Verification (1-3 Days)</strong>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-top: 2px;">Our team schedules field verification to measure dropping cable distance.</p>
+                </div>
+            </div>
+            
+            <button class="select-btn" onclick="document.getElementById('trackerModal').style.display='none';" style="background: var(--text-dark); width: 100%;">Continue</button>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal-overlay" id="applyModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeApplyModal()">×</span>
+            <h3>Apply for <span id="formPlanName" style="color: var(--primary);">Plan</span></h3>
+            
+            <div class="payment-terms-box">
+                <i class="fas fa-calendar-check" style="margin-right: 5px;"></i>
+                <strong>Good News!</strong> Pay ONLY the installation fee upfront. Your connection is FREE to use until the <strong>20th of the month</strong>, which is when your first monthly payment begins as an official client.
+            </div>
+
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="clientName" placeholder="Juan Dela Cruz" required>
+                </div>
+                <div class="form-group">
+                    <label>Complete Address / Landmark</label>
+                    
+                    <input type="text" id="clientAddress" placeholder="Purok 1, San Vicente, near the chapel..." required>
+                </div>
+                 <!-- QUICK LANDMARK ASSISTANCE TAGS -->
+<div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+    <span style="font-size: 0.75rem; color: var(--text-light); font-weight: bold;">Tap to add landmark:</span>
+    <button type="button" onclick="appendLandmark('Near Basketball Court')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🏀 Basketball Court</button>
+    <button type="button" onclick="appendLandmark('Near Purok Waiting Shed')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🛖 Waiting Shed</button>
+    <button type="button" onclick="appendLandmark('Near Chapel')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">⛪ Chapel</button>
+    <button type="button" onclick="appendLandmark('Near Elementary School')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🏫 School</button>
+</div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="tel" id="clientPhone" placeholder="09XX-XXX-XXXX" required>
+                </div>
+
+
+<!-- DYNAMIC INSTALLATION ESTIMATOR -->
+<div class="form-group" style="background: #fdfaf4; border: 1px solid #faebcc; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+    <label style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px;">
+        <span>Estimated Distance to Fiber Post:</span>
+        <span id="distanceDisplay" style="color: var(--primary-dark);">Within 50 meters</span>
+    </label>
+    <input type="range" id="distanceSlider" min="50" max="300" step="25" value="50" style="width: 100%; accent-color: var(--primary);" oninput="updateInstallEstimation()">
+    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #888; margin-top: 4px;">
+        <span>Standard (Near)</span>
+        <span>Farther Line</span>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); display: flex; justify-content: space-between; border-top: 1px dashed #e1d4bb; padding-top: 8px;">
+        <span>Est. Base Install Fee:</span>
+        <span id="calculatedFeeDisplay" style="color: #137333;">₱1,500</span>
+    </div>
+</div>
+
+
+                <div class="form-group">
+                    <label>Pin your Exact Location <span style="color:#888; font-weight:normal;">(Tap map to place pin)</span></label>
+                    <div class="map-wrapper">
+                        <div class="map-tools">
+                            <span style="font-size: 0.8rem; color: #555;"><i class="fas fa-hand-pointer"></i> Tap map to drop pin</span>
+                            <button type="button" class="btn-locate" onclick="getUserLocation()">
+                                <i class="fas fa-crosshairs"></i> Locate Me
+                            </button>
+                        </div>
+                        <div id="map"></div>
+                    </div>
+                    <!-- VISUAL COORDINATES FEEDBACK PILL -->
+<div id="coordsFeedback" style="display: none; background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; margin-top: 8px; text-align: left; animation: slideDown 0.2s ease-out;">
+    <i class="fas fa-check-circle" style="color: #0284c7; margin-right: 5px;"></i> GPS Coordinates Locked: <span id="coordsDisplayString">0, 0</span>
+</div>
+
+
+                    <input type="hidden" id="clientLat">
+                    <input type="hidden" id="clientLng">
+                </div>
+                
+                <label class="ups-toggle">
+                    <input type="checkbox" id="addUps">
+                    <div>
+                        <strong>Add Mini UPS for Brownouts</strong><br>
+                        <span id="upsPriceText" style="font-size: 0.9rem; color: var(--text-light);">+₱500 to Installation Fee</span>
+                    </div>
+                </label>
+                
+                <p style="text-align: center; margin-bottom: 10px; font-weight: bold;">Send Application Details via:</p>
+                <div class="submit-buttons">
+                    <button type="button" class="btn-whatsapp" onclick="submitViaWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                    </button>
+                    <button type="button" class="btn-messenger" onclick="submitViaMessenger()">
+                        <i class="fab fa-facebook-messenger"></i> Send via Messenger
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
+    <!-- REFERRAL PROGRAM BANNER -->
+    <section style="background: linear-gradient(135deg, var(--primary-dark) 0%, #7c5212 100%); color: white; padding: 50px 5%; text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; right: -30px; bottom: -30px; font-size: 150px; opacity: 0.08; color: white;">
+            <i class="fas fa-gift"></i>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 2;">
+            <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Share the Connection</span>
+            <h2 style="font-size: 2.3rem; margin: 15px 0 10px;">Refer a Neighbor, Get ₱100 Off!</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 25px; font-weight: 300;">
+                Help us bridge the digital gap in our coverage areas. For every neighbor you refer who successfully activates an N'RTECH Fiber line, we will automatically slash <strong>₱100 off your next monthly bill!</strong>
+            </p>
+            <a href="https://www.facebook.com/share/1PcFAdwt6K/" target="_blank" class="cta-button" style="background: white; color: var(--primary-dark); box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                <i class="fas fa-bullhorn" style="margin-right: 8px;"></i> Message Us to Refer
+            </a>
+        </div>
+    </section>
+    
+
+
+    <footer id="contact">
+        <div style="margin-bottom: 20px;">
+            <div style="font-size: 40px; color: var(--primary); margin-bottom: 10px;"><i class="fas fa-wifi"></i></div>
+            <h3>N'RTECH INTERNET SERVICES</h3>
+        </div>
+        <div class="contact-info">
+            <i class="fas fa-phone-alt" style="color:var(--primary)"></i> 
+            Call or Text: <a href="tel:09468953577">0946-895-3577</a>
+        </div>
+        <div style="margin-top: 30px; font-size: 0.9rem; color: #777;">
+            <p>© 2021 N'RTECH Internet. All rights reserved.</p>
+        </div>
+    </footer>
+
+    
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        let selectedPlan = "";
+        let isVipSelected = false;
+        let map, marker;
+
+        /* --- FAQ TOGGLE FUNCTION --- */
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            
+            // Optional: Close all other FAQs before opening this one
+            const allItems = document.querySelectorAll('.faq-item');
+            allItems.forEach(faq => {
+                if (faq !== item) {
+                    faq.classList.remove('active');
+                }
+            });
+
+            item.classList.toggle('active');
+        }
+
+        /* --- CUSTOM ALERT FUNCTIONS --- */
+        function showCustomAlert(message) {
+            document.getElementById('customAlertMessage').textContent = message;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        function closeCustomAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
+        /* --- MAP FUNCTIONS --- */
+        function initMap() {
+            if(map) return;
+            
+            // Default coordinates for Tubod, Lanao del Norte area
+            const defaultCoords = [8.0556, 123.7917];
+            
+            map = L.map('map').setView(defaultCoords, 13);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+            map.on('click', function(e) {
+                placeMarker(e.latlng);
+            });
+        }
+
+        function placeMarker(latlng) {
+            if(marker) {
+                marker.setLatLng(latlng);
+            } else {
+                marker = L.marker(latlng).addTo(map);
+            }
+            document.getElementById('clientLat').value = latlng.lat;
+            document.getElementById('clientLng').value = latlng.lng;
+        }
+
+        function getUserLocation() {
+            if ("geolocation" in navigator) {
+                const btn = document.querySelector('.btn-locate');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Locating...';
+
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latlng = {
+                        lat: position.coords.latitude, 
+                        lng: position.coords.longitude
+                    };
+                    map.setView(latlng, 16);
+                    placeMarker(latlng);
+                    btn.innerHTML = originalText;
+                }, function(error) {
+                    btn.innerHTML = originalText;
+                    showCustomAlert("Please enable location services on your device to use this feature, or just tap the map manually.");
+                }, { timeout: 10000 });
+            } else {
+                showCustomAlert("Geolocation is not supported by your browser.");
+            }
+        }
+
+        /* --- MODAL FUNCTIONS --- */
+        function openApplyModal(planName) {
+            selectedPlan = planName;
+            isVipSelected = (planName === 'VIP ULTIMATE');
+            
+            document.getElementById('formPlanName').textContent = planName;
+            
+            const upsCheckbox = document.getElementById('addUps');
+            const upsPriceText = document.getElementById('upsPriceText');
+
+            if(isVipSelected) {
+                upsCheckbox.checked = true;
+                upsCheckbox.disabled = true;
+                upsPriceText.innerHTML = "<strong style='color: green;'>FREE with VIP Plan!</strong>";
+            } else {
+                upsCheckbox.checked = false;
+                upsCheckbox.disabled = false;
+                upsPriceText.innerHTML = "+₱500 to Installation Fee";
+            }
+
+            document.getElementById('applyModal').style.display = 'flex';
+
+            setTimeout(() => {
+                initMap();
+                map.invalidateSize();
+            }, 100);
+        }
+
+        function closeApplyModal() {
+            document.getElementById('applyModal').style.display = 'none';
+        }
+
+        /* --- SUBMISSION FUNCTIONS --- */
+                function getApplicationMessage() {
+            const name = document.getElementById('clientName').value.trim();
+            const address = document.getElementById('clientAddress').value.trim();
+            let phone = document.getElementById('clientPhone').value.trim();
+            const wantUps = document.getElementById('addUps').checked;
+            const lat = document.getElementById('clientLat').value;
+            const lng = document.getElementById('clientLng').value;
+
+            // Simple Form Presence Check
+            if(!name || !address || !phone) {
+                showCustomAlert("Please fill out your Name, Address, and Phone Number before submitting.");
+                return null;
+            }
+
+            // Strips out spaces, dashes, or parentheses
+            const cleanPhone = phone.replace(/[^0-9]/g, "");
+
+            // Philippine Mobile Format Validation
+            const isValidFormat = (cleanPhone.length === 11 && cleanPhone.startsWith("09")) || 
+                                  (cleanPhone.length === 12 && cleanPhone.startsWith("639"));
+
+            if(!isValidFormat) {
+                showCustomAlert("⚠️ Invalid Contact Number. Please enter a valid 11-digit Philippine mobile number starting with 09 (e.g., 09123456789).");
+                return null;
+            }
+
+
+            let upsText = wantUps ? "Yes (+₱500)" : "No";
+            if (isVipSelected) upsText = "Yes (FREE VIP Perk)";
+
+            let locationLink = "Not pinned";
+            if(lat && lng) {
+                locationLink = `https://www.google.com/maps?q=${lat},${lng}`;
+            }
+
+            return `*NEW INTERNET APPLICATION* 🌐
+            
+*Plan Selected:* ${selectedPlan}
+*Full Name:* ${name}
+*Complete Address:* ${address}
+*Contact Number:* ${phone}
+*Mini UPS Added:* ${upsText}
+
+📍 *Map Pin Location:* ${locationLink}
+
+*Note:* I understand that I only pay the installation fee upfront, and my first monthly payment will start on the 20th of the month.`;
+        }
+
+        function submitViaWhatsApp() {
+            const message = getApplicationMessage();
+            if(!message) return;
+
+            const whatsappNumber = "639468953577"; 
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+            closeApplyModal();
+        }
+
+        function submitViaMessenger() {
+            const message = getApplicationMessage();
+            if(!message) return;
+
+            navigator.clipboard.writeText(message).then(() => {
+                showCustomAlert("✅ Application copied! We will now open Facebook. Just PASTE the message in our chat and hit send.");
+                setTimeout(() => {
+                    window.open("https://www.facebook.com/share/1PcFAdwt6K/", "_blank");
+                    closeApplyModal();
+                    closeCustomAlert();
+                }, 2500);
+            }).catch(err => {
+                showCustomAlert("Could not auto-copy text. Please send us your details manually on Facebook.");
+            });
+        }
+        
+                /* --- SPEED CALCULATOR FUNCTION --- */
+        function calculatePlan(min, max) {
+            // Reset button active styles
+            const buttons = document.querySelectorAll('.calc-btn');
+            buttons.forEach(btn => {
+                btn.style.borderColor = "#ccc";
+                btn.style.background = "white";
+                btn.style.color = "var(--text-dark)";
+            });
+
+            // Highlight chosen button
+            const eventBtn = window.event.target;
+            eventBtn.style.borderColor = "var(--primary)";
+            eventBtn.style.background = "var(--primary)";
+            eventBtn.style.color = "white";
+
+            const resultBox = document.getElementById('calcResult');
+            const recName = document.getElementById('recPlanName');
+            const recDesc = document.getElementById('recPlanDesc');
+
+            resultBox.style.display = "block";
+
+            if (max <= 4) {
+                recName.textContent = "Basic Plan (10 Mbps)";
+                recDesc.textContent = "Ideal for single users or small households focusing on browsing and casual messaging.";
+            } else if (max <= 12) {
+                recName.textContent = "Family Plan (15 Mbps)";
+                recDesc.textContent = "Our most popular choice! Great for continuous HD streaming, scrolling, and online school tasks.";
+            } else if (max <= 20) {
+                recName.textContent = "Gamer / Premium Plans (20-30 Mbps)";
+                recDesc.textContent = "Perfect for fast-paced multiplayer online gaming, running a home office, and downloading massive files quickly.";
+            } else {
+                recName.textContent = "Business / VIP Ultimate (40-80 Mbps)";
+                recDesc.textContent = "The ultimate heavy-use solution. Best suited for neighborhood hotspots, internet cafés, or dense corporate workflows.";
+            }
+        }
+
+        /* --- DYNAMIC INSTALLATION ESTIMATOR FUNCTION --- */
+        function updateInstallEstimation() {
+            const distance = parseInt(document.getElementById('distanceSlider').value);
+            const displayDistance = document.getElementById('distanceDisplay');
+            const displayFee = document.getElementById('calculatedFeeDisplay');
+            
+            let estimatedBase = 1500;
+            
+            if (selectedPlan === 'Gamer') estimatedBase = 1800;
+            else if (selectedPlan === 'Premium' || selectedPlan === 'Business') estimatedBase = 2000;
+            else if (selectedPlan === 'VIP ULTIMATE') estimatedBase = 2500;
+            
+            // Scaled distance logic fee addition
+            let extraFee = 0;
+            if (distance > 50) {
+                extraFee = ((distance - 50) / 25) * 150; // adds ₱150 per extra 25 meters of dropping cable line
+            }
+            
+            const totalEst = estimatedBase + extraFee;
+            
+            displayDistance.textContent = distance === 300 ? "300+ meters (Far)" : `Around ${distance} meters`;
+            displayFee.textContent = `₱${totalEst.toLocaleString()}`;
+        }
+        
+                // Show button when scrolling down 400px from top
+        window.onscroll = function() {
+            const topBtn = document.getElementById("backToTopBtn");
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                topBtn.style.display = "flex";
+            } else {
+                topBtn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+               function placeMarker(latlng) {
+            if(marker) {
+                marker.setLatLng(latlng);
+            } else {
+                marker = L.marker(latlng).addTo(map);
+            }
+            document.getElementById('clientLat').value = latlng.lat;
+            document.getElementById('clientLng').value = latlng.lng;
+
+            // Update the UI coordinates display pill dynamically
+            const feedbackBox = document.getElementById('coordsFeedback');
+            const displayString = document.getElementById('coordsDisplayString');
+            
+            displayString.textContent = `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
+            feedbackBox.style.display = "block";
+        }
+
+        function submitViaMessenger() {
+            const message = getApplicationMessage();
+            if(!message) return;
+
+            navigator.clipboard.writeText(message).then(() => {
+                // Show the highly professional tracker roadmap layout
+                document.getElementById('trackerModal').style.display = 'flex';
+                
+                setTimeout(() => {
+                    window.open("https://www.facebook.com/share/1PcFAdwt6K/", "_blank");
+                    closeApplyModal();
+                }, 3000);
+            }).catch(err => {
+                showCustomAlert("Could not auto-copy text. Please send us your details manually on Facebook.");
+            });
+        }
+        /* --- LANDMARK APPEND HELPER --- */
+        function appendLandmark(text) {
+            const addressInput = document.getElementById('clientAddress');
+            const currentVal = addressInput.value.trim();
+            
+            if(currentVal === "") {
+                addressInput.value = text;
+            } else if (!currentVal.includes(text)) {
+                addressInput.value = currentVal + `, ${text}`;
+            }
+            addressInput.focus();
+        }
+
+
+        
+
+                
+    </script>
+    
+        <!-- BACK TO TOP SCROLL BUTTON -->
+    <button id="backToTopBtn" onclick="scrollToTop()" style="position: fixed; bottom: 25px; right: 25px; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 998; transition: background 0.3s, transform 0.2s;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+    /* 1. Base hidden state for the animation */
+    .fade-in-section {
+        opacity: 0;
+        transform: translateY(40px);
+        visibility: hidden;
+        /* Smooth bounce-like transition */
+        transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        will-change: opacity, transform;
+    }
+    
+    /* 2. Active visible state */
+    .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Target your existing HTML classes to animate them
+        const elementsToAnimate = document.querySelectorAll(
+            '.feature-box, .about-card, .plan-card, .section-title, .section-subtitle, .faq-item, .location-tag'
+        );
+        
+        // 2. Apply the initial hidden CSS class to all targeted elements
+        elementsToAnimate.forEach((el) => {
+            el.classList.add('fade-in-section');
+        });
+
+        // 3. Set up the Intersection Observer to watch for scrolling
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px', // Triggers slightly before the element hits the bottom
+            threshold: 0.1 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // When the element scrolls into view
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once animated (so it doesn't repeat on scroll up)
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // 4. Start observing the elements
+        elementsToAnimate.forEach((el) => {
+            observer.observe(el);
+        });
+        
+        // 5. Stagger the plan cards so they don't all pop up at the exact same millisecond
+        const planCards = document.querySelectorAll('.plan-card');
+        planCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.15}s`;
+        });
+    });
+</script>
+
+    
+    <!-- === EXTRA ANIMATION EFFECTS === -->
+<style>
+    /* 1. Living Gradient Hero Background 
+       Makes the background colors slowly shift back and forth */
+    .hero {
+        background: linear-gradient(-45deg, #ffffff, #f0e6d6, #e8d5b7, #ffffff) !important;
+        background-size: 400% 400% !important;
+        animation: moveGradient 12s ease infinite !important;
+    }
+    
+    @keyframes moveGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* 2. Navigation Slide-In & Link Underlines */
+    nav {
+        animation: dropDown 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    @keyframes dropDown {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(0); }
+    }
+    
+    .nav-links a:not(.btn-client) {
+        position: relative;
+    }
+    
+    .nav-links a:not(.btn-client)::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--primary);
+        transition: width 0.3s ease;
+    }
+    
+    .nav-links a:not(.btn-client):hover::after {
+        width: 100%;
+    }
+
+    /* 3. Button Ripple Hover Effect */
+    .cta-button {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.15);
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        transition: transform 0.6s ease-out;
+    }
+    
+    .cta-button:hover::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* 4. Interactive Popping Icons 
+       Icons will slightly bounce and scale up when you hover over their boxes */
+    .feature-box:hover i, .about-card:hover i {
+        animation: iconPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    
+    @keyframes iconPop {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3) rotate(10deg); color: var(--primary-dark); }
+        100% { transform: scale(1.15) rotate(0deg); }
+    }
+</style>
+<!-- === END EXTRA ANIMATION === -->
+
+<!-- === PROFESSIONAL UI/UX POLISH === -->
+<!-- 1. Import Premium Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    /* 2. Apply Premium Typography */
+    body {
+        font-family: 'Inter', sans-serif !important;
+        letter-spacing: -0.01em;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .logo, .plan-price, .plan-speed, .calc-btn, .badge {
+        font-family: 'Poppins', sans-serif !important;
+        letter-spacing: -0.02em;
+    }
+
+    /* 3. Frosted Glass (Glassmorphism) Navigation Bar */
+    nav {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03) !important;
+    }
+
+    /* 4. Modern Card Styling (Softer Shadows & Smooth Corners) */
+    .feature-box, .about-card, .plan-card, .faq-item, .modal-content {
+        border: 1px solid rgba(0,0,0,0.04) !important;
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08) !important;
+        border-radius: 20px !important; 
+    }
+
+    /* 5. Refined Hover States for Depth */
+    .feature-box:hover, .about-card:hover {
+        box-shadow: 0 20px 40px -5px rgba(212, 154, 55, 0.15) !important;
+        transform: translateY(-8px) !important;
+    }
+
+    /* 6. Ultra-Premium VIP Card Makeover */
+    .plan-card.vip {
+        background: linear-gradient(145deg, #1c1c1c, #0a0a0a) !important;
+        border: 1px solid #333 !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1) !important;
+    }
+
+    /* 7. Modern SaaS-Style Form Inputs */
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="password"] {
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        padding: 14px 16px !important;
+        transition: all 0.2s ease !important;
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    .form-group input:focus {
+        background: #ffffff !important;
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 0 4px rgba(212, 154, 55, 0.15) !important;
+        outline: none !important;
+    }
+
+    /* 8. Sleeker Buttons */
+    .cta-button, .select-btn, .btn-whatsapp, .btn-messenger {
+        border-radius: 12px !important; /* Slightly squared for a modern tech feel */
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        font-size: 0.95rem !important;
+    }
+    
+    .btn-client {
+        border-radius: 10px !important;
+    }
+
+    /* 9. Cleaner FAQ Accordions */
+    .faq-item {
+        border-left: none !important;
+        background: #ffffff !important;
+    }
+    .faq-item.active {
+        border: 1px solid var(--primary) !important;
+        box-shadow: 0 10px 30px rgba(212, 154, 55, 0.1) !important;
+    }
+</style>
+<!-- === END UI/UX POLISH === -->
+
+<!-- === PREMIUM MICRO-INTERACTIONS & IDLE ANIMATIONS === -->
+<style>
+    /* 1. Glossy Sweep (Shine) Effect on Main Buttons */
+    .cta-button {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cta-button::after {
+        content: '';
+        position: absolute;
+        top: 0; 
+        left: -150%;
+        width: 50%; 
+        height: 100%;
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+        transform: skewX(-25deg);
+        animation: premiumShine 5s infinite;
+    }
+    
+    @keyframes premiumShine {
+        0% { left: -150%; }
+        20% { left: 200%; }
+        100% { left: 200%; }
+    }
+
+    /* 2. Continuous "Breathing" Float for Badges & Modals */
+    .badge {
+        animation: breathe 3s ease-in-out infinite !important;
+    }
+    
+    @keyframes breathe {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-3px); }
+    }
+
+    /* 3. Upgraded Spring-Loaded Modal Pop-in */
+    .modal-content {
+        animation: springPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+    
+    @keyframes springPop {
+        0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* 4. Playful Map Pin Bounce on Hover */
+    .location-tag:hover i {
+        animation: bouncePin 0.5s infinite alternate;
+        color: white;
+    }
+    
+    @keyframes bouncePin {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-4px); }
+    }
+
+    /* 5. Smooth Scale-Up for Stats and Payment Cards (Targeting inline styles) */
+    section[style*="background: #fff;"] > div > div,
+    section[style*="background: var(--bg-light)"] > div > div {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease !important;
+    }
+    
+    section[style*="background: #fff;"] > div > div:hover,
+    section[style*="background: var(--bg-light)"] > div > div:hover {
+        transform: translateY(-8px) scale(1.02) !important;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.06) !important;
+        border-color: var(--primary) !important;
+    }
+    
+    /* 6. Logo Pulse Effect */
+    .logo i {
+        transition: transform 0.3s ease;
+    }
+    .logo:hover i {
+        transform: scale(1.2);
+        animation: wifiPulse 1.5s infinite;
+    }
+    
+    @keyframes wifiPulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+</style>
+<!-- === END PREMIUM MICRO-INTERACTIONS === -->
+
+  
+    
+</body>
+</html>
+
