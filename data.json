@@ -1,0 +1,1159 @@
+[
+    {
+        "messengerId": "curlito.albarote",
+        "clientUsername": "NR2021C0001A",
+        "clientPassword": "NR@ALBAROTE",
+        "accountNumber": "NR2021C0001A",
+        "name": "Curlito Albarote",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0000",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Active",
+        "pppoeUsername": "C0001A",
+        "pppoePassword": "ALBAROTE",
+        "payments": [
+            {
+                "date": "2025-11-20",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "5D838CF6",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-20",
+                "amount": 500,
+                "note": "",
+                "method": "Cash",
+                "referenceNumber": "6KT6JPEF",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "XAC5W47K"
+            },
+            {
+                "date": "2026-02-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "2P5G9QMR"
+            },
+            {
+                "date": "2026-03-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "44REH67D"
+            },
+            {
+                "date": "2026-04-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "EJK7K2KH"
+            },
+            {
+                "date": "2026-05-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "2K9CKB7B"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 7,
+            "lost": 0
+        },
+        "nextDue": "2026-06-20",
+        "excessLackingBalance": 7,
+        "createdAt": "2025-12-18T20:47:21.424Z",
+        "charges": []
+    },
+    {
+        "messengerId": "ires.pepito",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0002A",
+        "name": "Ires Pepito",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0001",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0002A",
+        "pppoePassword": "PEPITO",
+        "payments": [
+            {
+                "date": "2026-01-26",
+                "amount": 499,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "2HBNQ57P",
+                "billingMonth": "2026-01",
+                "type": "bill"
+            },
+            {
+                "date": "2026-02-28",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "6Y4Q3B8P",
+                "billingMonth": "2026-02",
+                "type": "bill"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-03-20",
+        "excessLackingBalance": 1,
+        "createdAt": "2025-12-18T20:47:21.424Z",
+        "charges": []
+    },
+    {
+        "messengerId": "felan.noya",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0003A",
+        "name": "Felan Noya",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0002",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0003A",
+        "pppoePassword": "NOYA",
+        "payments": [
+            {
+                "date": "2025-11-20",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "9CBG4WKN",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-20",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "K8LWUT6W",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "FXWVUHKH"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 3,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 3,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "anarie.bacalso",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0004A",
+        "name": "Anarie Bacalso",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0003",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0004A",
+        "pppoePassword": "BACALSO",
+        "payments": [
+            {
+                "date": "2025-11-20",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "YLUUKDFS",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-20",
+                "amount": 499,
+                "note": "",
+                "referenceNumber": "YRS74XT5"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "SXCAG28F"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 3,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 2,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "vincent.pepito",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0005A",
+        "name": "Vincent Pepito",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0004",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Terminated",
+        "pppoeUsername": "C0005A",
+        "pppoePassword": "PEPITO",
+        "payments": [],
+        "points": {
+            "advance": 0,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-06-19",
+        "excessLackingBalance": 0,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "ariane.albarote",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0006A",
+        "name": "Ariane Jean Albarote",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0005",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0006A",
+        "pppoePassword": "ALBAROTE",
+        "payments": [
+            {
+                "date": "2025-11-21",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "BZV4P3XZ",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-20",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "NJHCXFCY",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "Y86GCZ6M"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 2,
+            "lost": 1
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 3,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "victoria.espra",
+        "clientUsername": "",
+        "clientPassword": "",
+        "accountNumber": "NR2021C0007A",
+        "name": "Victoria Espra",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "N/a",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0007A",
+        "pppoePassword": "ESPRA",
+        "payments": [
+            {
+                "date": "2025-11-12",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "HZYNGURW",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-20",
+                "amount": 499,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "L8FUFR6Q",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-19",
+                "amount": 499,
+                "note": "",
+                "referenceNumber": "Q6ERTH68"
+            }
+        ],
+        "points": {
+            "advance": 2,
+            "ontime": 1,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 1,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "carolyn.sarabia",
+        "clientUsername": "",
+        "clientPassword": "",
+        "accountNumber": "NR2021C0008A",
+        "name": "Carolyn Sarabia",
+        "address": "P5, Patudan Tubod LDN",
+        "contact": "0917-000-0007",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0008A",
+        "pppoePassword": "SARABIA",
+        "payments": [
+            {
+                "date": "2025-11-28",
+                "amount": 802,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "JWP29RPM",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-20",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "WNUDBAUF",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 1,
+            "lost": 0
+        },
+        "nextDue": "2026-01-20",
+        "excessLackingBalance": 1.3,
+        "createdAt": "2025-12-18T20:47:21.424Z",
+        "charges": [
+            {
+                "date": "2025-10-20",
+                "note": "Bal. ",
+                "amount": 153,
+                "category": "charge"
+            },
+            {
+                "date": "2025-11-28",
+                "note": "Reconnection Fee",
+                "amount": 149.7,
+                "category": "reconnect"
+            }
+        ],
+        "discounts": []
+    },
+    {
+        "messengerId": "frankie.sarabia",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0009A",
+        "name": "Frankie Sarabia",
+        "address": "Patudan Tubod LDN",
+        "contact": "0917-000-0008",
+        "plan": {
+            "name": "Family",
+            "fee": 699,
+            "speed": "Up to 15 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0009A",
+        "pppoePassword": "SARABIA",
+        "payments": [
+            {
+                "date": "2025-11-21",
+                "amount": 600,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "9RSKAVAG",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-20",
+                "amount": 700,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "48ARK6L8",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 700,
+                "note": "",
+                "referenceNumber": "GTG3AVGE"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 2,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 12,
+        "createdAt": "2025-12-18T20:47:21.424Z",
+        "discounts": [
+            {
+                "date": "2025-10-20",
+                "note": "Prev. Bal",
+                "amount": 109,
+                "ref": "AHTNDLAU"
+            }
+        ]
+    },
+    {
+        "messengerId": "lorifel.bacalso",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0010A",
+        "name": "Lorifel Bacalso",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0009",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0010A",
+        "pppoePassword": "BACALSO",
+        "payments": [
+            {
+                "date": "2025-11-20",
+                "amount": 1000,
+                "note": "Advance Payment (2 Months)",
+                "method": "Cash",
+                "referenceNumber": "F3NPVAHU",
+                "billingMonth": "2025-11",
+                "type": "advance"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 1000,
+                "note": "Advance Payment (2 Months)",
+                "method": "Cash",
+                "referenceNumber": "6YX2FDJ8",
+                "billingMonth": "2026-01",
+                "type": "advance"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 4,
+            "lost": 0
+        },
+        "nextDue": "2026-03-20",
+        "excessLackingBalance": 4,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "helen.torres",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0011A",
+        "name": "Helen Torres",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0010",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0011A",
+        "pppoePassword": "TORRES",
+        "payments": [
+            {
+                "date": "2025-12-20",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "RW8SVS57",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2025-11-21",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "HQKBCFLF",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "NMGKM92B"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 2,
+            "lost": 1
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 3,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "thalia.arcilla",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0012A",
+        "name": "Thalia Arcilla",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0011",
+        "plan": {
+            "name": "Family",
+            "fee": 699,
+            "speed": "Up to 15 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0012A",
+        "pppoePassword": "ARCILLA",
+        "payments": [
+            {
+                "date": "2025-11-20",
+                "amount": 700,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "8AXMVBN7",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-20",
+                "amount": 700,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "9PR8WEUT",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 700,
+                "note": "",
+                "referenceNumber": "SBWWQEQL"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 3,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 3,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "delmark.porlas",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0013A",
+        "name": "Delmark Porlas",
+        "address": "P4 Patudan Tubod LDN",
+        "contact": "0917-000-0012",
+        "plan": {
+            "name": "Gamer",
+            "fee": 899,
+            "speed": "Up to 20 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0013A",
+        "pppoePassword": "PORLAS",
+        "payments": [
+            {
+                "date": "2025-11-23",
+                "amount": 1000,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "7UHWLYRD",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-23",
+                "amount": 1000,
+                "note": "",
+                "referenceNumber": "JZ637T82"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 900,
+                "note": "",
+                "referenceNumber": "BB3MQJXE"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 1,
+            "lost": 2
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 23.2,
+        "createdAt": "2025-12-18T20:47:21.424Z",
+        "charges": [
+            {
+                "date": "2025-11-23",
+                "note": "Late Penalty",
+                "amount": 89.9,
+                "category": "penalty"
+            },
+            {
+                "date": "2025-12-23",
+                "note": "Late Penalty",
+                "amount": 89.9,
+                "category": "penalty"
+            }
+        ]
+    },
+    {
+        "messengerId": "lucille.tecson",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0014A",
+        "name": "Lucille Tecson",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0013",
+        "plan": {
+            "name": "Premium",
+            "fee": 1099,
+            "speed": "Up to 25 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0014A",
+        "pppoePassword": "TECSON",
+        "payments": [
+            {
+                "date": "2025-11-15",
+                "amount": 1405,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "N46HAQFM",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-17",
+                "amount": 1000,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "R8WZ7UTL",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-19",
+                "amount": 1000,
+                "note": "",
+                "referenceNumber": "GWUSQSU2"
+            }
+        ],
+        "points": {
+            "advance": 3,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 108,
+        "createdAt": "2025-12-18T20:47:21.424Z",
+        "discounts": []
+    },
+    {
+        "messengerId": "arnilo.moral",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0015A",
+        "name": "Arnilo Moral",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0014",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0015A",
+        "pppoePassword": "MORAL",
+        "payments": [
+            {
+                "date": "2025-11-19",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "VA44X63W",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-17",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "3JLZSVQF",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-19",
+                "amount": 499,
+                "note": "",
+                "referenceNumber": "ZUZSXCN4"
+            }
+        ],
+        "points": {
+            "advance": 3,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 2,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "susan.sugan",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0016A",
+        "name": "Susan Sugan",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0015",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0016A",
+        "pppoePassword": "SUGAN",
+        "payments": [
+            {
+                "date": "2025-11-09",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "SGBDG9ZQ",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-18",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "E7DWWLPA",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-17",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "UKAVEXPF",
+                "billingMonth": "2026-01",
+                "type": "bill"
+            }
+        ],
+        "points": {
+            "advance": 3,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 3,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "zacarias.user",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0017A",
+        "name": "Zacarias",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0016",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "UpTo 10 mbps"
+        },
+        "billingDay": 20,
+        "status": "Terminated",
+        "pppoeUsername": "C0017A",
+        "pppoePassword": "ZACARIAS",
+        "payments": [],
+        "points": {
+            "advance": 0,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-06-19",
+        "excessLackingBalance": 0,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "sarah.carnable",
+        "clientUsername": null,
+        "clientPassword": null,
+        "accountNumber": "NR2021C0018A",
+        "name": "Sarah Jane Carnable",
+        "address": "San Vicente Patudan Tubod LDN",
+        "contact": "0917-000-0017",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0018A",
+        "pppoePassword": "CARNABLE",
+        "payments": [
+            {
+                "date": "2025-11-18",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "Cash",
+                "referenceNumber": "L6V6CEWD",
+                "billingMonth": "2025-11",
+                "type": "bill"
+            },
+            {
+                "date": "2025-12-19",
+                "amount": 500,
+                "note": "Monthly Bill Payment",
+                "method": "GCash",
+                "referenceNumber": "N2TWT4FS",
+                "billingMonth": "2025-12",
+                "type": "bill"
+            },
+            {
+                "date": "2026-01-19",
+                "amount": 499,
+                "note": "",
+                "referenceNumber": "MT7L4YD2"
+            }
+        ],
+        "points": {
+            "advance": 3,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 2,
+        "createdAt": "2025-12-18T20:47:21.424Z"
+    },
+    {
+        "messengerId": "N/A",
+        "clientUsername": "C0019A",
+        "clientPassword": "PINANGAY",
+        "accountNumber": "NR2021C0019A",
+        "name": "Lenster Pinangay",
+        "address": "P1 Pualas Tubod LDN",
+        "contact": "N/A",
+        "plan": {
+            "name": "Gamer",
+            "fee": 899,
+            "speed": "Up to 20 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0019A",
+        "pppoePassword": "PINANGAY",
+        "payments": [
+            {
+                "date": "2025-12-19",
+                "amount": 899,
+                "note": "",
+                "referenceNumber": "BVNC3W2Y"
+            },
+            {
+                "date": "2026-01-20",
+                "amount": 899,
+                "note": "",
+                "referenceNumber": "WZG4Y5TN"
+            }
+        ],
+        "points": {
+            "advance": 1,
+            "ontime": 1,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 0,
+        "createdAt": "2025-12-19T14:32:13.567Z",
+        "cashouts": [
+            {
+                "date": "2025-12-19",
+                "amount": 100,
+                "note": "Request"
+            }
+        ]
+    },
+    {
+        "messengerId": "N/A",
+        "clientUsername": "C0020A",
+        "clientPassword": "CALISKIS",
+        "accountNumber": "NR2021C0020A",
+        "name": "Clarita Caliskis",
+        "address": "P1 Pualas Tubod LDN",
+        "contact": "N/A",
+        "plan": {
+            "name": "Business",
+            "fee": 1299,
+            "speed": "Up to 30 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0020A",
+        "pppoePassword": "CALISKIS",
+        "payments": [
+            {
+                "date": "2026-01-20",
+                "amount": 1300,
+                "note": "",
+                "referenceNumber": "EL7M2VYQ"
+            }
+        ],
+        "points": {
+            "advance": 0,
+            "ontime": 1,
+            "lost": 0
+        },
+        "nextDue": "2026-02-20",
+        "excessLackingBalance": 1,
+        "createdAt": "2025-12-19T14:32:59.226Z",
+        "charges": []
+    },
+    {
+        "messengerId": "N/A",
+        "clientUsername": "C0021A",
+        "clientPassword": "ESPRA",
+        "accountNumber": "NR2021C0021A",
+        "name": "Melissa Espra",
+        "address": "P1, Pualas, Tubod, LDN",
+        "contact": "N/A",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Suspended",
+        "pppoeUsername": "C0021A",
+        "pppoePassword": "ESPRA",
+        "payments": [
+            {
+                "date": "2026-01-18",
+                "amount": 499,
+                "note": "",
+                "referenceNumber": "LZJUU9E8"
+            },
+            {
+                "date": "2026-02-16",
+                "amount": 500,
+                "note": "",
+                "referenceNumber": "VZUMETLU"
+            }
+        ],
+        "points": {
+            "advance": 2,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-03-20",
+        "excessLackingBalance": 1,
+        "createdAt": "2026-01-19T04:30:04.933Z"
+    },
+    {
+        "messengerId": "N/A",
+        "clientUsername": "C0022A",
+        "clientPassword": "",
+        "accountNumber": "NR2021C0022A",
+        "name": "Jamaica Lawas",
+        "address": "Purok 4 Patudan Tubod LDN",
+        "contact": "N/A",
+        "plan": {
+            "name": "Gamer",
+            "fee": 899,
+            "speed": "Up to 20 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Active",
+        "pppoeUsername": "C0022A",
+        "pppoePassword": "",
+        "payments": [],
+        "points": {
+            "advance": 0,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-06-19",
+        "excessLackingBalance": 0,
+        "createdAt": "2026-02-03T03:16:06.001Z"
+    },
+    {
+        "messengerId": "N/A",
+        "clientUsername": "C0023A",
+        "clientPassword": "BUCAYONG",
+        "accountNumber": "NR2021C0023A",
+        "name": "Lynrose Bucayong",
+        "address": "Purok 6 San Vicente Patudan Tubod LDN",
+        "contact": "N/A",
+        "plan": {
+            "name": "Basic",
+            "fee": 499,
+            "speed": "Up to 10 Mbps"
+        },
+        "billingDay": 20,
+        "status": "Active",
+        "pppoeUsername": "C0023A",
+        "pppoePassword": "BUCAYONG",
+        "payments": [],
+        "points": {
+            "advance": 0,
+            "ontime": 0,
+            "lost": 0
+        },
+        "nextDue": "2026-06-19",
+        "excessLackingBalance": 0,
+        "createdAt": "2026-02-17T14:33:00.295Z"
+    },
+    {
+        "plans": [
+            {
+                "id": 1,
+                "name": "Basic",
+                "fee": 499,
+                "speed": "Up to 10 Mbps",
+                "install": 1500
+            },
+            {
+                "id": 2,
+                "name": "Family",
+                "fee": 699,
+                "speed": "Up to 15 Mbps",
+                "install": 1500
+            },
+            {
+                "id": 3,
+                "name": "Gamer",
+                "fee": 899,
+                "speed": "Up to 20 Mbps",
+                "install": 2000
+            },
+            {
+                "id": 4,
+                "name": "Premium",
+                "fee": 1099,
+                "speed": "Up to 25 Mbps",
+                "install": 2500
+            },
+            {
+                "id": 5,
+                "name": "Business",
+                "fee": 1299,
+                "speed": "Up to 30 Mbps",
+                "install": 3500
+            }
+        ],
+        "notifications": [
+            {
+                "id": 1766166393898,
+                "type": "success",
+                "message": "Client Login: Lenster Pinangay accessed portal.",
+                "date": "2025-12-19T17:46:33.898Z",
+                "read": true,
+                "action": "viewAccount",
+                "dataId": "NR2021C0019A"
+            }
+        ],
+        "pending": [],
+        "upgrades": []
+    }
+]
