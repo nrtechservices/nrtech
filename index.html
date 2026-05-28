@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N'RTECH INTERNET — High Speed Fiber</title>
     
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="logo.png"> 
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
 
     <style>
         :root {
@@ -58,12 +63,6 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
-        }
-
-        .logo img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
         }
 
         .nav-links a {
@@ -206,7 +205,7 @@
             margin-bottom: 20px;
         }
 
-        /* --- PLANS SECTION --- */
+        /* --- PLANS SECTION (ENHANCED & ANIMATED) --- */
         .plans-section {
             padding: 80px 5%;
             text-align: center;
@@ -226,11 +225,12 @@
         .plans-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
+            gap: 35px; /* Increased gap for glowing effects */
             max-width: 1200px;
             margin: 0 auto;
         }
 
+        /* Custom Animations for Plans */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-12px); }
@@ -257,6 +257,7 @@
             animation: float 5s ease-in-out infinite;
         }
 
+        /* Stagger the floating animation so they don't move exactly together */
         .plan-card:nth-child(1) { animation-delay: 0.0s; }
         .plan-card:nth-child(2) { animation-delay: 0.5s; }
         .plan-card:nth-child(3) { animation-delay: 1.0s; }
@@ -522,7 +523,7 @@
 
         .faq-item.active .faq-answer {
             padding: 0 20px 20px 20px;
-            max-height: 300px;
+            max-height: 300px; /* Safe upper limit for transition */
         }
 
         .faq-item.active .faq-question i {
@@ -723,12 +724,6 @@
         footer {
             background: var(--white); padding: 40px 5%; text-align: center; border-top: 1px solid #ddd;
         }
-        footer img {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
-            margin-bottom: 10px;
-        }
         .contact-info { font-size: 1.2rem; margin-bottom: 20px; font-weight: bold; }
         .contact-info a { color: var(--primary-dark); text-decoration: none; }
         
@@ -737,21 +732,24 @@
             .nav-links { display: none; }
         }
         
-        @keyframes pulse {
+                @keyframes pulse {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 115, 51, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(19, 115, 51, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(19, 115, 51, 0); }
         }
+
 
         @keyframes slideInLeft {
             from { transform: translateX(-110%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
         
+        /* Automatically hides the floating banner on small screens to avoid blocking the UI */
         @media (max-width: 576px) {
             #promoSticky { display: none !important; }
         }
 
+        /* Dynamic plan profile indicator classes */
         .plan-card:hover::before {
             content: '';
             position: absolute;
@@ -763,77 +761,95 @@
             border-radius: 20px 20px 0 0;
         }
         
-        .plan-card:nth-child(1):hover::before { background: #9ca3af; }
-        .plan-card:nth-child(3):hover::before { background: #ef4444; }
-        .plan-card:nth-child(4):hover::before { background: #3b82f6; }
-        .plan-card:nth-child(5):hover::before { background: #10b981; }
+        .plan-card:nth-child(1):hover::before { background: #9ca3af; } /* Basic Gray */
+        .plan-card:nth-child(3):hover::before { background: #ef4444; } /* Gamer Red */
+        .plan-card:nth-child(4):hover::before { background: #3b82f6; } /* Premium Blue */
+        .plan-card:nth-child(5):hover::before { background: #10b981; } /* Business Green */
 
-        .hero h1 span {
-            text-shadow: 0 0 15px rgba(212, 154, 55, 0.4);
-            animation: goldGlow 3s ease-in-out infinite alternative;
-        }
+/* --- ENHANCED GENERAL EFFECTS --- */
+.hero h1 span {
+    text-shadow: 0 0 15px rgba(212, 154, 55, 0.4);
+    animation: goldGlow 3s ease-in-out infinite alternative;
+}
 
-        @keyframes goldGlow {
-            from { text-shadow: 0 0 10px rgba(212, 154, 55, 0.3); }
-            to { text-shadow: 0 0 25px rgba(212, 154, 55, 0.8), 0 0 10px rgba(255, 215, 0, 0.4); }
-        }
+@keyframes goldGlow {
+    from { text-shadow: 0 0 10px rgba(212, 154, 55, 0.3); }
+    to { text-shadow: 0 0 25px rgba(212, 154, 55, 0.8), 0 0 10px rgba(255, 215, 0, 0.4); }
+}
 
-        .login-avatar {
-            width: 70px;
-            height: 70px;
-            background: #fff8e1;
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 20px;
-            border: 2px solid var(--primary);
-        }
+/* --- CLIENT LOGIN MODAL SYSTEM --- */
+.login-avatar {
+    width: 70px;
+    height: 70px;
+    background: #fff8e1;
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 20px;
+    border: 2px solid var(--primary);
+}
 
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-        }
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
 
-        .remember-forgot a {
-            color: var(--primary-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
+.remember-forgot a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+
+
+
+
     </style>
 </head>
 <body>
 
     <nav>
         <a href="#" class="logo">
-            <img src="logo.png" alt="N'RTECH Logo"> N'RTECH
+            <i class="fas fa-wifi"></i> N'RTECH
         </a>
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#plans">Plans</a>
             <a href="#coverage">Coverage</a>
-            <a href="#faq">FAQ</a>
+            <a href="#faq">FAQ</a> <!-- Added FAQ link -->
             <a href="client.html" class="btn-client">Client Portal</a>
+
         </div>
     </nav>
 
-    <section class="hero" id="home">
+        
+            <section class="hero" id="home">
+        <!-- N'RTECH Logo aligned above the heading -->
+        <img src="logo.png" alt="N'RTECH Logo" style="max-width: 180px; height: auto; margin-bottom: 20px;">
+        
         <h1>Connect to the World<br>with <span>N'RTECH Fiber</span></h1>
         <p>Reliable, affordable, and high-speed internet for your home and business.</p>
+
         
+        <!-- NEW CLIENT LOGIN BUTTON -->
         <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
             <a href="client.html" class="cta-button" style="background: var(--text-dark);">
-                <i class="fas fa-user-lock"></i> Client Login
-            </a>
+    <i class="fas fa-user-lock"></i> Client Login
+</a>
+
+
             <a href="#plans" class="cta-button">View Fiber Plans</a>
         </div>
     </section>
+
 
     <section class="features">
         <div class="feature-box">
@@ -875,6 +891,7 @@
         </div>
     </section>
     
+   <!-- FLOATING PROMO BANNER -->
     <div id="promoSticky" style="position: fixed; bottom: 20px; left: 20px; background: var(--text-dark); color: white; padding: 15px 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border-left: 5px solid var(--primary); z-index: 999; display: flex; align-items: center; gap: 15px; animation: slideInLeft 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
         <div>
             <span style="background: var(--primary); font-size: 0.75rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Limited Offer</span>
@@ -883,6 +900,7 @@
         <button onclick="document.getElementById('promoSticky').style.display='none';" style="background: transparent; border: none; color: #aaa; cursor: pointer; font-size: 1.2rem; padding: 0 5px; transition: color 0.2s;">×</button>
     </div>
 
+    <!-- STATS COUNTER BANNER -->
     <section style="padding: 40px 5%; background: var(--bg-light); border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
         <div style="display: flex; justify-content: space-around; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; gap: 30px; text-align: center;">
             <div>
@@ -900,12 +918,15 @@
         </div>
     </section>
 
+    <!-- NETWORK STATUS BAR -->
     <div style="background: #e6f4ea; border-bottom: 1px solid #ceead6; padding: 8px 5%; display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 0.9rem;">
         <span style="height: 10px; width: 10px; background-color: #137333; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #137333; animation: pulse 1.8s infinite;"></span>
         <span style="color: #137333; font-weight: 600;">N'RTECH Live Status:</span> 
         <span style="color: #202124;">All systems operational in Tubod, San Vicente, Patudan, & Pualas.</span>
     </div>
 
+
+    <!-- SPEED CALCULATOR SECTION -->
     <section class="calculator-section" style="padding: 60px 5%; background: var(--white); text-align: center; border-bottom: 1px solid #ddd;">
         <h2 class="section-title">Not Sure What Speed You Need?</h2>
         <p class="section-subtitle" style="margin-bottom: 30px;">Tell us your device count, and we will recommend the perfect plan for your household.</p>
@@ -929,35 +950,43 @@
         </div>
     </section>
 
+
+        
+
+
+
     <section class="plans-section" id="plans">
         <h2 class="section-title">Choose Your Speed</h2>
         <p class="section-subtitle">No data caps. No hidden charges. Just pure internet.</p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto 40px; padding: 0 15px;">
-            <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
-                <div style="background: #eef3ff; color: #3b82f6; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-gamepad"></i></div>
-                <div style="text-align: left;">
-                    <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Ping & Gaming</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-light);">Optimized routing paths for standard MOBA servers.</p>
-                </div>
-            </div>
-            <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
-                <div style="background: #fef2f2; color: #ef4444; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-tv"></i></div>
-                <div style="text-align: left;">
-                    <h4 style="font-size: 0.95rem; margin-bottom: 2px;">4K/HD Streaming</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-light);">No stuttering on Smart TVs or mobile screens.</p>
-                </div>
-            </div>
-            <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
-                <div style="background: #ecfdf5; color: #10b981; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-graduation-cap"></i></div>
-                <div style="text-align: left;">
-                    <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Online Education</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-light);">Lag-free continuous audio/video rooms.</p>
-                </div>
+    <!-- SPEED INTERPRETATION GUIDE -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto 40px; padding: 0 15px;">
+        <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
+            <div style="background: #eef3ff; color: #3b82f6; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-gamepad"></i></div>
+            <div style="text-align: left;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Ping & Gaming</h4>
+                <p style="font-size: 0.8rem; color: var(--text-light);">Optimized routing paths for standard MOBA servers.</p>
             </div>
         </div>
+        <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
+            <div style="background: #fef2f2; color: #ef4444; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-tv"></i></div>
+            <div style="text-align: left;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 2px;">4K/HD Streaming</h4>
+                <p style="font-size: 0.8rem; color: var(--text-light);">No stuttering on Smart TVs or mobile screens.</p>
+            </div>
+        </div>
+        <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #eee;">
+            <div style="background: #ecfdf5; color: #10b981; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;"><i class="fas fa-graduation-cap"></i></div>
+            <div style="text-align: left;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Online Education</h4>
+                <p style="font-size: 0.8rem; color: var(--text-light);">Lag-free continuous audio/video rooms.</p>
+            </div>
+        </div>
+    </div>
+
 
         <div class="plans-grid">
+            
             <div class="plan-card">
                 <i class="fas fa-wifi plan-icon"></i>
                 <h3 class="plan-name">Basic</h3>
@@ -1049,6 +1078,7 @@
                 <div class="install-fee">Install Starts at: ₱2,500*</div>
                 <button class="select-btn" onclick="openApplyModal('VIP ULTIMATE')">Apply VIP Now</button>
             </div>
+
         </div>
 
         <div class="disclaimer">
@@ -1056,6 +1086,7 @@
         </div>
     </section>
 
+    <!-- PAYMENT CHANNELS SECTION -->
     <section style="padding: 60px 5%; text-align: center; background: #fff;">
         <h2 class="section-title">Easy Billing & Payment Options</h2>
         <p class="section-subtitle">Settle your bills cleanly every 20th of the month via our integrated local channels.</p>
@@ -1072,7 +1103,7 @@
                 <div style="background: #b45309; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;"><i class="fas fa-store"></i></div>
                 <div style="text-align: left;">
                     <h4 style="font-size: 1rem; color: var(--text-dark);">Over-The-Counter</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-light);">Ramirez Family House.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-light);">Ramirez Famiy House.</p>
                 </div>
             </div>
             <div style="background: var(--bg-light); padding: 20px; border-radius: 12px; border: 1px solid #eee; display: flex; align-items: center; gap: 15px; min-width: 250px; flex: 1;">
@@ -1084,6 +1115,7 @@
             </div>
         </div>
     </section>
+
 
     <section class="coverage" id="coverage">
         <h2>Currently Serving Areas</h2>
@@ -1097,11 +1129,15 @@
         </div>
     </section>
 
+    
+
+    <!-- NEW FAQ SECTION -->
     <section class="faq-section" id="faq">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-subtitle">Got questions? We've got answers to help you get connected faster.</p>
 
         <div class="faq-container">
+                        <!-- ADVANCE POINTS FAQ -->
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     What is the Advance Points system and how do I redeem rewards?
@@ -1112,6 +1148,7 @@
                 </div>
             </div>
 
+            <!-- ON-TIME POINTS FAQ -->
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     What are On-Time Points and how do I unlock secret discounts?
@@ -1170,6 +1207,7 @@
                 <div class="faq-answer">
                     Since we use purely fiber optic technology, our main lines remain active even during local grid power outages. As long as you have a backup power source (like a <strong>Mini UPS</strong>, power bank, or generator) to power your home router, your internet will stay connected!
                 </div>
+                
             </div>
         </div>
     </section>
@@ -1183,6 +1221,7 @@
         </div>
     </div>
     
+        <!-- APPLICATION SUCCESS TRACKER MODAL -->
     <div class="custom-alert-overlay" id="trackerModal" style="z-index: 10000;">
         <div class="custom-alert-box" style="max-width: 450px; border-top: 5px solid #25D366; text-align: left;">
             <div style="text-align: center; margin-bottom: 20px;">
@@ -1196,16 +1235,19 @@
             <div style="position: relative; padding-left: 30px; margin-bottom: 20px;">
                 <div style="position: absolute; left: 9px; top: 5px; bottom: 5px; width: 2px; background: #ddd;"></div>
                 
+                <!-- Step 1 -->
                 <div style="position: relative; margin-bottom: 20px;">
                     <span style="position: absolute; left: -30px; top: 2px; width: 20px; height: 20px; background: #25D366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;"><i class="fas fa-check"></i></span>
                     <strong style="font-size: 0.95rem; color: var(--text-dark);">Step 1: Copied to Clipboard</strong>
                     <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 2px;">Your dynamic form layout data is saved and ready to paste.</p>
                 </div>
+                <!-- Step 2 -->
                 <div style="position: relative; margin-bottom: 20px;">
                     <span style="position: absolute; left: -30px; top: 2px; width: 20px; height: 20px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; animation: pulse 1s infinite;"><i class="fas fa-comment"></i></span>
                     <strong style="font-size: 0.95rem; color: var(--text-dark);">Step 2: Paste in Chat & Send</strong>
                     <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 2px;">Once the app opens, paste your details directly into our inbox.</p>
                 </div>
+                <!-- Step 3 -->
                 <div style="position: relative;">
                     <span style="position: absolute; left: -30px; top: 2px; width: 20px; height: 20px; background: #eee; color: #aaa; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;"><i class="fas fa-truck"></i></span>
                     <strong style="font-size: 0.95rem; color: #888;">Step 3: Line Verification (1-3 Days)</strong>
@@ -1216,6 +1258,9 @@
             <button class="select-btn" onclick="document.getElementById('trackerModal').style.display='none';" style="background: var(--text-dark); width: 100%;">Continue</button>
         </div>
     </div>
+
+
+
 
     <div class="modal-overlay" id="applyModal">
         <div class="modal-content">
@@ -1234,35 +1279,40 @@
                 </div>
                 <div class="form-group">
                     <label>Complete Address / Landmark</label>
+                    
                     <input type="text" id="clientAddress" placeholder="Purok 1, San Vicente, near the chapel..." required>
                 </div>
-                <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
-                    <span style="font-size: 0.75rem; color: var(--text-light); font-weight: bold;">Tap to add landmark:</span>
-                    <button type="button" onclick="appendLandmark('Near Basketball Court')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🏀 Basketball Court</button>
-                    <button type="button" onclick="appendLandmark('Near Purok Waiting Shed')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🛖 Waiting Shed</button>
-                    <button type="button" onclick="appendLandmark('Near Chapel')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">⛪ Chapel</button>
-                    <button type="button" onclick="appendLandmark('Near Elementary School')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🏫 School</button>
-                </div>
+                 <!-- QUICK LANDMARK ASSISTANCE TAGS -->
+<div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+    <span style="font-size: 0.75rem; color: var(--text-light); font-weight: bold;">Tap to add landmark:</span>
+    <button type="button" onclick="appendLandmark('Near Basketball Court')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🏀 Basketball Court</button>
+    <button type="button" onclick="appendLandmark('Near Purok Waiting Shed')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🛖 Waiting Shed</button>
+    <button type="button" onclick="appendLandmark('Near Chapel')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">⛪ Chapel</button>
+    <button type="button" onclick="appendLandmark('Near Elementary School')" style="background: #eef2f6; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; color: #334155; font-weight: 600;">🏫 School</button>
+</div>
                 <div class="form-group">
                     <label>Contact Number</label>
                     <input type="tel" id="clientPhone" placeholder="09XX-XXX-XXXX" required>
                 </div>
 
-                <div class="form-group" style="background: #fdfaf4; border: 1px solid #faebcc; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                    <label style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px;">
-                        <span>Estimated Distance to Fiber Post:</span>
-                        <span id="distanceDisplay" style="color: var(--primary-dark);">Within 50 meters</span>
-                    </label>
-                    <input type="range" id="distanceSlider" min="50" max="300" step="25" value="50" style="width: 100%; accent-color: var(--primary);" oninput="updateInstallEstimation()">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #888; margin-top: 4px;">
-                        <span>Standard (Near)</span>
-                        <span>Farther Line</span>
-                    </div>
-                    <div style="margin-top: 10px; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); display: flex; justify-content: space-between; border-top: 1px dashed #e1d4bb; padding-top: 8px;">
-                        <span>Est. Base Install Fee:</span>
-                        <span id="calculatedFeeDisplay" style="color: #137333;">₱1,500</span>
-                    </div>
-                </div>
+
+<!-- DYNAMIC INSTALLATION ESTIMATOR -->
+<div class="form-group" style="background: #fdfaf4; border: 1px solid #faebcc; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+    <label style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px;">
+        <span>Estimated Distance to Fiber Post:</span>
+        <span id="distanceDisplay" style="color: var(--primary-dark);">Within 50 meters</span>
+    </label>
+    <input type="range" id="distanceSlider" min="50" max="300" step="25" value="50" style="width: 100%; accent-color: var(--primary);" oninput="updateInstallEstimation()">
+    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #888; margin-top: 4px;">
+        <span>Standard (Near)</span>
+        <span>Farther Line</span>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); display: flex; justify-content: space-between; border-top: 1px dashed #e1d4bb; padding-top: 8px;">
+        <span>Est. Base Install Fee:</span>
+        <span id="calculatedFeeDisplay" style="color: #137333;">₱1,500</span>
+    </div>
+</div>
+
 
                 <div class="form-group">
                     <label>Pin your Exact Location <span style="color:#888; font-weight:normal;">(Tap map to place pin)</span></label>
@@ -1275,9 +1325,12 @@
                         </div>
                         <div id="map"></div>
                     </div>
-                    <div id="coordsFeedback" style="display: none; background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; margin-top: 8px; text-align: left; animation: slideDown 0.2s ease-out;">
-                        <i class="fas fa-check-circle" style="color: #0284c7; margin-right: 5px;"></i> GPS Coordinates Locked: <span id="coordsDisplayString">0, 0</span>
-                    </div>
+                    <!-- VISUAL COORDINATES FEEDBACK PILL -->
+<div id="coordsFeedback" style="display: none; background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; margin-top: 8px; text-align: left; animation: slideDown 0.2s ease-out;">
+    <i class="fas fa-check-circle" style="color: #0284c7; margin-right: 5px;"></i> GPS Coordinates Locked: <span id="coordsDisplayString">0, 0</span>
+</div>
+
+
                     <input type="hidden" id="clientLat">
                     <input type="hidden" id="clientLng">
                 </div>
@@ -1303,6 +1356,8 @@
         </div>
     </div>
     
+
+    <!-- REFERRAL PROGRAM BANNER -->
     <section style="background: linear-gradient(135deg, var(--primary-dark) 0%, #7c5212 100%); color: white; padding: 50px 5%; text-align: center; position: relative; overflow: hidden;">
         <div style="position: absolute; right: -30px; bottom: -30px; font-size: 150px; opacity: 0.08; color: white;">
             <i class="fas fa-gift"></i>
@@ -1318,10 +1373,12 @@
             </a>
         </div>
     </section>
+    
+
 
     <footer id="contact">
         <div style="margin-bottom: 20px;">
-            <img src="logo.png" alt="N'RTECH Footer Logo">
+            <div style="font-size: 40px; color: var(--primary); margin-bottom: 10px;"><i class="fas fa-wifi"></i></div>
             <h3>N'RTECH INTERNET SERVICES</h3>
         </div>
         <div class="contact-info">
@@ -1333,6 +1390,8 @@
         </div>
     </footer>
 
+    
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
@@ -1340,17 +1399,22 @@
         let isVipSelected = false;
         let map, marker;
 
+        /* --- FAQ TOGGLE FUNCTION --- */
         function toggleFaq(element) {
             const item = element.parentElement;
+            
+            // Optional: Close all other FAQs before opening this one
             const allItems = document.querySelectorAll('.faq-item');
             allItems.forEach(faq => {
                 if (faq !== item) {
                     faq.classList.remove('active');
                 }
             });
+
             item.classList.toggle('active');
         }
 
+        /* --- CUSTOM ALERT FUNCTIONS --- */
         function showCustomAlert(message) {
             document.getElementById('customAlertMessage').textContent = message;
             document.getElementById('customAlert').style.display = 'flex';
@@ -1360,10 +1424,15 @@
             document.getElementById('customAlert').style.display = 'none';
         }
 
+        /* --- MAP FUNCTIONS --- */
         function initMap() {
             if(map) return;
+            
+            // Default coordinates for Tubod, Lanao del Norte area
             const defaultCoords = [8.0556, 123.7917];
+            
             map = L.map('map').setView(defaultCoords, 13);
+            
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap'
             }).addTo(map);
@@ -1381,11 +1450,6 @@
             }
             document.getElementById('clientLat').value = latlng.lat;
             document.getElementById('clientLng').value = latlng.lng;
-
-            const feedbackBox = document.getElementById('coordsFeedback');
-            const displayString = document.getElementById('coordsDisplayString');
-            displayString.textContent = `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
-            feedbackBox.style.display = "block";
         }
 
         function getUserLocation() {
@@ -1411,9 +1475,11 @@
             }
         }
 
+        /* --- MODAL FUNCTIONS --- */
         function openApplyModal(planName) {
             selectedPlan = planName;
             isVipSelected = (planName === 'VIP ULTIMATE');
+            
             document.getElementById('formPlanName').textContent = planName;
             
             const upsCheckbox = document.getElementById('addUps');
@@ -1430,6 +1496,7 @@
             }
 
             document.getElementById('applyModal').style.display = 'flex';
+
             setTimeout(() => {
                 initMap();
                 map.invalidateSize();
@@ -1440,7 +1507,8 @@
             document.getElementById('applyModal').style.display = 'none';
         }
 
-        function getApplicationMessage() {
+        /* --- SUBMISSION FUNCTIONS --- */
+                function getApplicationMessage() {
             const name = document.getElementById('clientName').value.trim();
             const address = document.getElementById('clientAddress').value.trim();
             let phone = document.getElementById('clientPhone').value.trim();
@@ -1448,19 +1516,24 @@
             const lat = document.getElementById('clientLat').value;
             const lng = document.getElementById('clientLng').value;
 
+            // Simple Form Presence Check
             if(!name || !address || !phone) {
                 showCustomAlert("Please fill out your Name, Address, and Phone Number before submitting.");
                 return null;
             }
 
+            // Strips out spaces, dashes, or parentheses
             const cleanPhone = phone.replace(/[^0-9]/g, "");
+
+            // Philippine Mobile Format Validation
             const isValidFormat = (cleanPhone.length === 11 && cleanPhone.startsWith("09")) || 
                                   (cleanPhone.length === 12 && cleanPhone.startsWith("639"));
 
             if(!isValidFormat) {
-                showCustomAlert("⚠️ Invalid Contact Number. Please enter a valid 11-digit Philippine mobile number starting with 09.");
+                showCustomAlert("⚠️ Invalid Contact Number. Please enter a valid 11-digit Philippine mobile number starting with 09 (e.g., 09123456789).");
                 return null;
             }
+
 
             let upsText = wantUps ? "Yes (+₱500)" : "No";
             if (isVipSelected) upsText = "Yes (FREE VIP Perk)";
@@ -1470,12 +1543,23 @@
                 locationLink = `https://www.google.com/maps?q=${lat},${lng}`;
             }
 
-            return `*NEW INTERNET APPLICATION* 🌐\n\n*Plan Selected:* ${selectedPlan}\n*Full Name:* ${name}\n*Complete Address:* ${address}\n*Contact Number:* ${phone}\n*Mini UPS Added:* ${upsText}\n\n📍 *Map Pin Location:* ${locationLink}\n\n*Note:* I understand that I only pay the installation fee upfront, and my first monthly payment will start on the 20th of the month.`;
+            return `*NEW INTERNET APPLICATION* 🌐
+            
+*Plan Selected:* ${selectedPlan}
+*Full Name:* ${name}
+*Complete Address:* ${address}
+*Contact Number:* ${phone}
+*Mini UPS Added:* ${upsText}
+
+📍 *Map Pin Location:* ${locationLink}
+
+*Note:* I understand that I only pay the installation fee upfront, and my first monthly payment will start on the 20th of the month.`;
         }
 
         function submitViaWhatsApp() {
             const message = getApplicationMessage();
             if(!message) return;
+
             const whatsappNumber = "639468953577"; 
             const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
@@ -1487,17 +1571,20 @@
             if(!message) return;
 
             navigator.clipboard.writeText(message).then(() => {
-                document.getElementById('trackerModal').style.display = 'flex';
+                showCustomAlert("✅ Application copied! We will now open Facebook. Just PASTE the message in our chat and hit send.");
                 setTimeout(() => {
                     window.open("https://www.facebook.com/share/1PcFAdwt6K/", "_blank");
                     closeApplyModal();
-                }, 3000);
+                    closeCustomAlert();
+                }, 2500);
             }).catch(err => {
                 showCustomAlert("Could not auto-copy text. Please send us your details manually on Facebook.");
             });
         }
         
+                /* --- SPEED CALCULATOR FUNCTION --- */
         function calculatePlan(min, max) {
+            // Reset button active styles
             const buttons = document.querySelectorAll('.calc-btn');
             buttons.forEach(btn => {
                 btn.style.borderColor = "#ccc";
@@ -1505,6 +1592,7 @@
                 btn.style.color = "var(--text-dark)";
             });
 
+            // Highlight chosen button
             const eventBtn = window.event.target;
             eventBtn.style.borderColor = "var(--primary)";
             eventBtn.style.background = "var(--primary)";
@@ -1531,26 +1619,31 @@
             }
         }
 
+        /* --- DYNAMIC INSTALLATION ESTIMATOR FUNCTION --- */
         function updateInstallEstimation() {
             const distance = parseInt(document.getElementById('distanceSlider').value);
             const displayDistance = document.getElementById('distanceDisplay');
             const displayFee = document.getElementById('calculatedFeeDisplay');
             
             let estimatedBase = 1500;
+            
             if (selectedPlan === 'Gamer') estimatedBase = 1800;
             else if (selectedPlan === 'Premium' || selectedPlan === 'Business') estimatedBase = 2000;
             else if (selectedPlan === 'VIP ULTIMATE') estimatedBase = 2500;
             
+            // Scaled distance logic fee addition
             let extraFee = 0;
             if (distance > 50) {
-                extraFee = ((distance - 50) / 25) * 150;
+                extraFee = ((distance - 50) / 25) * 150; // adds ₱150 per extra 25 meters of dropping cable line
             }
             
             const totalEst = estimatedBase + extraFee;
+            
             displayDistance.textContent = distance === 300 ? "300+ meters (Far)" : `Around ${distance} meters`;
             displayFee.textContent = `₱${totalEst.toLocaleString()}`;
         }
         
+                // Show button when scrolling down 400px from top
         window.onscroll = function() {
             const topBtn = document.getElementById("backToTopBtn");
             if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
@@ -1564,6 +1657,40 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+               function placeMarker(latlng) {
+            if(marker) {
+                marker.setLatLng(latlng);
+            } else {
+                marker = L.marker(latlng).addTo(map);
+            }
+            document.getElementById('clientLat').value = latlng.lat;
+            document.getElementById('clientLng').value = latlng.lng;
+
+            // Update the UI coordinates display pill dynamically
+            const feedbackBox = document.getElementById('coordsFeedback');
+            const displayString = document.getElementById('coordsDisplayString');
+            
+            displayString.textContent = `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
+            feedbackBox.style.display = "block";
+        }
+
+        function submitViaMessenger() {
+            const message = getApplicationMessage();
+            if(!message) return;
+
+            navigator.clipboard.writeText(message).then(() => {
+                // Show the highly professional tracker roadmap layout
+                document.getElementById('trackerModal').style.display = 'flex';
+                
+                setTimeout(() => {
+                    window.open("https://www.facebook.com/share/1PcFAdwt6K/", "_blank");
+                    closeApplyModal();
+                }, 3000);
+            }).catch(err => {
+                showCustomAlert("Could not auto-copy text. Please send us your details manually on Facebook.");
+            });
+        }
+        /* --- LANDMARK APPEND HELPER --- */
         function appendLandmark(text) {
             const addressInput = document.getElementById('clientAddress');
             const currentVal = addressInput.value.trim();
@@ -1575,286 +1702,341 @@
             }
             addressInput.focus();
         }
+
+
+        
+
+                
     </script>
     
+        <!-- BACK TO TOP SCROLL BUTTON -->
     <button id="backToTopBtn" onclick="scrollToTop()" style="position: fixed; bottom: 25px; right: 25px; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 998; transition: background 0.3s, transform 0.2s;">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <style>
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(40px);
-            visibility: hidden;
-            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            will-change: opacity, transform;
-        }
+    /* 1. Base hidden state for the animation */
+    .fade-in-section {
+        opacity: 0;
+        transform: translateY(40px);
+        visibility: hidden;
+        /* Smooth bounce-like transition */
+        transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        will-change: opacity, transform;
+    }
+    
+    /* 2. Active visible state */
+    .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Target your existing HTML classes to animate them
+        const elementsToAnimate = document.querySelectorAll(
+            '.feature-box, .about-card, .plan-card, .section-title, .section-subtitle, .faq-item, .location-tag'
+        );
         
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
-        }
-    </style>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const elementsToAnimate = document.querySelectorAll(
-                '.feature-box, .about-card, .plan-card, .section-title, .section-subtitle, .faq-item, .location-tag'
-            );
-            
-            elementsToAnimate.forEach((el) => {
-                el.classList.add('fade-in-section');
-            });
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -50px 0px',
-                threshold: 0.1 
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            elementsToAnimate.forEach((el) => {
-                observer.observe(el);
-            });
-            
-            const planCards = document.querySelectorAll('.plan-card');
-            planCards.forEach((card, index) => {
-                card.style.transitionDelay = `${index * 0.15}s`;
-            });
+        // 2. Apply the initial hidden CSS class to all targeted elements
+        elementsToAnimate.forEach((el) => {
+            el.classList.add('fade-in-section');
         });
-    </script>
 
-    <style>
-        .hero {
-            background: linear-gradient(-45deg, #ffffff, #f0e6d6, #e8d5b7, #ffffff) !important;
-            background-size: 400% 400% !important;
-            animation: moveGradient 12s ease infinite !important;
-        }
+        // 3. Set up the Intersection Observer to watch for scrolling
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px', // Triggers slightly before the element hits the bottom
+            threshold: 0.1 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // When the element scrolls into view
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once animated (so it doesn't repeat on scroll up)
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // 4. Start observing the elements
+        elementsToAnimate.forEach((el) => {
+            observer.observe(el);
+        });
         
-        @keyframes moveGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        // 5. Stagger the plan cards so they don't all pop up at the exact same millisecond
+        const planCards = document.querySelectorAll('.plan-card');
+        planCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.15}s`;
+        });
+    });
+</script>
 
-        nav {
-            animation: dropDown 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        
-        @keyframes dropDown {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(0); }
-        }
-        
-        .nav-links a:not(.btn-client) {
-            position: relative;
-        }
-        
-        .nav-links a:not(.btn-client)::after {
-            content: '';
-            position: absolute;
-            width: 0%;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:not(.btn-client):hover::after {
-            width: 100%;
-        }
+    
+    <!-- === EXTRA ANIMATION EFFECTS === -->
+<style>
+    /* 1. Living Gradient Hero Background 
+       Makes the background colors slowly shift back and forth */
+    .hero {
+        background: linear-gradient(-45deg, #ffffff, #f0e6d6, #e8d5b7, #ffffff) !important;
+        background-size: 400% 400% !important;
+        animation: moveGradient 12s ease infinite !important;
+    }
+    
+    @keyframes moveGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-        .cta-button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: rgba(255, 255, 255, 0.15);
-            transform: translate(-50%, -50%) scale(0);
-            border-radius: 50%;
-            transition: transform 0.6s ease-out;
-        }
-        
-        .cta-button:hover::before {
-            transform: translate(-50%, -50%) scale(1);
-        }
+    /* 2. Navigation Slide-In & Link Underlines */
+    nav {
+        animation: dropDown 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    @keyframes dropDown {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(0); }
+    }
+    
+    .nav-links a:not(.btn-client) {
+        position: relative;
+    }
+    
+    .nav-links a:not(.btn-client)::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--primary);
+        transition: width 0.3s ease;
+    }
+    
+    .nav-links a:not(.btn-client):hover::after {
+        width: 100%;
+    }
 
-        .feature-box:hover i, .about-card:hover i {
-            animation: iconPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-        
-        @keyframes iconPop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3) rotate(10deg); color: var(--primary-dark); }
-            100% { transform: scale(1.15) rotate(0deg); }
-        }
-    </style>
+    /* 3. Button Ripple Hover Effect */
+    .cta-button {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.15);
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        transition: transform 0.6s ease-out;
+    }
+    
+    .cta-button:hover::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    /* 4. Interactive Popping Icons 
+       Icons will slightly bounce and scale up when you hover over their boxes */
+    .feature-box:hover i, .about-card:hover i {
+        animation: iconPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    
+    @keyframes iconPop {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3) rotate(10deg); color: var(--primary-dark); }
+        100% { transform: scale(1.15) rotate(0deg); }
+    }
+</style>
+<!-- === END EXTRA ANIMATION === -->
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif !important;
-            letter-spacing: -0.01em;
-        }
-        
-        h1, h2, h3, h4, h5, h6, .logo, .plan-price, .plan-speed, .calc-btn, .badge {
-            font-family: 'Poppins', sans-serif !important;
-            letter-spacing: -0.02em;
-        }
+<!-- === PROFESSIONAL UI/UX POLISH === -->
+<!-- 1. Import Premium Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-        nav {
-            background: rgba(255, 255, 255, 0.85) !important;
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border-bottom: 1px solid rgba(0,0,0,0.05) !important;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03) !important;
-        }
+<style>
+    /* 2. Apply Premium Typography */
+    body {
+        font-family: 'Inter', sans-serif !important;
+        letter-spacing: -0.01em;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .logo, .plan-price, .plan-speed, .calc-btn, .badge {
+        font-family: 'Poppins', sans-serif !important;
+        letter-spacing: -0.02em;
+    }
 
-        .feature-box, .about-card, .plan-card, .faq-item, .modal-content {
-            border: 1px solid rgba(0,0,0,0.04) !important;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08) !important;
-            border-radius: 20px !important; 
-        }
+    /* 3. Frosted Glass (Glassmorphism) Navigation Bar */
+    nav {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03) !important;
+    }
 
-        .feature-box:hover, .about-card:hover {
-            box-shadow: 0 20px 40px -5px rgba(212, 154, 55, 0.15) !important;
-            transform: translateY(-8px) !important;
-        }
+    /* 4. Modern Card Styling (Softer Shadows & Smooth Corners) */
+    .feature-box, .about-card, .plan-card, .faq-item, .modal-content {
+        border: 1px solid rgba(0,0,0,0.04) !important;
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08) !important;
+        border-radius: 20px !important; 
+    }
 
-        .plan-card.vip {
-            background: linear-gradient(145deg, #1c1c1c, #0a0a0a) !important;
-            border: 1px solid #333 !important;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1) !important;
-        }
+    /* 5. Refined Hover States for Depth */
+    .feature-box:hover, .about-card:hover {
+        box-shadow: 0 20px 40px -5px rgba(212, 154, 55, 0.15) !important;
+        transform: translateY(-8px) !important;
+    }
 
-        .form-group input[type="text"],
-        .form-group input[type="tel"],
-        .form-group input[type="password"] {
-            background: #f8fafc !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 12px !important;
-            padding: 14px 16px !important;
-            transition: all 0.2s ease !important;
-            font-family: 'Inter', sans-serif !important;
-        }
+    /* 6. Ultra-Premium VIP Card Makeover */
+    .plan-card.vip {
+        background: linear-gradient(145deg, #1c1c1c, #0a0a0a) !important;
+        border: 1px solid #333 !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1) !important;
+    }
 
-        .form-group input:focus {
-            background: #ffffff !important;
-            border-color: var(--primary) !important;
-            box-shadow: 0 0 0 4px rgba(212, 154, 55, 0.15) !important;
-            outline: none !important;
-        }
+    /* 7. Modern SaaS-Style Form Inputs */
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="password"] {
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        padding: 14px 16px !important;
+        transition: all 0.2s ease !important;
+        font-family: 'Inter', sans-serif !important;
+    }
 
-        .cta-button, .select-btn, .btn-whatsapp, .btn-messenger {
-            border-radius: 12px !important;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-            font-size: 0.95rem !important;
-        }
-        
-        .btn-client {
-            border-radius: 10px !important;
-        }
+    .form-group input:focus {
+        background: #ffffff !important;
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 0 4px rgba(212, 154, 55, 0.15) !important;
+        outline: none !important;
+    }
 
-        .faq-item {
-            border-left: none !important;
-            background: #ffffff !important;
-        }
-        .faq-item.active {
-            border: 1px solid var(--primary) !important;
-            box-shadow: 0 10px 30px rgba(212, 154, 55, 0.1) !important;
-        }
-    </style>
+    /* 8. Sleeker Buttons */
+    .cta-button, .select-btn, .btn-whatsapp, .btn-messenger {
+        border-radius: 12px !important; /* Slightly squared for a modern tech feel */
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        font-size: 0.95rem !important;
+    }
+    
+    .btn-client {
+        border-radius: 10px !important;
+    }
 
-    <style>
-        .cta-button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 0; 
-            left: -150%;
-            width: 50%; 
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            animation: premiumShine 5s infinite;
-        }
-        
-        @keyframes premiumShine {
-            0% { left: -150%; }
-            20% { left: 200%; }
-            100% { left: 200%; }
-        }
+    /* 9. Cleaner FAQ Accordions */
+    .faq-item {
+        border-left: none !important;
+        background: #ffffff !important;
+    }
+    .faq-item.active {
+        border: 1px solid var(--primary) !important;
+        box-shadow: 0 10px 30px rgba(212, 154, 55, 0.1) !important;
+    }
+</style>
+<!-- === END UI/UX POLISH === -->
 
-        .badge {
-            animation: breathe 3s ease-in-out infinite !important;
-        }
-        
-        @keyframes breathe {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-3px); }
-        }
+<!-- === PREMIUM MICRO-INTERACTIONS & IDLE ANIMATIONS === -->
+<style>
+    /* 1. Glossy Sweep (Shine) Effect on Main Buttons */
+    .cta-button {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cta-button::after {
+        content: '';
+        position: absolute;
+        top: 0; 
+        left: -150%;
+        width: 50%; 
+        height: 100%;
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+        transform: skewX(-25deg);
+        animation: premiumShine 5s infinite;
+    }
+    
+    @keyframes premiumShine {
+        0% { left: -150%; }
+        20% { left: 200%; }
+        100% { left: 200%; }
+    }
 
-        .modal-content {
-            animation: springPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-        }
-        
-        @keyframes springPop {
-            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
+    /* 2. Continuous "Breathing" Float for Badges & Modals */
+    .badge {
+        animation: breathe 3s ease-in-out infinite !important;
+    }
+    
+    @keyframes breathe {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-3px); }
+    }
 
-        .location-tag:hover i {
-            animation: bouncePin 0.5s infinite alternate;
-            color: white;
-        }
-        
-        @keyframes bouncePin {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-4px); }
-        }
+    /* 3. Upgraded Spring-Loaded Modal Pop-in */
+    .modal-content {
+        animation: springPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+    
+    @keyframes springPop {
+        0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
 
-        section[style*="background: #fff;"] > div > div,
-        section[style*="background: var(--bg-light)"] > div > div {
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease !important;
-        }
-        
-        section[style*="background: #fff;"] > div > div:hover,
-        section[style*="background: var(--bg-light)"] > div > div:hover {
-            transform: translateY(-8px) scale(1.02) !important;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.06) !important;
-            border-color: var(--primary) !important;
-        }
-        
-        /* 6. Logo Hover Scale Effect */
-        .logo img {
-            transition: transform 0.3s ease;
-        }
-        .logo:hover img {
-            transform: scale(1.1);
-        }
-    </style>
+    /* 4. Playful Map Pin Bounce on Hover */
+    .location-tag:hover i {
+        animation: bouncePin 0.5s infinite alternate;
+        color: white;
+    }
+    
+    @keyframes bouncePin {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-4px); }
+    }
+
+    /* 5. Smooth Scale-Up for Stats and Payment Cards (Targeting inline styles) */
+    section[style*="background: #fff;"] > div > div,
+    section[style*="background: var(--bg-light)"] > div > div {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease !important;
+    }
+    
+    section[style*="background: #fff;"] > div > div:hover,
+    section[style*="background: var(--bg-light)"] > div > div:hover {
+        transform: translateY(-8px) scale(1.02) !important;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.06) !important;
+        border-color: var(--primary) !important;
+    }
+    
+    /* 6. Logo Pulse Effect */
+    .logo i {
+        transition: transform 0.3s ease;
+    }
+    .logo:hover i {
+        transform: scale(1.2);
+        animation: wifiPulse 1.5s infinite;
+    }
+    
+    @keyframes wifiPulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+</style>
+<!-- === END PREMIUM MICRO-INTERACTIONS === -->
+
+  
+    
 </body>
 </html>
+
+
