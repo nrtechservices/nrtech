@@ -147,7 +147,6 @@
             margin-top: 5vh;
         }
 
-        /* UPADTED: Dynamically adjusting logo */
         .login-logo {
             display: block;
             margin: 0 auto 25px auto;
@@ -649,7 +648,7 @@
         .modal-content {
             background: #ffffff;
             width: 100%;
-            max-width: 460px;
+            max-width: 480px;
             border-radius: 24px;
             padding: 40px 35px;
             position: relative;
@@ -690,7 +689,6 @@
 
         .receipt-header { text-align: center; border-bottom: 2px dashed #e2e8f0; padding-bottom: 25px; margin-bottom: 25px; position: relative; z-index: 2; }
         
-        /* UPDATED: Dynamically adjusting receipt modal logo */
         .receipt-logo { 
             display: block; 
             margin: 0 auto 15px auto; 
@@ -773,7 +771,6 @@
         .faq-item h4 { margin-bottom: 10px; font-size: 1rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; font-weight: 700; }
         .faq-item p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 12px; }
 
-        /* Custom Tutorial Visual Panels */
         .tutorial-panel {
             background: #1e293b;
             border-radius: 12px;
@@ -822,7 +819,7 @@
             background: #ffffff;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
-            padding: 16px;
+            padding: 22px 16px 16px 16px;
             cursor: pointer;
             transition: var(--transition-smooth);
             position: relative;
@@ -842,13 +839,81 @@
             top: 10px; right: 10px;
             color: var(--primary);
             font-size: 1.1rem;
+            z-index: 3;
         }
-        .plan-tier-name { font-weight: 800; font-size: 1rem; color: #0f172a; margin-bottom: 4px; }
-        .plan-tier-speed { font-size: 0.85rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 8px; }
-        .plan-tier-price { font-weight: 800; font-size: 1.15rem; color: var(--text-dark); }
         
-        /* UPDATED: New Class for Plan Descriptions */
-        .plan-tier-desc { font-size: 0.8rem; color: var(--text-light); margin-top: 10px; line-height: 1.3; }
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--danger);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+            z-index: 2;
+        }
+        .plan-badge.accent { background: var(--accent); box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3); }
+
+        .plan-tier-name { font-weight: 800; font-size: 1.1rem; color: #0f172a; margin-bottom: 4px; }
+        .plan-tier-speed { font-size: 0.85rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 8px; }
+        .plan-tier-price { font-weight: 800; font-size: 1.25rem; color: var(--text-dark); }
+        
+        .plan-features-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 12px;
+            text-align: left;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 12px;
+        }
+        .plan-features-list li {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .plan-features-list li i { color: var(--success); font-size: 0.75rem; flex-shrink: 0; }
+
+        /* --- Add-ups Section Styling --- */
+        .add-ups-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .add-up-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            background: #f8fafc;
+            padding: 12px 10px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            user-select: none;
+        }
+        .add-up-item:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        .add-up-item input[type="checkbox"] {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
 
         /* --- Toast Notifications --- */
         #toastContainer { position: fixed; bottom: 25px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; }
@@ -900,7 +965,7 @@
             .modal-content { padding: 30px 20px; border-radius: 20px; }
             #toastContainer { bottom: 20px; left: 20px; right: 20px; align-items: center; }
             .toast { width: 100%; min-width: unset; max-width: 100%; }
-            .plan-selection-grid { grid-template-columns: 1fr; }
+            .plan-selection-grid, .add-ups-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1075,134 +1140,15 @@
         </button>
     </div>
 
-    <div id="notifModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal-btn" onclick="closeNotifModal()"><i class="fas fa-times"></i></button>
-            <div class="receipt-header">
-                <div style="background: #f3e8ff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #e9d5ff;">
-                    <i class="fas fa-bell" style="font-size: 2rem; color: var(--accent);"></i>
-                </div>
-                <h2 id="modalNotifTitle">Notification</h2>
-                <p id="modalNotifDate" style="color: var(--text-light); font-size: 0.9rem; font-weight: 600; margin-top: 5px;"></p>
-            </div>
-            <div id="modalNotifMessage" style="font-size: 1rem; line-height: 1.7; color: var(--text-dark); white-space: pre-line; padding: 0 10px;">
-            </div>
-        </div>
-    </div>
-
-    <div id="receiptModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="paid-stamp">PAID</div>
-            <button class="close-modal-btn" onclick="closeReceiptModal()"><i class="fas fa-times"></i></button>
-            <div class="receipt-header">
-                <img src="logo.png" alt="N'RTECH Logo" class="receipt-logo" onerror="this.style.display='none'">
-                <h2>Payment Receipt</h2>
-                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Thank you for trusting N'RTECH!</p>
-            </div>
-            <div class="receipt-details">
-                <div class="payment-pill" id="modalPaymentMethod">GCash Transaction</div>
-                <div><span>Payment Date:</span> <span id="modalPaymentDate"></span></div>
-                <div><span>Reference No:</span> <span id="modalReference" style="font-family: monospace; font-size: 1.05rem;"></span></div>
-                <div><span>Amount Paid:</span> <span id="modalAmountPaid" style="color: var(--success); font-weight: 800; font-size: 1.1rem;"></span></div>
-                <hr style="border: 0; border-top: 2px dashed #e2e8f0; margin: 18px 0;">
-                <div><span>Covered Month:</span> <span id="modalCoveredMonth" style="color: var(--primary-dark); font-weight: 800; text-transform: uppercase;"></span></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="billModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal-btn" onclick="closeBillModal()"><i class="fas fa-times"></i></button>
-            <div class="receipt-header">
-                <img src="logo.png" alt="N'RTECH Logo" class="receipt-logo" onerror="this.style.display='none'">
-                <h2>Upcoming Invoice</h2>
-                <div class="bill-warning">
-                    <i class="fas fa-exclamation-circle"></i> Pay before the 20th to prevent penalty and service interruption.
-                </div>
-            </div>
-            <div class="receipt-details">
-                <div><span>Amount Due:</span> <span id="modalBillAmount" style="color: var(--danger); font-weight: 800; font-size: 1.3rem;"></span></div>
-            </div>
-            
-            <div class="qr-section">
-                <h4 style="margin-bottom: 5px; color: var(--text-dark); font-size: 1.1rem;">Scan to Pay Bill</h4>
-                <p style="font-size: 0.85rem; color: var(--text-light);">Use your GCash app to scan the QR code below</p>
-                
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=09317926807" 
-                     alt="GCash QR" 
-                     style="cursor: zoom-in;" 
-                     onclick="window.open(this.src, '_blank')"
-                     title="Click to enlarge">
-                     
-                <div class="gcash-info">
-                    <strong style="display: block; margin-bottom: 5px; font-size: 1rem;">Account Name: Noruel John Ramirez</strong>
-                    
-                    <div class="gcash-box-container">
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <span style="font-size: 0.95rem; color: var(--text-light); font-weight: 700;">GCash:</span>
-                            <span id="gcashNumberText" style="color: var(--primary-dark); font-size: 1.25rem; font-weight: 800; letter-spacing: 1px;">09317926807</span>
-                        </div>
-                        <button onclick="copyGCashNumber()" style="background: var(--bg-light); border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: var(--transition-smooth); font-weight: 700;">
-                            <i class="far fa-copy"></i> Copy
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="proofModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal-btn" onclick="closeProofModal()"><i class="fas fa-times"></i></button>
-            <div class="receipt-header">
-                <div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;">
-                    <i class="fas fa-receipt" style="font-size: 2rem; color: var(--messenger);"></i>
-                </div>
-                <h2>Verify Transaction</h2>
-                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Submit your advance payment reference string.</p>
-            </div>
-            <div class="modal-form-group">
-                <label for="popReferenceNum"><i class="fas fa-receipt" style="color: var(--primary);"></i> Reference / Trans. Number</label>
-                <input type="text" id="popReferenceNum" class="nice-input-box" placeholder="5012 3456 7890" maxlength="40">
-            </div>
-            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--messenger), var(--messenger-dark));" onclick="submitProofOfPayment()">
-                Confirm & Launch Messenger
-            </button>
-        </div>
-    </div>
-
-    <div id="supportModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal-btn" onclick="closeSupportModal()"><i class="fas fa-times"></i></button>
-            <div class="receipt-header">
-                <div style="background: #f3e8ff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #e9d5ff;">
-                    <i class="fas fa-tools" style="font-size: 2rem; color: var(--accent);"></i>
-                </div>
-                <h2>Report an Issue</h2>
-                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Our technical team will assist you shortly.</p>
-            </div>
-            
-            <div class="modal-form-group">
-                <label for="issueCategory"><i class="fas fa-list-ul" style="color: var(--primary);"></i> Issue Category</label>
-                <select id="issueCategory">
-                    <option value="LOS (Red Light on Router)">LOS (Red Light on Router)</option>
-                    <option value="Slow Internet Connection">Slow Internet Connection</option>
-                    <option value="No Internet Connection">No Internet Connection</option>
-                    <option value="Router Relocation">Request Router Relocation</option>
-                    <option value="Other Inquiry">Other Inquiry</option>
-                </select>
-            </div>
-            
-            <div class="modal-form-group">
-                <label for="issueDescription"><i class="fas fa-align-left" style="color: var(--primary);"></i> Description (Optional)</label>
-                <textarea id="issueDescription" rows="3" placeholder="Provide more details about your concern..." style="resize: none; font-family: inherit; outline: none;"></textarea>
-            </div>
-            
-            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--accent), #7c3aed); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);" onclick="submitSupportTicket()">
-                <i class="fab fa-facebook-messenger"></i> Send via Messenger
-            </button>
-        </div>
-    </div>
+    <div id="notifModal" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeNotifModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><div style="background: #f3e8ff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #e9d5ff;"><i class="fas fa-bell" style="font-size: 2rem; color: var(--accent);"></i></div><h2 id="modalNotifTitle">Notification</h2><p id="modalNotifDate" style="color: var(--text-light); font-size: 0.9rem; font-weight: 600; margin-top: 5px;"></p></div><div id="modalNotifMessage" style="font-size: 1rem; line-height: 1.7; color: var(--text-dark); white-space: pre-line; padding: 0 10px;"></div></div></div>
+    
+    <div id="receiptModal" class="modal-overlay"><div class="modal-content"><div class="paid-stamp">PAID</div><button class="close-modal-btn" onclick="closeReceiptModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><img src="logo.png" alt="N'RTECH Logo" class="receipt-logo" onerror="this.style.display='none'"><h2>Payment Receipt</h2><p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Thank you for trusting N'RTECH!</p></div><div class="receipt-details"><div class="payment-pill" id="modalPaymentMethod">GCash Transaction</div><div><span>Payment Date:</span> <span id="modalPaymentDate"></span></div><div><span>Reference No:</span> <span id="modalReference" style="font-family: monospace; font-size: 1.05rem;"></span></div><div><span>Amount Paid:</span> <span id="modalAmountPaid" style="color: var(--success); font-weight: 800; font-size: 1.1rem;"></span></div><hr style="border: 0; border-top: 2px dashed #e2e8f0; margin: 18px 0;"><div><span>Covered Month:</span> <span id="modalCoveredMonth" style="color: var(--primary-dark); font-weight: 800; text-transform: uppercase;"></span></div></div></div></div>
+    
+    <div id="billModal" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeBillModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><img src="logo.png" alt="N'RTECH Logo" class="receipt-logo" onerror="this.style.display='none'"><h2>Upcoming Invoice</h2><div class="bill-warning"><i class="fas fa-exclamation-circle"></i> Pay before the 20th to prevent penalty and service interruption.</div></div><div class="receipt-details"><div><span>Amount Due:</span> <span id="modalBillAmount" style="color: var(--danger); font-weight: 800; font-size: 1.3rem;"></span></div></div><div class="qr-section"><h4 style="margin-bottom: 5px; color: var(--text-dark); font-size: 1.1rem;">Scan to Pay Bill</h4><p style="font-size: 0.85rem; color: var(--text-light);">Use your GCash app to scan the QR code below</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=09317926807" alt="GCash QR" style="cursor: zoom-in;" onclick="window.open(this.src, '_blank')" title="Click to enlarge"><div class="gcash-info"><strong style="display: block; margin-bottom: 5px; font-size: 1rem;">Account Name: Noruel John Ramirez</strong><div class="gcash-box-container"><div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 0.95rem; color: var(--text-light); font-weight: 700;">GCash:</span><span id="gcashNumberText" style="color: var(--primary-dark); font-size: 1.25rem; font-weight: 800; letter-spacing: 1px;">09317926807</span></div><button onclick="copyGCashNumber()" style="background: var(--bg-light); border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: var(--transition-smooth); font-weight: 700;"><i class="far fa-copy"></i> Copy</button></div></div></div></div></div>
+    
+    <div id="proofModal" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeProofModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;"><i class="fas fa-receipt" style="font-size: 2rem; color: var(--messenger);"></i></div><h2>Verify Transaction</h2><p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Submit your advance payment reference string.</p></div><div class="modal-form-group"><label for="popReferenceNum"><i class="fas fa-receipt" style="color: var(--primary);"></i> Reference / Trans. Number</label><input type="text" id="popReferenceNum" class="nice-input-box" placeholder="5012 3456 7890" maxlength="40"></div><button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--messenger), var(--messenger-dark));" onclick="submitProofOfPayment()">Confirm & Launch Messenger</button></div></div>
+    
+    <div id="supportModal" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeSupportModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><div style="background: #f3e8ff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #e9d5ff;"><i class="fas fa-tools" style="font-size: 2rem; color: var(--accent);"></i></div><h2>Report an Issue</h2><p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Our technical team will assist you shortly.</p></div><div class="modal-form-group"><label for="issueCategory"><i class="fas fa-list-ul" style="color: var(--primary);"></i> Issue Category</label><select id="issueCategory"><option value="LOS (Red Light on Router)">LOS (Red Light on Router)</option><option value="Slow Internet Connection">Slow Internet Connection</option><option value="No Internet Connection">No Internet Connection</option><option value="Router Relocation">Request Router Relocation</option><option value="Other Inquiry">Other Inquiry</option></select></div><div class="modal-form-group"><label for="issueDescription"><i class="fas fa-align-left" style="color: var(--primary);"></i> Description (Optional)</label><textarea id="issueDescription" rows="3" placeholder="Provide more details about your concern..." style="resize: none; font-family: inherit; outline: none;"></textarea></div><button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--accent), #7c3aed); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);" onclick="submitSupportTicket()"><i class="fab fa-facebook-messenger"></i> Send via Messenger</button></div></div>
 
     <div id="upgradeModal" class="modal-overlay">
         <div class="modal-content">
@@ -1217,91 +1163,46 @@
             
             <label style="display:block; font-weight:700; font-size:0.95rem; margin-bottom:10px;"><i class="fas fa-cubes" style="color:var(--primary)"></i> Select Available Packages</label>
             
-            <div class="plan-selection-grid">
-                <p style="color:var(--text-light); font-size:0.9rem; font-style:italic; grid-column:1/-1; text-align:center;">Initializing modules...</p>
-            </div>
+            <div class="plan-selection-grid" id="planSelectionGrid">
+                </div>
 
-            <div class="modal-form-group">
+            <label style="display:block; font-weight:700; font-size:0.95rem; margin-top:20px; margin-bottom:10px;"><i class="fas fa-plus-circle" style="color:var(--primary)"></i> Optional Add-ups (Ask for Price)</label>
+            <div class="add-ups-grid">
+                <label class="add-up-item"><input type="checkbox" value="Mesh WiFi Router"> Mesh WiFi Router</label>
+                <label class="add-up-item"><input type="checkbox" value="Fiber Cable Extension"> Cable Extension</label>
+                <label class="add-up-item"><input type="checkbox" value="Static IP Address"> Static IP Address</label>
+                <label class="add-up-item"><input type="checkbox" value="Mini UPS (Power Backup)"> Mini UPS</label>
+            </div>
+            <input type="text" id="customAddUps" placeholder="Other add-ups? Type here..." class="nice-input-box" style="width:100%; font-size:0.9rem!important; text-align:left; padding:12px 15px!important; margin-bottom:20px; font-family: inherit!important; letter-spacing: normal;">
+
+            <div class="modal-form-group" style="margin-top: 0;">
                 <label for="upgradeNotes"><i class="far fa-comment-alt" style="color: var(--primary);"></i> Special Instructions / Notes</label>
                 <textarea id="upgradeNotes" rows="3" placeholder="Let us know your preferred deployment date or alternative configuration details..." style="resize: none; font-family: inherit; outline: none;"></textarea>
             </div>
 
             <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));" onclick="submitUpgradeRequest()">
-                <i class="fab fa-facebook-messenger"></i> Submit Upgrade Order
+                <i class="fab fa-facebook-messenger"></i> Submit Order & Request Price
             </button>
         </div>
     </div>
 
-    <div id="faqModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 520px;">
-            <button class="close-modal-btn" onclick="closeFaqModal()"><i class="fas fa-times"></i></button>
-            <div class="receipt-header">
-                <div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;">
-                    <i class="fas fa-question-circle" style="font-size: 2.2rem; color: var(--info);"></i>
-                </div>
-                <h2>Troubleshooting FAQ</h2>
-                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Quick tutorials for managing your connection status.</p>
-            </div>
-            
-            <div class="faq-list">
-                <div class="faq-item">
-                    <h4><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i> LOS is blinking RED</h4>
-                    <p>This means a fiber cable issue or terminal signal loss. Check if your cable drop line is bent, pinched, or disconnected.</p>
-                    <div class="tutorial-panel">
-                        <div class="los-light-box">
-                            <div class="router-led active-los"></div>
-                            <span style="font-size: 0.75rem;">LOS LED</span>
-                        </div>
-                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal;">
-                            <i class="fas fa-info-circle" style="color:var(--danger);"></i> Animated Alert: If blinking red persists, click Request Support Ticket.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <h4><i class="fas fa-wifi" style="color:var(--success);"></i> Connected but No Internet</h4>
-                    <p>Power cycling clears router cache blocks. Unplug your adapter configuration from the outlet, wait 30 seconds, then replug.</p>
-                    <div class="tutorial-panel">
-                        <div class="cycle-graphic">
-                            <i class="fas fa-plug power-plug-icon" style="font-size: 1.4rem;"></i>
-                            <span>30s Cycle Step</span>
-                        </div>
-                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal;">
-                            Safe Reboot: Allows terminal connection logs to re-authenticate from the server nodes.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <h4><i class="fas fa-tachometer-alt" style="color:var(--primary);"></i> Slow Internet Speed</h4>
-                    <p>Ensure no background network streams or updates are bottlenecking your data pool. Try running line tests near your terminal equipment.</p>
-                    <div class="tutorial-panel">
-                        <div class="signal-container">
-                            <div class="signal-bar"></div>
-                            <div class="signal-bar"></div>
-                            <div class="signal-bar"></div>
-                            <div class="signal-bar"></div>
-                        </div>
-                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal; margin-left: 10px;">
-                            Optimal Range: Wired LAN connections always achieve higher metrics than wireless radio paths.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-item" style="border-left-color: var(--danger);">
-                    <h4><i class="fas fa-ban" style="color:var(--danger);"></i> Should I press the RESET button?</h4>
-                    <p><strong>NEVER</strong> press the physical reset pinhole on the back plate. This clears your configuration scripts and permanently takes your device offline.</p>
-                    <div class="tutorial-panel" style="background: #7f1d1d;">
-                        <span style="color: #fca5a5;"><i class="fas fa-shield-alt"></i> CRITICAL RESTRICTION: Pin resets require manual technician dispatch to restore.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="faqModal" class="modal-overlay"><div class="modal-content" style="max-width: 520px;"><button class="close-modal-btn" onclick="closeFaqModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;"><i class="fas fa-question-circle" style="font-size: 2.2rem; color: var(--info);"></i></div><h2>Troubleshooting FAQ</h2><p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Quick tutorials for managing your connection status.</p></div><div class="faq-list"><div class="faq-item"><h4><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i> LOS is blinking RED</h4><p>This means a fiber cable issue or terminal signal loss. Check if your cable drop line is bent, pinched, or disconnected.</p></div><div class="faq-item"><h4><i class="fas fa-wifi" style="color:var(--success);"></i> Connected but No Internet</h4><p>Power cycling clears router cache blocks. Unplug your adapter configuration from the outlet, wait 30 seconds, then replug.</p></div><div class="faq-item"><h4><i class="fas fa-tachometer-alt" style="color:var(--primary);"></i> Slow Internet Speed</h4><p>Ensure no background network streams or updates are bottlenecking your data pool. Try running line tests near your terminal equipment.</p></div><div class="faq-item" style="border-left-color: var(--danger);"><h4><i class="fas fa-ban" style="color:var(--danger);"></i> Should I press the RESET button?</h4><p><strong>NEVER</strong> press the physical reset pinhole on the back plate. This clears your configuration scripts and permanently takes your device offline.</p></div></div></div></div>
 
     <div id="toastContainer"></div>
 
     <script>
+        // --- Static Custom Plans Data Setup ---
+        const embeddedPlansData = {
+          "plans": [
+            { "name": "Basic", "badge": null, "price": "₱499", "billing_cycle": "/mo", "speed": "Up to 10 Mbps", "features": ["Unlimited Data", "Good for Browsing", "Social Media Ready", "3-7 Devices"] },
+            { "name": "Family", "badge": "BEST SELLER", "price": "₱699", "billing_cycle": "/mo", "speed": "Up to 15 Mbps", "features": ["Unlimited Data", "HD Streaming", "Online Classes", "5-12 Devices"] },
+            { "name": "Gamer", "badge": null, "price": "₱899", "billing_cycle": "/mo", "speed": "Up to 20 Mbps", "features": ["Low Latency Gaming", "4K Streaming", "Work from Home", "12+ Devices"] },
+            { "name": "Premium", "badge": null, "price": "₱1,099", "billing_cycle": "/mo", "speed": "Up to 30 Mbps", "features": ["Heavy Usage", "Multiple HD Streams", "Fast Downloads", "Priority Support"] },
+            { "name": "Business", "badge": null, "price": "₱1,299", "billing_cycle": "/mo", "speed": "Up to 40 Mbps", "features": ["Business Grade", "Maximum Reliability", "Connect 15+ Devices", "Dedicated Line"] },
+            { "name": "VIP ULTIMATE", "badge": "POWERED BY N'RTECH", "price": "₱1,899", "billing_cycle": "/mo", "speed": "Up to 80 Mbps", "features": ["Extreme Speed", "Priority Bandwidth", "30+ Devices", "FREE Mini UPS!"] }
+          ]
+        };
+
         // --- Globals for capturing User Session Data ---
         let sessionClientName = "Client";
         let sessionClientAcc = "N/A";
@@ -1328,9 +1229,7 @@
             
             setTimeout(() => {
                 toast.classList.add('fade-out');
-                setTimeout(() => {
-                    if(toast.parentElement) toast.remove();
-                }, 400); 
+                setTimeout(() => { if(toast.parentElement) toast.remove(); }, 400); 
             }, 6000); 
         }
 
@@ -1456,18 +1355,11 @@
             const notifList = document.getElementById('notificationList');
             notifList.innerHTML = '';
             let userNotifs = [];
-
             try {
                 const resNotif = await fetch("notif.json", { cache: "no-store" });
                 const notifData = await resNotif.json();
-                
-                userNotifs = notifData.filter(n => 
-                    String(n.username).toLowerCase() === String(clientUsername).toLowerCase() && 
-                    n.active === true
-                );
-            } catch(e) {
-                console.log("Notification entry point response failed or file missing.");
-            }
+                userNotifs = notifData.filter(n => String(n.username).toLowerCase() === String(clientUsername).toLowerCase() && n.active === true);
+            } catch(e) { }
             
             if(userNotifs.length === 0) {
                 notifList.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; font-style:italic; padding-top: 5px;">No notifications recorded</p>';
@@ -1475,16 +1367,11 @@
             }
 
             userNotifs.sort((a,b) => new Date(b.date) - new Date(a.date));
-
             userNotifs.forEach((n, index) => {
                 const item = document.createElement('div');
                 item.className = 'notification-item';
                 item.style.animation = `slideInNotification 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.1 + (index * 0.1)}s`;
-                
-                item.innerHTML = `
-                    <div class="notification-title">${n.title}</div>
-                    <div class="notification-date"><i class="far fa-clock"></i> ${n.date}</div>
-                `;
+                item.innerHTML = `<div class="notification-title">${n.title}</div><div class="notification-date"><i class="far fa-clock"></i> ${n.date}</div>`;
                 item.onclick = () => openNotifModal(n.title, n.date, n.message);
                 notifList.appendChild(item);
             });
@@ -1492,24 +1379,17 @@
 
         function populateDashboard(client) {
             const clientName = client.name || "N/A";
-            
             sessionClientName = clientName;
             sessionClientAcc = client.accountNumber || "N/A";
-
             const balance = parseFloat(client.excessLackingBalance) || 0;
             const monthlyFee = client.plan ? parseFloat(client.plan.fee) : 0;
-            
             let calculatedDue = monthlyFee;
-            if (balance < 0) {
-                calculatedDue += Math.abs(balance);
-            }
+            if (balance < 0) { calculatedDue += Math.abs(balance); }
             const finalUpcomingBill = client.upcomingBill !== undefined ? parseFloat(client.upcomingBill) : calculatedDue;
-            
             const billString = `₱${finalUpcomingBill.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
             
             document.getElementById('modalBillAmount').textContent = billString;
             document.getElementById('balanceDisplay').textContent = billString;
-
             const balLabel = document.getElementById('excessLackingLabel');
             const balDisplay = document.getElementById('excessLackingDisplay');
 
@@ -1531,11 +1411,8 @@
             }
             
             const avatarEl = document.getElementById('clientAvatar');
-            if (client.profilePic) {
-                avatarEl.innerHTML = `<img src="${client.profilePic}" alt="Profile" onerror="this.onerror=null; this.parentElement.innerHTML='${clientName.charAt(0).toUpperCase()}';">`;
-            } else {
-                avatarEl.innerHTML = clientName.charAt(0).toUpperCase();
-            }
+            if (client.profilePic) { avatarEl.innerHTML = `<img src="${client.profilePic}" alt="Profile" onerror="this.onerror=null; this.parentElement.innerHTML='${clientName.charAt(0).toUpperCase()}';">`;
+            } else { avatarEl.innerHTML = clientName.charAt(0).toUpperCase(); }
 
             document.getElementById('clientNameDisplay').textContent = clientName;
             document.getElementById('clientAccDisplay').textContent = sessionClientAcc;
@@ -1575,7 +1452,6 @@
                     tr.className = 'payment-row';
                     tr.style.animation = `fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.2 + (index * 0.1)}s`;
                     tr.style.opacity = '0';
-                    
                     tr.innerHTML = `
                         <td style="font-weight: 600;">${pay.datew}</td>
                         <td style="color: var(--success); font-weight: 800;">₱${pay.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
@@ -1591,31 +1467,18 @@
             }
         }
 
-        // --- Copy GCash Number Logic ---
         function copyGCashNumber() {
             const gcashNumber = document.getElementById('gcashNumberText').innerText;
-            navigator.clipboard.writeText(gcashNumber).then(() => {
-                showToast("GCash number copied to clipboard!", "success");
-            }).catch(err => {
-                showToast("Failed to copy number. Please copy manually.", "warning");
-            });
+            navigator.clipboard.writeText(gcashNumber).then(() => { showToast("GCash number copied to clipboard!", "success");
+            }).catch(err => { showToast("Failed to copy number. Please copy manually.", "warning"); });
         }
 
-        // --- Proof of Payment Modal Logic ---
-        function openProofModal() {
-            document.getElementById('popReferenceNum').value = '';
-            proofModal.style.display = 'flex';
-            playSound('info');
-        }
+        function openProofModal() { document.getElementById('popReferenceNum').value = ''; proofModal.style.display = 'flex'; playSound('info'); }
         function closeProofModal() { proofModal.style.display = 'none'; }
 
         function submitProofOfPayment() {
             const refNum = document.getElementById('popReferenceNum').value.trim();
-            if (!refNum) {
-                showToast("Please provide a payment reference number.", "warning");
-                return;
-            }
-
+            if (!refNum) { showToast("Please provide a payment reference number.", "warning"); return; }
             const name = document.getElementById('clientNameDisplay').textContent;
             const account = document.getElementById('clientAccDisplay').textContent;
             const plan = document.getElementById('planDisplay').textContent;
@@ -1625,27 +1488,16 @@
 
             closeProofModal();
             showToast("Message copied! Once Messenger opens, just PASTE the text in the chat.", "success");
-
-            navigator.clipboard.writeText(structuredMessage).then(() => {
-                setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
-            }).catch(() => {
-                window.open("https://m.me/ramirez.technician", "_blank");
-            });
+            navigator.clipboard.writeText(structuredMessage).then(() => { setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
+            }).catch(() => { window.open("https://m.me/ramirez.technician", "_blank"); });
         }
 
-        // --- Support Modal Logic ---
-        function openSupportModal() {
-            document.getElementById('issueDescription').value = '';
-            document.getElementById('issueCategory').selectedIndex = 0;
-            supportModal.style.display = 'flex';
-            playSound('info');
-        }
+        function openSupportModal() { document.getElementById('issueDescription').value = ''; document.getElementById('issueCategory').selectedIndex = 0; supportModal.style.display = 'flex'; playSound('info'); }
         function closeSupportModal() { supportModal.style.display = 'none'; }
 
         function submitSupportTicket() {
             const category = document.getElementById('issueCategory').value;
             const description = document.getElementById('issueDescription').value.trim();
-            
             const name = document.getElementById('clientNameDisplay').textContent;
             const account = document.getElementById('clientAccDisplay').textContent;
 
@@ -1653,68 +1505,45 @@
 
             closeSupportModal();
             showToast("Message copied! Once Messenger opens, just PASTE the text in the chat.", "success");
-
-            navigator.clipboard.writeText(structuredMessage).then(() => {
-                setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
-            }).catch(() => {
-                window.open("https://m.me/ramirez.technician", "_blank");
-            });
+            navigator.clipboard.writeText(structuredMessage).then(() => { setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
+            }).catch(() => { window.open("https://m.me/ramirez.technician", "_blank"); });
         }
 
-        // --- UPDATED: Dynamic Subscription Plan Loading Strategy from plans.json ---
-        async function openUpgradeModal() {
+        // --- UPDATED: Dynamic Subscription Plan & Add-up Loading Setup ---
+        function openUpgradeModal() {
             document.getElementById('upgradeNotes').value = '';
-            const gridContainer = document.querySelector('.plan-selection-grid');
             
-            gridContainer.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; grid-column: 1/-1; text-align:center;"><i class="fas fa-spinner fa-spin"></i> Retrieving service tiers...</p>';
+            // Clear add-ups
+            document.getElementById('customAddUps').value = '';
+            document.querySelectorAll('.add-up-item input').forEach(cb => cb.checked = false);
+
+            const gridContainer = document.getElementById('planSelectionGrid');
             selectedUpgradePackage = { name: "", speed: "", price: "" };
             upgradeModal.style.display = 'flex';
             playSound('info');
 
-            try {
-                const response = await fetch("plans.json", { cache: "no-store" });
-                if (!response.ok) throw new Error("File context missing");
-                const plans = await response.json();
+            // Construct plans from embedded JSON
+            gridContainer.innerHTML = '';
+            embeddedPlansData.plans.forEach(plan => {
+                const card = document.createElement('div');
+                card.className = 'plan-tier-card';
                 
-                gridContainer.innerHTML = '';
-                plans.forEach(plan => {
-                    const card = document.createElement('div');
-                    card.className = 'plan-tier-card';
-                    
-                    const priceValue = plan.fee || plan.price || 0;
-                    // UPDATED: Added plan description rendering
-                    const descValue = plan.description || "High-speed reliable connection perfect for daily usage.";
-                    
-                    card.innerHTML = `
-                        <div class="plan-tier-name">${plan.name}</div>
-                        <div class="plan-tier-speed">${plan.speed}</div>
-                        <div class="plan-tier-price">₱${parseFloat(priceValue).toLocaleString()} / mo</div>
-                        <div class="plan-tier-desc">${descValue}</div>
-                    `;
-                    card.onclick = () => selectUpgradePlan(card, plan.name, plan.speed, priceValue);
-                    gridContainer.appendChild(card);
-                });
-            } catch (error) {
-                console.log("Fallback execution triggered due to plans.json parsing anomaly.");
-                // UPDATED: Static array fallback configuration now includes descriptions
-                gridContainer.innerHTML = `
-                    <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Lite Plan', '10 Mbps', '500')">
-                        <div class="plan-tier-name">Lite Plan</div><div class="plan-tier-speed">10 Mbps</div><div class="plan-tier-price">₱500 / mo</div>
-                        <div class="plan-tier-desc">Great for casual browsing and social media.</div>
-                    </div>
-                    <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Family Plan', '15 Mbps', '699')">
-                        <div class="plan-tier-name">Family Plan</div><div class="plan-tier-speed">15 Mbps</div><div class="plan-tier-price">₱699 / mo</div>
-                        <div class="plan-tier-desc">Perfect for small families streaming movies.</div>
-                    </div>
-                    <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Boost Plan', '25 Mbps', '999')">
-                        <div class="plan-tier-name">Boost Plan</div><div class="plan-tier-speed">25 Mbps</div><div class="plan-tier-price">₱999 / mo</div>
-                        <div class="plan-tier-desc">Ideal for moderate gaming and HD streaming.</div>
-                    </div>
-                    <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Pro Plan', '50 Mbps', '1299')">
-                        <div class="plan-tier-name">Pro Plan</div><div class="plan-tier-speed">50 Mbps</div><div class="plan-tier-price">₱1,299 / mo</div>
-                        <div class="plan-tier-desc">High performance for heavy downloads and remote work.</div>
-                    </div>`;
-            }
+                let badgeClass = "plan-badge";
+                if(plan.badge && plan.badge.includes("POWERED")) badgeClass += " accent";
+                
+                let badgeHTML = plan.badge ? `<div class="${badgeClass}">${plan.badge}</div>` : '';
+                let featuresHTML = plan.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('');
+                
+                card.innerHTML = `
+                    ${badgeHTML}
+                    <div class="plan-tier-name">${plan.name}</div>
+                    <div class="plan-tier-speed">${plan.speed}</div>
+                    <div class="plan-tier-price">${plan.price} <span style="font-size:0.75rem; color:var(--text-light); font-weight: 500;">${plan.billing_cycle}</span></div>
+                    <ul class="plan-features-list">${featuresHTML}</ul>
+                `;
+                card.onclick = () => selectUpgradePlan(card, plan.name, plan.speed, plan.price);
+                gridContainer.appendChild(card);
+            });
         }
 
         function closeUpgradeModal() { upgradeModal.style.display = 'none'; }
@@ -1732,13 +1561,26 @@
                 showToast("Please choose a subscription package tier first.", "warning");
                 return;
             }
+
+            // Harvest selected add-ups
+            const checkedAddUps = Array.from(document.querySelectorAll('.add-up-item input:checked')).map(cb => cb.value);
+            const customAddUpText = document.getElementById('customAddUps').value.trim();
+            if(customAddUpText) { checkedAddUps.push(customAddUpText); }
+
+            let addUpsString = "None";
+            let priceNoteString = "";
+            if(checkedAddUps.length > 0) {
+                addUpsString = checkedAddUps.join(', ');
+                priceNoteString = `\nNote: Please provide the pricing for the requested add-ups.`;
+            }
+
             const notes = document.getElementById('upgradeNotes').value.trim();
             const currentPlan = document.getElementById('planDisplay').textContent;
 
-            const structuredMessage = `N'RTECH SUBSCRIPTION UPGRADE REQUEST\n\nSubscriber: ${sessionClientName}\nAccount No: ${sessionClientAcc}\nCurrent Tier: ${currentPlan}\nRequested Package: ${selectedUpgradePackage.name} (${selectedUpgradePackage.speed})\nPackage Pricing: ₱${parseFloat(selectedUpgradePackage.price).toLocaleString()}/mo\nUser Notes: ${notes || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
+            const structuredMessage = `N'RTECH SUBSCRIPTION UPGRADE REQUEST\n\nSubscriber: ${sessionClientName}\nAccount No: ${sessionClientAcc}\nCurrent Tier: ${currentPlan}\nRequested Package: ${selectedUpgradePackage.name} (${selectedUpgradePackage.speed})\nPackage Pricing: ${selectedUpgradePackage.price}/mo\nRequested Add-ups: ${addUpsString}${priceNoteString}\nUser Notes: ${notes || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
 
             closeUpgradeModal();
-            showToast("Upgrade data compiled! Paste into Messenger chat when prompted.", "success");
+            showToast("Upgrade data & add-ups compiled! Paste into Messenger chat when prompted.", "success");
 
             navigator.clipboard.writeText(structuredMessage).then(() => {
                 setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
@@ -1747,11 +1589,9 @@
             });
         }
 
-        // --- FAQ Modal Logic ---
         function openFaqModal() { faqModal.style.display = 'flex'; playSound('info'); }
         function closeFaqModal() { faqModal.style.display = 'none'; }
 
-        // --- Other Modal Views ---
         function openReceiptModal(payment) {
             document.getElementById('modalPaymentMethod').innerHTML = `<i class="fas fa-wallet"></i> ${payment.method} Transaction`;
             document.getElementById('modalPaymentDate').textContent = payment.date;
@@ -1760,9 +1600,7 @@
             
             const paymentDateObj = new Date(payment.date);
             let coveredMonthString = "Unknown";
-            if (!isNaN(paymentDateObj.getTime())) {
-                coveredMonthString = paymentDateObj.toLocaleString('default', { month: 'long', year: 'numeric' });
-            }
+            if (!isNaN(paymentDateObj.getTime())) { coveredMonthString = paymentDateObj.toLocaleString('default', { month: 'long', year: 'numeric' }); }
             document.getElementById('modalCoveredMonth').textContent = coveredMonthString;
             
             receiptModal.style.display = 'flex';
