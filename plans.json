@@ -1,0 +1,88 @@
+{
+  "plans": [
+    {
+      "name": "Basic",
+      "badge": null,
+      "price": "₱499",
+      "billing_cycle": "/mo",
+      "speed": "Up to 10 Mbps",
+      "features": [
+        "Unlimited Data",
+        "Good for Browsing",
+        "Social Media Ready",
+        "3-7 Devices"
+      ],
+      "install_fee": "Install Starts at: ₱1,500*"
+    },
+    {
+      "name": "Family",
+      "badge": "BEST SELLER",
+      "price": "₱699",
+      "billing_cycle": "/mo",
+      "speed": "Up to 15 Mbps",
+      "features": [
+        "Unlimited Data",
+        "HD Streaming",
+        "Online Classes",
+        "5-12 Devices"
+      ],
+      "install_fee": "Install Starts at: ₱1,500*"
+    },
+    {
+      "name": "Gamer",
+      "badge": null,
+      "price": "₱899",
+      "billing_cycle": "/mo",
+      "speed": "Up to 20 Mbps",
+      "features": [
+        "Low Latency Gaming",
+        "4K Streaming",
+        "Work from Home",
+        "12+ Devices"
+      ],
+      "install_fee": "Install Starts at: ₱1,800*"
+    },
+    {
+      "name": "Premium",
+      "badge": null,
+      "price": "₱1,099",
+      "billing_cycle": "/mo",
+      "speed": "Up to 30 Mbps",
+      "features": [
+        "Heavy Usage",
+        "Multiple HD Streams",
+        "Fast Downloads",
+        "Priority Support"
+      ],
+      "install_fee": "Install Starts at: ₱2,000*"
+    },
+    {
+      "name": "Business",
+      "badge": null,
+      "price": "₱1,299",
+      "billing_cycle": "/mo",
+      "speed": "Up to 40 Mbps",
+      "features": [
+        "Business Grade",
+        "Maximum Reliability",
+        "Connect 15+ Devices",
+        "Dedicated Line"
+      ],
+      "install_fee": "Install Starts at: ₱2,000*"
+    },
+    {
+      "name": "VIP ULTIMATE",
+      "badge": "POWERED BY N'RTECH",
+      "price": "₱1,899",
+      "billing_cycle": "/mo",
+      "speed": "Up to 80 Mbps",
+      "features": [
+        "Extreme Speed",
+        "Priority Bandwidth",
+        "30+ Devices",
+        "FREE Mini UPS!"
+      ],
+      "install_fee": "Install Starts at: ₱2,500*"
+    }
+  ]
+}
