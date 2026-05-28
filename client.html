@@ -149,17 +149,11 @@
         .login-logo {
             display: block;
             margin: 0 auto 25px auto;
-            max-height: 110px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.1));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
+            width: 100%;
+            max-width: 230px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(212, 154, 55, 0.2));
+            /* Animation loop removed to keep the logo static */
         }
 
         .form-group { margin-bottom: 22px; text-align: left; }
@@ -364,7 +358,7 @@
         /* --- Dashboard Grid & Cards --- */
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 25px;
             margin-bottom: 25px;
         }
@@ -389,19 +383,6 @@
             box-shadow: var(--card-hover-shadow);
             border-color: rgba(212, 154, 55, 0.4);
         }
-
-        /* Subtle corner highlight for cards */
-        .stat-card::after, .full-width-card::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 150px; height: 150px;
-            background: radial-gradient(circle top right, rgba(255,255,255,0.8), transparent);
-            opacity: 0;
-            transition: var(--transition-smooth);
-            pointer-events: none;
-        }
-        .stat-card:hover::after, .full-width-card:hover::after { opacity: 1; }
 
         .stat-card h4, .full-width-card h4 {
             color: var(--text-light);
@@ -512,7 +493,6 @@
             z-index: 1;
         }
 
-        /* --- THE NEW REFERENCE CODE BOX --- */
         .ref-badge {
             background: linear-gradient(135deg, #f8fafc, #f1f5f9);
             border: 1px solid #cbd5e1;
@@ -581,7 +561,7 @@
         .modal-content {
             background: #ffffff;
             width: 100%;
-            max-width: 420px;
+            max-width: 460px;
             border-radius: 24px;
             padding: 40px 35px;
             position: relative;
@@ -656,7 +636,7 @@
 
         .paid-stamp {
             position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%) rotate(-35deg) scale(2);
+            transform: translate(-50%, -50%) rotate(-35deg) scale(1);
             font-size: 5rem; font-weight: 900;
             color: rgba(16, 185, 129, 0.08);
             border: 8px solid rgba(16, 185, 129, 0.08);
@@ -679,21 +659,95 @@
         .modal-form-group { margin-top: 15px; margin-bottom: 25px; text-align: left; }
         .modal-form-group label { display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; color: var(--text-dark); }
 
-        /* --- FAQ Modal Styles --- */
+        /* --- FAQ & Animated Tutorial Elements --- */
         .faq-item {
             background: #ffffff;
-            border-radius: 14px;
-            padding: 18px;
-            margin-bottom: 15px;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 18px;
             border: 1px solid #e2e8f0;
-            border-left: 4px solid var(--info);
+            border-left: 5px solid var(--info);
             transition: var(--transition-smooth);
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
         
-        .faq-item:hover { transform: translateX(6px) scale(1.02); background: #f8fafc; border-color: #cbd5e1; box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
-        .faq-item h4 { margin-bottom: 8px; font-size: 0.95rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; font-weight: 700; }
-        .faq-item p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; }
+        .faq-item:hover { transform: translateY(-2px); background: #f8fafc; border-color: #cbd5e1; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .faq-item h4 { margin-bottom: 10px; font-size: 1rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        .faq-item p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 12px; }
+
+        /* Custom Tutorial Visual Panels */
+        .tutorial-panel {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .los-light-box { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .router-led { width: 14px; height: 14px; border-radius: 50%; background-color: #334155; }
+        .router-led.active-los {
+            background-color: var(--danger);
+            box-shadow: 0 0 12px var(--danger);
+            animation: blinkingRed 1s infinite steps(2, start);
+        }
+        @keyframes blinkingRed { to { visibility: hidden; } }
+
+        .cycle-graphic { display: flex; align-items: center; gap: 10px; }
+        .power-plug-icon { animation: plugCycle 3s infinite ease-in-out; }
+        @keyframes plugCycle {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 1; color: var(--success); }
+            30%, 70% { transform: translateY(8px) scale(0.9); opacity: 0.4; color: var(--danger); }
+        }
+
+        .signal-container { display: flex; align-items: flex-end; gap: 3px; height: 20px; }
+        .signal-bar { width: 4px; background-color: #475569; border-radius: 2px; transition: var(--transition-smooth); }
+        .signal-bar:nth-child(1) { height: 30%; animation: pulseBar 1.5s infinite ease-in-out 0.1s; }
+        .signal-bar:nth-child(2) { height: 55%; animation: pulseBar 1.5s infinite ease-in-out 0.3s; }
+        .signal-bar:nth-child(3) { height: 80%; animation: pulseBar 1.5s infinite ease-in-out 0.5s; }
+        .signal-bar:nth-child(4) { height: 100%; animation: pulseBar 1.5s infinite ease-in-out 0.7s; }
+        @keyframes pulseBar { 0%, 100% { background-color: #475569; } 50% { background-color: var(--info); } }
+
+        /* --- Interactive Plan Grid --- */
+        .plan-selection-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .plan-tier-card {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 16px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            text-align: center;
+        }
+        .plan-tier-card:hover { transform: translateY(-3px); border-color: #cbd5e1; box-shadow: 0 6px 15px rgba(0,0,0,0.03); }
+        .plan-tier-card.selected {
+            border-color: var(--primary);
+            background: #fdfaf4;
+            box-shadow: 0 8px 20px rgba(212, 154, 55, 0.15);
+        }
+        .plan-tier-card.selected::before {
+            content: '\f058';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px; right: 10px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .plan-tier-name { font-weight: 800; font-size: 1rem; color: #0f172a; margin-bottom: 4px; }
+        .plan-tier-speed { font-size: 0.85rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 8px; }
+        .plan-tier-price { font-weight: 800; font-size: 1.15rem; color: var(--text-dark); }
 
         /* --- Toast Notifications --- */
         #toastContainer { position: fixed; bottom: 25px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; }
@@ -733,7 +787,7 @@
             100% { transform: scale(0.9) translateY(20px); opacity: 0; }
         }
 
-        /* Responsive Overrides */
+        /* Responsive Overrides & Overlap Resolutions */
         @media (max-width: 768px) {
             body { padding: 15px 10px; }
             .portal-container { padding: 30px 20px; border-radius: 20px; }
@@ -745,6 +799,7 @@
             .modal-content { padding: 30px 20px; border-radius: 20px; }
             #toastContainer { bottom: 20px; left: 20px; right: 20px; align-items: center; }
             .toast { width: 100%; min-width: unset; max-width: 100%; }
+            .plan-selection-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -813,24 +868,21 @@
         <div class="dashboard-grid">
             <div class="stat-card" style="border-top: 4px solid var(--primary);">
                 <h4>Subscription Plan <i class="fas fa-network-wired" style="color:var(--primary);"></i></h4>
-                <div class="value" id="planDisplay" style="color: var(--primary-dark);">Family Plan</div>
+                <div class="value" id="planDisplay" style="color: var(--primary-dark); margin-bottom: 5px;">Family Plan</div>
                 <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 12px; font-weight: 600;"><i class="fas fa-tachometer-alt"></i> Speed: <span id="speedDisplay">15 Mbps</span></p>
                 <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 5px;">Monthly Fee: ₱<span id="feeDisplay">699</span></p>
             </div>
 
             <div class="stat-card" style="border-top: 4px solid var(--primary-dark);">
                 <h4>Loyalty Points <i class="fas fa-medal" style="color:var(--primary-dark);"></i></h4>
-                
-                <div style="display: flex; gap: 15px; margin-top: 10px; margin-bottom: 20px;">
-                    <div style="flex: 1; background: linear-gradient(135deg, #fffbeb, #fef3c7); padding: 18px; border-radius: 14px; border: 1px solid #fde68a; transition: var(--transition-smooth);" onmouseover="this.style.transform='scale(1.05) translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(245, 158, 11, 0.15)'" onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.boxShadow='none'">
-                        <div class="value" style="font-size: 2rem; color: #d97706;" id="advancePtsDisplay">0</div>
-                        <span style="font-size:0.8rem; color:#b45309; font-weight:800; letter-spacing: 0.5px;">ADVANCE PTS</span>
-                        <p style="font-size: 0.8rem; color: #92400e; margin-top: 6px; line-height: 1.3;">Exclusive rewards.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; margin-bottom: 10px;">
+                    <div style="flex: 1; min-width: 110px; background: linear-gradient(135deg, #fffbeb, #fef3c7); padding: 14px; border-radius: 14px; border: 1px solid #fde68a; transition: var(--transition-smooth);">
+                        <div class="value" style="font-size: 1.8rem; color: #d97706;" id="advancePtsDisplay">0</div>
+                        <span style="font-size:0.75rem; color:#b45309; font-weight:800; letter-spacing: 0.5px;">ADVANCE PTS</span>
                     </div>
-                    <div style="flex: 1; background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 18px; border-radius: 14px; border: 1px solid #a7f3d0; transition: var(--transition-smooth);" onmouseover="this.style.transform='scale(1.05) translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(16, 185, 129, 0.15)'" onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.boxShadow='none'">
-                        <div class="value" style="font-size: 2rem; color: var(--success);" id="onTimePtsDisplay">0</div>
-                        <span style="font-size:0.8rem; color:#047857; font-weight:800; letter-spacing: 0.5px;">ON-TIME PTS</span>
-                        <p style="font-size: 0.8rem; color: #065f46; margin-top: 6px; line-height: 1.3;">Gain discounts.</p>
+                    <div style="flex: 1; min-width: 110px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); padding: 14px; border-radius: 14px; border: 1px solid #a7f3d0; transition: var(--transition-smooth);">
+                        <div class="value" style="font-size: 1.8rem; color: var(--success);" id="onTimePtsDisplay">0</div>
+                        <span style="font-size:0.75rem; color:#047857; font-weight:800; letter-spacing: 0.5px;">ON-TIME PTS</span>
                     </div>
                 </div>
             </div>
@@ -859,16 +911,19 @@
             </div>
 
             <div class="stat-card" style="border-top: 4px solid var(--accent);">
-                <h4>Help & Support <i class="fas fa-headset" style="color:var(--accent);"></i></h4>
-                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 10px; margin-bottom: 20px; line-height: 1.5;">
-                    Experiencing slow connection, LOS (Red Light), or need technical assistance?
+                <h4>Account Actions & Support <i class="fas fa-headset" style="color:var(--accent);"></i></h4>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px; margin-bottom: 15px; line-height: 1.4;">
+                    Troubleshoot connection alerts, request technical help, or upgrade network tier speed.
                 </p>
                 
-                <button class="proof-btn faq-btn" style="background: linear-gradient(135deg, var(--info), #2563eb); margin-bottom: 12px; margin-top: auto;" onclick="openFaqModal()">
+                <button class="proof-btn faq-btn" style="background: linear-gradient(135deg, var(--info), #2563eb); margin-bottom: 10px; margin-top: auto;" onclick="openFaqModal()">
                     <i class="fas fa-question-circle"></i> Troubleshooting FAQ
                 </button>
+                <button class="proof-btn" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); margin-bottom: 10px; margin-top: 0;" onclick="openUpgradeModal()">
+                    <i class="fas fa-arrow-circle-up"></i> Request Plan Upgrade
+                </button>
                 <button class="proof-btn" style="background: linear-gradient(135deg, var(--accent), #7c3aed); margin-top: 0;" onclick="openSupportModal()">
-                    <i class="fas fa-ticket-alt"></i> Request Support
+                    <i class="fas fa-ticket-alt"></i> Request Support Ticket
                 </button>
             </div>
         </div>
@@ -969,7 +1024,7 @@
                     <div style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; background: white; padding: 10px 18px; border-radius: 10px; border: 2px solid #e2e8f0; margin-top: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
                         <span style="font-size: 0.95rem; color: var(--text-light); font-weight: 700;">GCash:</span>
                         <span id="gcashNumberText" style="color: var(--primary-dark); font-size: 1.25rem; font-weight: 800; letter-spacing: 1px;">09317926807</span>
-                        <button onclick="copyGCashNumber()" style="background: var(--bg-light); border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: var(--transition-smooth); font-weight: 700;" onmouseover="this.style.background='#e2e8f0'; this.style.transform='scale(1.05)'" onmouseout="this.style.background='var(--bg-light)'; this.style.transform='scale(1)'" onmousedown="this.style.transform='scale(0.95)'">
+                        <button onclick="copyGCashNumber()" style="background: var(--bg-light); border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: var(--transition-smooth); font-weight: 700;">
                             <i class="far fa-copy"></i> Copy
                         </button>
                     </div>
@@ -1031,33 +1086,114 @@
         </div>
     </div>
 
-    <div id="faqModal" class="modal-overlay">
+    <div id="upgradeModal" class="modal-overlay">
         <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeUpgradeModal()"><i class="fas fa-times"></i></button>
+            <div class="receipt-header">
+                <div style="background: #fef3c7; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #fde68a;">
+                    <i class="fas fa-rocket" style="font-size: 2rem; color: var(--primary-dark);"></i>
+                </div>
+                <h2>Upgrade Subscription Plan</h2>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Choose your desired high-speed package tier below.</p>
+            </div>
+            
+            <label style="display:block; font-weight:700; font-size:0.95rem; margin-bottom:10px;"><i class="fas fa-cubes" style="color:var(--primary)"></i> Select Available Packages</label>
+            <div class="plan-selection-grid">
+                <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Lite Plan', '10 Mbps', '500')">
+                    <div class="plan-tier-name">Lite Plan</div>
+                    <div class="plan-tier-speed">10 Mbps</div>
+                    <div class="plan-tier-price">₱500 / mo</div>
+                </div>
+                <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Family Plan', '15 Mbps', '699')">
+                    <div class="plan-tier-name">Family Plan</div>
+                    <div class="plan-tier-speed">15 Mbps</div>
+                    <div class="plan-tier-price">₱699 / mo</div>
+                </div>
+                <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Boost Plan', '25 Mbps', '999')">
+                    <div class="plan-tier-name">Boost Plan</div>
+                    <div class="plan-tier-speed">25 Mbps</div>
+                    <div class="plan-tier-price">₱999 / mo</div>
+                </div>
+                <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Pro Plan', '50 Mbps', '1299')">
+                    <div class="plan-tier-name">Pro Plan</div>
+                    <div class="plan-tier-speed">50 Mbps</div>
+                    <div class="plan-tier-price">₱1,299 / mo</div>
+                </div>
+            </div>
+
+            <div class="modal-form-group">
+                <label for="upgradeNotes"><i class="far fa-comment-alt" style="color: var(--primary);"></i> Special Instructions / Notes</label>
+                <textarea id="upgradeNotes" rows="3" placeholder="Let us know your preferred deployment date or alternative configuration details..." style="resize: none; font-family: inherit; outline: none;"></textarea>
+            </div>
+
+            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));" onclick="submitUpgradeRequest()">
+                <i class="fab fa-facebook-messenger"></i> Submit Upgrade Order
+            </button>
+        </div>
+    </div>
+
+    <div id="faqModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 520px;">
             <button class="close-modal-btn" onclick="closeFaqModal()"><i class="fas fa-times"></i></button>
             <div class="receipt-header">
                 <div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;">
                     <i class="fas fa-question-circle" style="font-size: 2.2rem; color: var(--info);"></i>
                 </div>
                 <h2>Troubleshooting FAQ</h2>
-                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Quick fixes for common internet issues.</p>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Quick tutorials for managing your connection status.</p>
             </div>
             
             <div class="faq-list">
                 <div class="faq-item">
                     <h4><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i> LOS is blinking RED</h4>
-                    <p>This means a fiber cable issue or signal loss. Please check if your cable is bent, damaged, or unplugged. If physical cables are fine, please submit a Support Ticket.</p>
+                    <p>This means a fiber cable issue or terminal signal loss. Check if your cable drop line is bent, pinched, or disconnected.</p>
+                    <div class="tutorial-panel">
+                        <div class="los-light-box">
+                            <div class="router-led active-los"></div>
+                            <span style="font-size: 0.75rem;">LOS LED</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal;">
+                            <i class="fas fa-info-circle" style="color:var(--danger);"></i> Animated Alert: If blinking red persists, click Request Support Ticket.
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="faq-item">
                     <h4><i class="fas fa-wifi" style="color:var(--success);"></i> Connected but No Internet</h4>
-                    <p>Unplug your router from the power outlet, wait for 30 seconds, then plug it back in. Wait 2-3 minutes for the connection to fully stabilize.</p>
+                    <p>Power cycling clears router cache blocks. Unplug your adapter configuration from the outlet, wait 30 seconds, then replug.</p>
+                    <div class="tutorial-panel">
+                        <div class="cycle-graphic">
+                            <i class="fas fa-plug power-plug-icon" style="font-size: 1.4rem;"></i>
+                            <span>30s Cycle Step</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal;">
+                            Safe Reboot: Allows terminal connection logs to re-authenticate from the server nodes.
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="faq-item">
                     <h4><i class="fas fa-tachometer-alt" style="color:var(--primary);"></i> Slow Internet Speed</h4>
-                    <p>Ensure no other devices are doing heavy background downloads. Try moving closer to the router if you are on WiFi. Restarting the router often helps clear the cache.</p>
+                    <p>Ensure no background network streams or updates are bottlenecking your data pool. Try running line tests near your terminal equipment.</p>
+                    <div class="tutorial-panel">
+                        <div class="signal-container">
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal; margin-left: 10px;">
+                            Optimal Range: Wired LAN connections always achieve higher metrics than wireless radio paths.
+                        </div>
+                    </div>
                 </div>
-                 <div class="faq-item">
+                
+                <div class="faq-item" style="border-left-color: var(--danger);">
                     <h4><i class="fas fa-ban" style="color:var(--danger);"></i> Should I press the RESET button?</h4>
-                    <p><strong>NEVER</strong> press the small reset hole/button on the back of your router. This will erase the router's configuration and you will lose your connection entirely. Only unplug the power adapter to restart it.</p>
+                    <p><strong>NEVER</strong> press the physical reset pinhole on the back plate. This clears your configuration scripts and permanently takes your device offline.</p>
+                    <div class="tutorial-panel" style="background: #7f1d1d;">
+                        <span style="color: #fca5a5;"><i class="fas fa-shield-alt"></i> CRITICAL RESTRICTION: Pin resets require manual technician dispatch to restore.</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1069,8 +1205,9 @@
         // --- Globals for capturing User Session Data ---
         let sessionClientName = "Client";
         let sessionClientAcc = "N/A";
+        let selectedUpgradePackage = { name: "", speed: "", price: "" };
 
-        // --- Custom Toast Notification Function with smooth fade out ---
+        // --- Custom Toast Notification Function ---
         function showToast(message, type = 'success') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -1137,7 +1274,7 @@
                     gainNode.gain.linearRampToValueAtTime(0, now + 0.2);
                     oscillator.start(now); oscillator.stop(now + 0.2);
                 }
-            } catch (err) { console.log("Audio not supported."); }
+            } catch (err) { console.log("Audio parameters disabled by host safety rules."); }
         }
 
         const loginForm = document.getElementById('loginForm');
@@ -1151,6 +1288,7 @@
         const notifModal = document.getElementById('notifModal');
         const proofModal = document.getElementById('proofModal');
         const supportModal = document.getElementById('supportModal');
+        const upgradeModal = document.getElementById('upgradeModal');
         const faqModal = document.getElementById('faqModal');
 
         document.getElementById('forgotPassLink').addEventListener('click', (e) => {
@@ -1172,7 +1310,7 @@
 
             try {
                 const response = await fetch("data.json", { cache: "no-store" });
-                if (!response.ok) throw new Error("Network issue"); 
+                if (!response.ok) throw new Error("Network pool response issue"); 
                 const clients = await response.json();
                 const client = clients.find(c => String(c.clientUsername).toLowerCase() === usernameInput.toLowerCase() && String(c.clientPassword) === accPass);
 
@@ -1194,7 +1332,7 @@
             } catch (error) {
                 console.error("System Log:", error); 
                 playSound('error');
-                errorMsg.innerHTML = `<i class="fas fa-times-circle"></i> System error. Could not connect to database.`;
+                errorMsg.innerHTML = `<i class="fas fa-times-circle"></i> System error. Could not connect to database connection.`;
                 errorMsg.style.display = 'block';
             } finally {
                 loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Authenticate Connection';
@@ -1228,7 +1366,7 @@
                     n.active === true
                 );
             } catch(e) {
-                console.log("Notification database request failed or file missing.");
+                console.log("Notification entry point response failed or file missing.");
             }
             
             if(userNotifs.length === 0) {
@@ -1338,9 +1476,8 @@
                     tr.style.animation = `fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.4 + (index * 0.1)}s`;
                     tr.style.opacity = '0';
                     
-                    // NEW: The reference Code Badge formatting
                     tr.innerHTML = `
-                        <td style="font-weight: 600;">${pay.date}</td>
+                        <td style="font-weight: 600;">${pay.datew}</td>
                         <td style="color: var(--success); font-weight: 800;">₱${pay.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
                         <td style="font-weight: 500;">${pay.method}</td>
                         <td><span class="ref-badge"><i class="fas fa-hashtag" style="font-size: 0.75rem; color: var(--text-light);"></i> ${pay.referenceNumber || 'N/A'}</span></td>
@@ -1357,12 +1494,10 @@
         // --- Copy GCash Number Logic ---
         function copyGCashNumber() {
             const gcashNumber = document.getElementById('gcashNumberText').innerText;
-            
             navigator.clipboard.writeText(gcashNumber).then(() => {
                 showToast("GCash number copied to clipboard!", "success");
             }).catch(err => {
                 showToast("Failed to copy number. Please copy manually.", "warning");
-                console.error("Clipboard error:", err);
             });
         }
 
@@ -1372,7 +1507,6 @@
             proofModal.style.display = 'flex';
             playSound('info');
         }
-
         function closeProofModal() { proofModal.style.display = 'none'; }
 
         function submitProofOfPayment() {
@@ -1406,7 +1540,6 @@
             supportModal.style.display = 'flex';
             playSound('info');
         }
-
         function closeSupportModal() { supportModal.style.display = 'none'; }
 
         function submitSupportTicket() {
@@ -1420,6 +1553,45 @@
 
             closeSupportModal();
             showToast("Message copied! Once Messenger opens, just PASTE the text in the chat.", "success");
+
+            navigator.clipboard.writeText(structuredMessage).then(() => {
+                setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
+            }).catch(() => {
+                window.open("https://m.me/ramirez.technician", "_blank");
+            });
+        }
+
+        // --- Plan Upgrade Interaction Logic ---
+        function openUpgradeModal() {
+            document.getElementById('upgradeNotes').value = '';
+            const cards = document.querySelectorAll('.plan-tier-card');
+            cards.forEach(c => c.classList.remove('selected'));
+            selectedUpgradePackage = { name: "", speed: "", price: "" };
+            upgradeModal.style.display = 'flex';
+            playSound('info');
+        }
+        function closeUpgradeModal() { upgradeModal.style.display = 'none'; }
+
+        function selectUpgradePlan(element, planName, speed, price) {
+            const cards = document.querySelectorAll('.plan-tier-card');
+            cards.forEach(c => c.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedUpgradePackage = { name: planName, speed: speed, price: price };
+            playSound('success');
+        }
+
+        function submitUpgradeRequest() {
+            if (!selectedUpgradePackage.name) {
+                showToast("Please choose a subscription package tier first.", "warning");
+                return;
+            }
+            const notes = document.getElementById('upgradeNotes').value.trim();
+            const currentPlan = document.getElementById('planDisplay').textContent;
+
+            const structuredMessage = `N'RTECH SUBSCRIPTION UPGRADE REQUEST\n\nSubscriber: ${sessionClientName}\nAccount No: ${sessionClientAcc}\nCurrent Tier: ${currentPlan}\nRequested Package: ${selectedUpgradePackage.name} (${selectedUpgradePackage.speed})\nPackage Pricing: ₱${selectedUpgradePackage.price}/mo\nUser Notes: ${notes || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
+
+            closeUpgradeModal();
+            showToast("Upgrade data compiled! Paste into Messenger chat when prompted.", "success");
 
             navigator.clipboard.writeText(structuredMessage).then(() => {
                 setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
@@ -1469,6 +1641,7 @@
             if (event.target === notifModal) closeNotifModal();
             if (event.target === proofModal) closeProofModal();
             if (event.target === supportModal) closeSupportModal();
+            if (event.target === upgradeModal) closeUpgradeModal();
             if (event.target === faqModal) closeFaqModal();
         }
 
