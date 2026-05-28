@@ -648,7 +648,7 @@
         .modal-content {
             background: #ffffff;
             width: 100%;
-            max-width: 480px;
+            max-width: 460px;
             border-radius: 24px;
             padding: 40px 35px;
             position: relative;
@@ -659,6 +659,10 @@
             overflow-x: hidden;
             opacity: 0;
             border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .modal-content.wide-modal {
+            max-width: 750px;
         }
 
         @keyframes springModal {
@@ -771,22 +775,61 @@
         .faq-item h4 { margin-bottom: 10px; font-size: 1rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; font-weight: 700; }
         .faq-item p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 12px; }
 
+        /* Custom Tutorial Visual Panels */
+        .tutorial-panel {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .los-light-box { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .router-led { width: 14px; height: 14px; border-radius: 50%; background-color: #334155; }
+        .router-led.active-los {
+            background-color: var(--danger);
+            box-shadow: 0 0 12px var(--danger);
+            animation: blinkingRed 1s infinite steps(2, start);
+        }
+        @keyframes blinkingRed { to { visibility: hidden; } }
+
+        .cycle-graphic { display: flex; align-items: center; gap: 10px; }
+        .power-plug-icon { animation: plugCycle 3s infinite ease-in-out; }
+        @keyframes plugCycle {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 1; color: var(--success); }
+            30%, 70% { transform: translateY(8px) scale(0.9); opacity: 0.4; color: var(--danger); }
+        }
+
+        .signal-container { display: flex; align-items: flex-end; gap: 3px; height: 20px; }
+        .signal-bar { width: 4px; background-color: #475569; border-radius: 2px; transition: var(--transition-smooth); }
+        .signal-bar:nth-child(1) { height: 30%; animation: pulseBar 1.5s infinite ease-in-out 0.1s; }
+        .signal-bar:nth-child(2) { height: 55%; animation: pulseBar 1.5s infinite ease-in-out 0.3s; }
+        .signal-bar:nth-child(3) { height: 80%; animation: pulseBar 1.5s infinite ease-in-out 0.5s; }
+        .signal-bar:nth-child(4) { height: 100%; animation: pulseBar 1.5s infinite ease-in-out 0.7s; }
+        @keyframes pulseBar { 0%, 100% { background-color: #475569; } 50% { background-color: var(--info); } }
+
         /* --- Interactive Plan Grid --- */
         .plan-selection-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 25px;
         }
         .plan-tier-card {
             background: #ffffff;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
-            padding: 22px 16px 16px 16px;
+            padding: 20px 16px;
             cursor: pointer;
             transition: var(--transition-smooth);
             position: relative;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
         }
         .plan-tier-card:hover { transform: translateY(-3px); border-color: #cbd5e1; box-shadow: 0 6px 15px rgba(0,0,0,0.03); }
         .plan-tier-card.selected {
@@ -796,121 +839,57 @@
         }
         .plan-tier-card.selected::before {
             content: '\f058';
-            font-family: 'Font Awesome 6 Free';
+            font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             position: absolute;
-            top: 10px; right: 10px;
+            top: 15px; right: 15px;
             color: var(--primary);
-            font-size: 1.1rem;
-            z-index: 3;
+            font-size: 1.3rem;
         }
         
-        /* State for Active / Disabled Plan Choices */
-        .plan-tier-card.disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-            background: #f1f5f9;
-            border-color: #cbd5e1;
-            pointer-events: none;
-            box-shadow: none;
-        }
-        .plan-tier-card.disabled:hover { transform: none; box-shadow: none; }
-
         .plan-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--danger);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            white-space: nowrap;
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--danger); color: white;
+            font-size: 0.65rem; font-weight: 800;
+            padding: 4px 12px; border-radius: 20px;
             box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
-            z-index: 2;
+            z-index: 5;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
         }
-        .plan-badge.accent { background: var(--accent); box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3); }
 
         .plan-tier-name { font-weight: 800; font-size: 1.1rem; color: #0f172a; margin-bottom: 4px; }
         .plan-tier-speed { font-size: 0.85rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 8px; }
-        .plan-tier-price { font-weight: 800; font-size: 1.25rem; color: var(--text-dark); }
+        .plan-tier-price { font-weight: 800; font-size: 1.25rem; color: var(--text-dark); margin-bottom: 12px; }
         
-        .plan-features-list {
+        .features-list { 
+            font-size: 0.75rem; 
+            text-align: left; 
+            color: var(--text-light); 
             list-style: none;
             padding: 0;
-            margin-top: 12px;
-            text-align: left;
-            border-top: 1px solid #e2e8f0;
+            margin: auto 0 0 0;
+            border-top: 1px solid #f1f5f9;
             padding-top: 12px;
         }
-        .plan-features-list li {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .plan-features-list li i { color: var(--success); font-size: 0.75rem; flex-shrink: 0; }
+        .features-list li { margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; }
+        .features-list li i { color: var(--success); font-size: 0.7rem; margin-top: 2px; }
 
-        /* --- New Mini UPS Add-on Grid Styling --- */
-        .ups-selection-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-        .ups-card {
+        /* Hardware Add-on Card */
+        .addon-card {
             background: #ffffff;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
-            padding: 22px 14px 14px 14px;
+            padding: 16px 20px;
             cursor: pointer;
             transition: var(--transition-smooth);
-            position: relative;
-            text-align: center;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 25px;
         }
-        .ups-card:hover { transform: translateY(-3px); border-color: #cbd5e1; box-shadow: 0 6px 15px rgba(0,0,0,0.03); }
-        .ups-card.selected {
-            border-color: var(--info);
-            background: #f0f7ff;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
-        }
-        .ups-card.selected::before {
-            content: '\f058';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            top: 10px; right: 10px;
-            color: var(--info);
-            font-size: 1.1rem;
-            z-index: 3;
-        }
-        .ups-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #f59e0b;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
-            z-index: 2;
-        }
-        .ups-capacity { font-weight: 800; font-size: 1.2rem; color: #0f172a; margin-bottom: 2px; }
-        .ups-design { font-size: 0.75rem; color: var(--primary-dark); font-weight: 600; margin-bottom: 6px; line-height: 1.2; }
-        .ups-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.35; margin-bottom: 10px; }
+        .addon-card:hover { border-color: #cbd5e1; box-shadow: 0 6px 15px rgba(0,0,0,0.03); }
+        .addon-card.selected { border-color: var(--info); background: #f0f9ff; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15); }
 
         /* --- Toast Notifications --- */
         #toastContainer { position: fixed; bottom: 25px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; }
@@ -962,7 +941,7 @@
             .modal-content { padding: 30px 20px; border-radius: 20px; }
             #toastContainer { bottom: 20px; left: 20px; right: 20px; align-items: center; }
             .toast { width: 100%; min-width: unset; max-width: 100%; }
-            .plan-selection-grid, .ups-selection-grid { grid-template-columns: 1fr; }
+            .plan-selection-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1038,7 +1017,7 @@
         <div class="dashboard-grid">
             <div class="stat-card" style="border-top: 4px solid var(--primary);">
                 <h4>Subscription Plan <i class="fas fa-network-wired" style="color:var(--primary);"></i></h4>
-                <div class="value" id="planDisplay" style="color: var(--primary-dark); margin-bottom: 5px;">Family Plan</div>
+                <div class="value" id="planDisplay" style="color: var(--primary-dark); margin-bottom: 5px;">Family</div>
                 <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 12px; font-weight: 600;"><i class="fas fa-tachometer-alt"></i> Speed: <span id="speedDisplay">15 Mbps</span></p>
                 <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 5px;">Monthly Fee: ₱<span id="feeDisplay">699</span></p>
             </div>
@@ -1137,18 +1116,137 @@
         </button>
     </div>
 
-    <div id="notifModal" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeNotifModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><div style="background: #f3e8ff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #e9d5ff;"><i class="fas fa-bell" style="font-size: 2rem; color: var(--accent);"></i></div><h2 id="modalNotifTitle">Notification</h2><p id="modalNotifDate" style="color: var(--text-light); font-size: 0.9rem; font-weight: 600; margin-top: 5px;"></p></div><div id="modalNotifMessage" style="font-size: 1rem; line-height: 1.7; color: var(--text-dark); white-space: pre-line; padding: 0 10px;"></div></div></div>
-    
-    <div id="receiptModal" class="modal-overlay"><div class="modal-content"><div class="paid-stamp">PAID</div><button class="close-modal-btn" onclick="closeReceiptModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><img src="logo.png" alt="N'RTECH Logo" class="receipt-logo" onerror="this.style.display='none'"><h2>Payment Receipt</h2><p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Thank you for trusting N'RTECH!</p></div><div class="receipt-details"><div class="payment-pill" id="modalPaymentMethod">GCash Transaction</div><div><span>Payment Date:</span> <span id="modalPaymentDate"></span></div><div><span>Reference No:</span> <span id="modalReference" style="font-family: monospace; font-size: 1.05rem;"></span></div><div><span>Amount Paid:</span> <span id="modalAmountPaid" style="color: var(--success); font-weight: 800; font-size: 1.1rem;"></span></div><hr style="border: 0; border-top: 2px dashed #e2e8f0; margin: 18px 0;"><div><span>Covered Month:</span> <span id="modalCoveredMonth" style="color: var(--primary-dark); font-weight: 800; text-transform: uppercase;"></span></div></div></div></div>
-    
-    <div id="billModal" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeBillModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><img src="logo.png" alt="N'RTECH Logo" class="receipt-logo" onerror="this.style.display='none'"><h2>Upcoming Invoice</h2><div class="bill-warning"><i class="fas fa-exclamation-circle"></i> Pay before the 20th to prevent penalty and service interruption.</div></div><div class="receipt-details"><div><span>Amount Due:</span> <span id="modalBillAmount" style="color: var(--danger); font-weight: 800; font-size: 1.3rem;"></span></div></div><div class="qr-section"><h4 style="margin-bottom: 5px; color: var(--text-dark); font-size: 1.1rem;">Scan to Pay Bill</h4><p style="font-size: 0.85rem; color: var(--text-light);">Use your GCash app to scan the QR code below</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=09317926807" alt="GCash QR" style="cursor: zoom-in;" onclick="window.open(this.src, '_blank')" title="Click to enlarge"><div class="gcash-info"><strong style="display: block; margin-bottom: 5px; font-size: 1rem;">Account Name: Noruel John Ramirez</strong><div class="gcash-box-container"><div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 0.95rem; color: var(--text-light); font-weight: 700;">GCash:</span><span id="gcashNumberText" style="color: var(--primary-dark); font-size: 1.25rem; font-weight: 800; letter-spacing: 1px;">09317926807</span></div><button onclick="copyGCashNumber()" style="background: var(--bg-light); border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: var(--transition-smooth); font-weight: 700;"><i class="far fa-copy"></i> Copy</button></div></div></div></div></div>
-    
-    <div id="proofModal" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeProofModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;"><i class="fas fa-receipt" style="font-size: 2rem; color: var(--messenger);"></i></div><h2>Verify Transaction</h2><p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Submit your advance payment reference string.</p></div><div class="modal-form-group"><label for="popReferenceNum"><i class="fas fa-receipt" style="color: var(--primary);"></i> Reference / Trans. Number</label><input type="text" id="popReferenceNum" class="nice-input-box" placeholder="5012 3456 7890" maxlength="40"></div><button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--messenger), var(--messenger-dark));" onclick="submitProofOfPayment()">Confirm & Launch Messenger</button></div></div>
-    
-    <div id="supportModal" class="modal-overlay"><div class="modal-content"><button class="close-modal-btn" onclick="closeSupportModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><div style="background: #f3e8ff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #e9d5ff;"><i class="fas fa-tools" style="font-size: 2rem; color: var(--accent);"></i></div><h2>Report an Issue</h2><p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Our technical team will assist you shortly.</p></div><div class="modal-form-group"><label for="issueCategory"><i class="fas fa-list-ul" style="color: var(--primary);"></i> Issue Category</label><select id="issueCategory"><option value="LOS (Red Light on Router)">LOS (Red Light on Router)</option><option value="Slow Internet Connection">Slow Internet Connection</option><option value="No Internet Connection">No Internet Connection</option><option value="Router Relocation">Request Router Relocation</option><option value="Other Inquiry">Other Inquiry</option></select></div><div class="modal-form-group"><label for="issueDescription"><i class="fas fa-align-left" style="color: var(--primary);"></i> Description (Optional)</label><textarea id="issueDescription" rows="3" placeholder="Provide more details about your concern..." style="resize: none; font-family: inherit; outline: none;"></textarea></div><button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--accent), #7c3aed); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);" onclick="submitSupportTicket()"><i class="fab fa-facebook-messenger"></i> Send via Messenger</button></div></div>
+    <div id="notifModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeNotifModal()"><i class="fas fa-times"></i></button>
+            <div class="receipt-header">
+                <div style="background: #f3e8ff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #e9d5ff;">
+                    <i class="fas fa-bell" style="font-size: 2rem; color: var(--accent);"></i>
+                </div>
+                <h2 id="modalNotifTitle">Notification</h2>
+                <p id="modalNotifDate" style="color: var(--text-light); font-size: 0.9rem; font-weight: 600; margin-top: 5px;"></p>
+            </div>
+            <div id="modalNotifMessage" style="font-size: 1rem; line-height: 1.7; color: var(--text-dark); white-space: pre-line; padding: 0 10px;">
+            </div>
+        </div>
+    </div>
+
+    <div id="receiptModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="paid-stamp">PAID</div>
+            <button class="close-modal-btn" onclick="closeReceiptModal()"><i class="fas fa-times"></i></button>
+            <div class="receipt-header">
+                <img src="logo.png" alt="N'RTECH Logo" class="receipt-logo" onerror="this.style.display='none'">
+                <h2>Payment Receipt</h2>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Thank you for trusting N'RTECH!</p>
+            </div>
+            <div class="receipt-details">
+                <div class="payment-pill" id="modalPaymentMethod">GCash Transaction</div>
+                <div><span>Payment Date:</span> <span id="modalPaymentDate"></span></div>
+                <div><span>Reference No:</span> <span id="modalReference" style="font-family: monospace; font-size: 1.05rem;"></span></div>
+                <div><span>Amount Paid:</span> <span id="modalAmountPaid" style="color: var(--success); font-weight: 800; font-size: 1.1rem;"></span></div>
+                <hr style="border: 0; border-top: 2px dashed #e2e8f0; margin: 18px 0;">
+                <div><span>Covered Month:</span> <span id="modalCoveredMonth" style="color: var(--primary-dark); font-weight: 800; text-transform: uppercase;"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="billModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeBillModal()"><i class="fas fa-times"></i></button>
+            <div class="receipt-header">
+                <img src="logo.png" alt="N'RTECH Logo" class="receipt-logo" onerror="this.style.display='none'">
+                <h2>Upcoming Invoice</h2>
+                <div class="bill-warning">
+                    <i class="fas fa-exclamation-circle"></i> Pay before the 20th to prevent penalty and service interruption.
+                </div>
+            </div>
+            <div class="receipt-details">
+                <div><span>Amount Due:</span> <span id="modalBillAmount" style="color: var(--danger); font-weight: 800; font-size: 1.3rem;"></span></div>
+            </div>
+            
+            <div class="qr-section">
+                <h4 style="margin-bottom: 5px; color: var(--text-dark); font-size: 1.1rem;">Scan to Pay Bill</h4>
+                <p style="font-size: 0.85rem; color: var(--text-light);">Use your GCash app to scan the QR code below</p>
+                
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=09317926807" 
+                     alt="GCash QR" 
+                     style="cursor: zoom-in;" 
+                     onclick="window.open(this.src, '_blank')"
+                     title="Click to enlarge">
+                     
+                <div class="gcash-info">
+                    <strong style="display: block; margin-bottom: 5px; font-size: 1rem;">Account Name: Noruel John Ramirez</strong>
+                    
+                    <div class="gcash-box-container">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 0.95rem; color: var(--text-light); font-weight: 700;">GCash:</span>
+                            <span id="gcashNumberText" style="color: var(--primary-dark); font-size: 1.25rem; font-weight: 800; letter-spacing: 1px;">09317926807</span>
+                        </div>
+                        <button onclick="copyGCashNumber()" style="background: var(--bg-light); border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: var(--transition-smooth); font-weight: 700;">
+                            <i class="far fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="proofModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeProofModal()"><i class="fas fa-times"></i></button>
+            <div class="receipt-header">
+                <div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;">
+                    <i class="fas fa-receipt" style="font-size: 2rem; color: var(--messenger);"></i>
+                </div>
+                <h2>Verify Transaction</h2>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Submit your advance payment reference string.</p>
+            </div>
+            <div class="modal-form-group">
+                <label for="popReferenceNum"><i class="fas fa-receipt" style="color: var(--primary);"></i> Reference / Trans. Number</label>
+                <input type="text" id="popReferenceNum" class="nice-input-box" placeholder="5012 3456 7890" maxlength="40">
+            </div>
+            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--messenger), var(--messenger-dark));" onclick="submitProofOfPayment()">
+                Confirm & Launch Messenger
+            </button>
+        </div>
+    </div>
+
+    <div id="supportModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeSupportModal()"><i class="fas fa-times"></i></button>
+            <div class="receipt-header">
+                <div style="background: #f3e8ff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #e9d5ff;">
+                    <i class="fas fa-tools" style="font-size: 2rem; color: var(--accent);"></i>
+                </div>
+                <h2>Report an Issue</h2>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Our technical team will assist you shortly.</p>
+            </div>
+            
+            <div class="modal-form-group">
+                <label for="issueCategory"><i class="fas fa-list-ul" style="color: var(--primary);"></i> Issue Category</label>
+                <select id="issueCategory">
+                    <option value="LOS (Red Light on Router)">LOS (Red Light on Router)</option>
+                    <option value="Slow Internet Connection">Slow Internet Connection</option>
+                    <option value="No Internet Connection">No Internet Connection</option>
+                    <option value="Router Relocation">Request Router Relocation</option>
+                    <option value="Other Inquiry">Other Inquiry</option>
+                </select>
+            </div>
+            
+            <div class="modal-form-group">
+                <label for="issueDescription"><i class="fas fa-align-left" style="color: var(--primary);"></i> Description (Optional)</label>
+                <textarea id="issueDescription" rows="3" placeholder="Provide more details about your concern..." style="resize: none; font-family: inherit; outline: none;"></textarea>
+            </div>
+            
+            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--accent), #7c3aed); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);" onclick="submitSupportTicket()">
+                <i class="fab fa-facebook-messenger"></i> Send via Messenger
+            </button>
+        </div>
+    </div>
 
     <div id="upgradeModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 540px;">
+        <div class="modal-content wide-modal">
             <button class="close-modal-btn" onclick="closeUpgradeModal()"><i class="fas fa-times"></i></button>
             <div class="receipt-header">
                 <div style="background: #fef3c7; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #fde68a;">
@@ -1158,80 +1256,116 @@
                 <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Choose your desired high-speed package tier below.</p>
             </div>
             
-            <label style="display:block; font-weight:700; font-size:0.95rem; margin-bottom:12px;"><i class="fas fa-cubes" style="color:var(--primary)"></i> Select Available Packages</label>
-            <div class="plan-selection-grid" id="planSelectionGrid"></div>
+            <label style="display:block; font-weight:700; font-size:0.95rem; margin-bottom:15px;"><i class="fas fa-cubes" style="color:var(--primary)"></i> Select Available Packages</label>
+            
+            <div class="plan-selection-grid" id="planSelectionGrid">
+                </div>
 
-            <label style="display:block; font-weight:700; font-size:0.95rem; margin-top:20px; margin-bottom:12px;"><i class="fas fa-battery-three-quarters" style="color:var(--info)"></i> Available Add-ons: N'RTECH Mini UPS Backup Power</label>
-            <div class="ups-selection-grid" id="upsSelectionGrid"></div>
+            <label style="display:block; font-weight:700; font-size:0.95rem; margin-bottom:10px; margin-top: 10px;"><i class="fas fa-plus-circle" style="color:var(--info)"></i> Hardware Add-ons (Optional)</label>
+            <div id="addonContainer">
+                </div>
 
-            <div class="modal-form-group" style="margin-top: 15px;">
+            <div class="modal-form-group">
                 <label for="upgradeNotes"><i class="far fa-comment-alt" style="color: var(--primary);"></i> Special Instructions / Notes</label>
                 <textarea id="upgradeNotes" rows="3" placeholder="Let us know your preferred deployment date or alternative configuration details..." style="resize: none; font-family: inherit; outline: none;"></textarea>
             </div>
 
             <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));" onclick="submitUpgradeRequest()">
-                <i class="fab fa-facebook-messenger"></i> Submit Order & Request Price
+                <i class="fab fa-facebook-messenger"></i> Submit Upgrade Order
             </button>
         </div>
     </div>
 
-    <div id="faqModal" class="modal-overlay"><div class="modal-content" style="max-width: 520px;"><button class="close-modal-btn" onclick="closeFaqModal()"><i class="fas fa-times"></i></button><div class="receipt-header"><div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;"><i class="fas fa-question-circle" style="font-size: 2.2rem; color: var(--info);"></i></div><h2>Troubleshooting FAQ</h2><p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Quick tutorials for managing your connection status.</p></div><div class="faq-list"><div class="faq-item"><h4><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i> LOS is blinking RED</h4><p>This means a fiber cable issue or terminal signal loss. Check if your cable drop line is bent, pinched, or disconnected.</p></div><div class="faq-item"><h4><i class="fas fa-wifi" style="color:var(--success);"></i> Connected but No Internet</h4><p>Power cycling clears router cache blocks. Unplug your adapter configuration from the outlet, wait 30 seconds, then replug.</p></div><div class="faq-item"><h4><i class="fas fa-tachometer-alt" style="color:var(--primary);"></i> Slow Internet Speed</h4><p>Ensure no background network streams or updates are bottlenecking your data pool. Try running line tests near your terminal equipment.</p></div><div class="faq-item" style="border-left-color: var(--danger);"><h4><i class="fas fa-ban" style="color:var(--danger);"></i> Should I press the RESET button?</h4><p><strong>NEVER</strong> press the physical reset pinhole on the back plate. This clears your configuration scripts and permanently takes your device offline.</p></div></div></div></div>
+    <div id="faqModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 520px;">
+            <button class="close-modal-btn" onclick="closeFaqModal()"><i class="fas fa-times"></i></button>
+            <div class="receipt-header">
+                <div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;">
+                    <i class="fas fa-question-circle" style="font-size: 2.2rem; color: var(--info);"></i>
+                </div>
+                <h2>Troubleshooting FAQ</h2>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Quick tutorials for managing your connection status.</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i> LOS is blinking RED</h4>
+                    <p>This means a fiber cable issue or terminal signal loss. Check if your cable drop line is bent, pinched, or disconnected.</p>
+                    <div class="tutorial-panel">
+                        <div class="los-light-box">
+                            <div class="router-led active-los"></div>
+                            <span style="font-size: 0.75rem;">LOS LED</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal;">
+                            <i class="fas fa-info-circle" style="color:var(--danger);"></i> Animated Alert: If blinking red persists, click Request Support Ticket.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <h4><i class="fas fa-wifi" style="color:var(--success);"></i> Connected but No Internet</h4>
+                    <p>Power cycling clears router cache blocks. Unplug your adapter configuration from the outlet, wait 30 seconds, then replug.</p>
+                    <div class="tutorial-panel">
+                        <div class="cycle-graphic">
+                            <i class="fas fa-plug power-plug-icon" style="font-size: 1.4rem;"></i>
+                            <span>30s Cycle Step</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal;">
+                            Safe Reboot: Allows terminal connection logs to re-authenticate from the server nodes.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <h4><i class="fas fa-tachometer-alt" style="color:var(--primary);"></i> Slow Internet Speed</h4>
+                    <p>Ensure no background network streams or updates are bottlenecking your data pool. Try running line tests near your terminal equipment.</p>
+                    <div class="tutorial-panel">
+                        <div class="signal-container">
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #cbd5e1; font-weight: normal; margin-left: 10px;">
+                            Optimal Range: Wired LAN connections always achieve higher metrics than wireless radio paths.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="border-left-color: var(--danger);">
+                    <h4><i class="fas fa-ban" style="color:var(--danger);"></i> Should I press the RESET button?</h4>
+                    <p><strong>NEVER</strong> press the physical reset pinhole on the back plate. This clears your configuration scripts and permanently takes your device offline.</p>
+                    <div class="tutorial-panel" style="background: #7f1d1d;">
+                        <span style="color: #fca5a5;"><i class="fas fa-shield-alt"></i> CRITICAL RESTRICTION: Pin resets require manual technician dispatch to restore.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="toastContainer"></div>
 
     <script>
-        // --- Static Custom Plans Data Setup ---
-        const embeddedPlansData = {
-          "plans": [
-            { "name": "Basic", "badge": null, "price": "₱499", "billing_cycle": "/mo", "speed": "Up to 10 Mbps", "features": ["Unlimited Data", "Good for Browsing", "Social Media Ready", "3-7 Devices"] },
-            { "name": "Family", "badge": "BEST SELLER", "price": "₱699", "billing_cycle": "/mo", "speed": "Up to 15 Mbps", "features": ["Unlimited Data", "HD Streaming", "Online Classes", "5-12 Devices"] },
-            { "name": "Gamer", "badge": null, "price": "₱899", "billing_cycle": "/mo", "speed": "Up to 20 Mbps", "features": ["Low Latency Gaming", "4K Streaming", "Work from Home", "12+ Devices"] },
-            { "name": "Premium", "badge": null, "price": "₱1,099", "billing_cycle": "/mo", "speed": "Up to 30 Mbps", "features": ["Heavy Usage", "Multiple HD Streams", "Fast Downloads", "Priority Support"] },
-            { "name": "Business", "badge": null, "price": "₱1,299", "billing_cycle": "/mo", "speed": "Up to 40 Mbps", "features": ["Business Grade", "Maximum Reliability", "Connect 15+ Devices", "Dedicated Line"] },
-            { "name": "VIP ULTIMATE", "badge": "POWERED BY N'RTECH", "price": "₱1,899", "billing_cycle": "/mo", "speed": "Up to 80 Mbps", "features": ["Extreme Speed", "Priority Bandwidth", "30+ Devices", "FREE Mini UPS!"] }
-          ]
-        };
-
-        // --- UPS Local Dataset Implementation ---
-        const embeddedUpsData = {
-          "brand": "N'RTECH UPS",
-          "product_category": "Mini UPS / Backup Power Supply",
-          "products": [
-            {
-              "model_capacity": "3600mAh",
-              "tag": null,
-              "design_type": "Wall-plug adapter with integrated power cord",
-              "description": "Base model mini UPS suitable for keeping essential low-power devices running during brief power interruptions.",
-              "key_features": ["3-Meters Power Line", "Ultra Endurance", "Quick Switching"]
-            },
-            {
-              "model_capacity": "6000mAh",
-              "tag": "HOT!",
-              "design_type": "Wall-plug adapter with integrated power cord",
-              "description": "Highly popular mid-tier model with increased battery capacity for longer backup endurance. Over 10,000 units sold.",
-              "key_features": ["3-Meters Power Line", "Ultra Endurance", "Quick Switching"]
-            },
-            {
-              "model_capacity": "7800mAh",
-              "tag": "HOT!",
-              "design_type": "Wall-plug adapter with integrated power cord",
-              "description": "High-capacity adapter-style UPS for extended power backup needs, ideal for continuous security camera or router operation.",
-              "key_features": ["3-Meters Power Line", "Ultra Endurance", "Quick Switching"]
-            },
-            {
-              "model_capacity": "10400mAh",
-              "tag": "TOP SALE",
-              "design_type": "Desktop block unit with integrated ports (12V DC)",
-              "description": "Large capacity indoor UPS designed for maximum backup power. Features a clean desktop block configuration form factor.",
-              "key_features": ["Overcharge Protect", "Short Circuit Safe", "Fire Prevention"]
-            }
-          ]
-        };
-
         // --- Globals for capturing User Session Data ---
         let sessionClientName = "Client";
         let sessionClientAcc = "N/A";
+        
         let selectedUpgradePackage = { name: "", speed: "", price: "" };
+        let selectedAddons = [];
+
+        // --- Hardware Data Integration ---
+        const sysPlans = [
+            { name: "Basic", badge: null, price: "₱499", cycle: "/mo", speed: "Up to 10 Mbps", features: ["Unlimited Data", "Good for Browsing", "Social Media Ready", "3-7 Devices"] },
+            { name: "Family", badge: "BEST SELLER", price: "₱699", cycle: "/mo", speed: "Up to 15 Mbps", features: ["Unlimited Data", "HD Streaming", "Online Classes", "5-12 Devices"] },
+            { name: "Gamer", badge: null, price: "₱899", cycle: "/mo", speed: "Up to 20 Mbps", features: ["Low Latency Gaming", "4K Streaming", "Work from Home", "12+ Devices"] },
+            { name: "Premium", badge: null, price: "₱1,099", cycle: "/mo", speed: "Up to 30 Mbps", features: ["Heavy Usage", "Multiple HD Streams", "Fast Downloads", "Priority Support"] },
+            { name: "Business", badge: null, price: "₱1,299", cycle: "/mo", speed: "Up to 40 Mbps", features: ["Business Grade", "Maximum Reliability", "Connect 15+ Devices", "Dedicated Line"] },
+            { name: "VIP ULTIMATE", badge: "POWERED BY N'RTECH", price: "₱1,899", cycle: "/mo", speed: "Up to 80 Mbps", features: ["Extreme Speed", "Priority Bandwidth", "30+ Devices", "FREE Mini UPS!"] }
+        ];
+
+        const sysAddons = [
+            { id: "ups_3600", name: "N'RTECH UPS (3600mAh)", desc: "Mini UPS / Backup Power Supply. 3-Meters Power Line, Water Resistant. Keeps router active during outages. Inquire price via Messenger.", features: ["3-Meters Power Line", "Charge & Discharge", "Quick Switching"] }
+        ];
 
         // --- Custom Toast Notification Function ---
         function showToast(message, type = 'success') {
@@ -1254,7 +1388,9 @@
             
             setTimeout(() => {
                 toast.classList.add('fade-out');
-                setTimeout(() => { if(toast.parentElement) toast.remove(); }, 400); 
+                setTimeout(() => {
+                    if(toast.parentElement) toast.remove();
+                }, 400); 
             }, 6000); 
         }
 
@@ -1297,6 +1433,14 @@
                     gainNode.gain.linearRampToValueAtTime(0.1, now + 0.05);
                     gainNode.gain.linearRampToValueAtTime(0, now + 0.2);
                     oscillator.start(now); oscillator.stop(now + 0.2);
+                } else if (type === 'info') {
+                    oscillator.type = 'square';
+                    oscillator.frequency.setValueAtTime(500, now);
+                    oscillator.frequency.exponentialRampToValueAtTime(600, now + 0.1);
+                    gainNode.gain.setValueAtTime(0, now);
+                    gainNode.gain.linearRampToValueAtTime(0.05, now + 0.05);
+                    gainNode.gain.linearRampToValueAtTime(0, now + 0.15);
+                    oscillator.start(now); oscillator.stop(now + 0.15);
                 }
             } catch (err) { console.log("Audio contextual drivers muted."); }
         }
@@ -1380,11 +1524,18 @@
             const notifList = document.getElementById('notificationList');
             notifList.innerHTML = '';
             let userNotifs = [];
+
             try {
                 const resNotif = await fetch("notif.json", { cache: "no-store" });
                 const notifData = await resNotif.json();
-                userNotifs = notifData.filter(n => String(n.username).toLowerCase() === String(clientUsername).toLowerCase() && n.active === true);
-            } catch(e) { }
+                
+                userNotifs = notifData.filter(n => 
+                    String(n.username).toLowerCase() === String(clientUsername).toLowerCase() && 
+                    n.active === true
+                );
+            } catch(e) {
+                console.log("Notification entry point response failed or file missing.");
+            }
             
             if(userNotifs.length === 0) {
                 notifList.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; font-style:italic; padding-top: 5px;">No notifications recorded</p>';
@@ -1392,11 +1543,16 @@
             }
 
             userNotifs.sort((a,b) => new Date(b.date) - new Date(a.date));
+
             userNotifs.forEach((n, index) => {
                 const item = document.createElement('div');
                 item.className = 'notification-item';
                 item.style.animation = `slideInNotification 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.1 + (index * 0.1)}s`;
-                item.innerHTML = `<div class="notification-title">${n.title}</div><div class="notification-date"><i class="far fa-clock"></i> ${n.date}</div>`;
+                
+                item.innerHTML = `
+                    <div class="notification-title">${n.title}</div>
+                    <div class="notification-date"><i class="far fa-clock"></i> ${n.date}</div>
+                `;
                 item.onclick = () => openNotifModal(n.title, n.date, n.message);
                 notifList.appendChild(item);
             });
@@ -1404,17 +1560,24 @@
 
         function populateDashboard(client) {
             const clientName = client.name || "N/A";
+            
             sessionClientName = clientName;
             sessionClientAcc = client.accountNumber || "N/A";
+
             const balance = parseFloat(client.excessLackingBalance) || 0;
             const monthlyFee = client.plan ? parseFloat(client.plan.fee) : 0;
+            
             let calculatedDue = monthlyFee;
-            if (balance < 0) { calculatedDue += Math.abs(balance); }
+            if (balance < 0) {
+                calculatedDue += Math.abs(balance);
+            }
             const finalUpcomingBill = client.upcomingBill !== undefined ? parseFloat(client.upcomingBill) : calculatedDue;
+            
             const billString = `₱${finalUpcomingBill.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
             
             document.getElementById('modalBillAmount').textContent = billString;
             document.getElementById('balanceDisplay').textContent = billString;
+
             const balLabel = document.getElementById('excessLackingLabel');
             const balDisplay = document.getElementById('excessLackingDisplay');
 
@@ -1436,8 +1599,11 @@
             }
             
             const avatarEl = document.getElementById('clientAvatar');
-            if (client.profilePic) { avatarEl.innerHTML = `<img src="${client.profilePic}" alt="Profile" onerror="this.onerror=null; this.parentElement.innerHTML='${clientName.charAt(0).toUpperCase()}';">`;
-            } else { avatarEl.innerHTML = clientName.charAt(0).toUpperCase(); }
+            if (client.profilePic) {
+                avatarEl.innerHTML = `<img src="${client.profilePic}" alt="Profile" onerror="this.onerror=null; this.parentElement.innerHTML='${clientName.charAt(0).toUpperCase()}';">`;
+            } else {
+                avatarEl.innerHTML = clientName.charAt(0).toUpperCase();
+            }
 
             document.getElementById('clientNameDisplay').textContent = clientName;
             document.getElementById('clientAccDisplay').textContent = sessionClientAcc;
@@ -1477,6 +1643,7 @@
                     tr.className = 'payment-row';
                     tr.style.animation = `fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.2 + (index * 0.1)}s`;
                     tr.style.opacity = '0';
+                    
                     tr.innerHTML = `
                         <td style="font-weight: 600;">${pay.datew}</td>
                         <td style="color: var(--success); font-weight: 800;">₱${pay.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
@@ -1494,16 +1661,28 @@
 
         function copyGCashNumber() {
             const gcashNumber = document.getElementById('gcashNumberText').innerText;
-            navigator.clipboard.writeText(gcashNumber).then(() => { showToast("GCash number copied to clipboard!", "success");
-            }).catch(err => { showToast("Failed to copy number. Please copy manually.", "warning"); });
+            navigator.clipboard.writeText(gcashNumber).then(() => {
+                showToast("GCash number copied to clipboard!", "success");
+            }).catch(err => {
+                showToast("Failed to copy number. Please copy manually.", "warning");
+            });
         }
 
-        function openProofModal() { document.getElementById('popReferenceNum').value = ''; proofModal.style.display = 'flex'; playSound('info'); }
+        // --- Proof of Payment Modal Logic ---
+        function openProofModal() {
+            document.getElementById('popReferenceNum').value = '';
+            proofModal.style.display = 'flex';
+            playSound('info');
+        }
         function closeProofModal() { proofModal.style.display = 'none'; }
 
         function submitProofOfPayment() {
             const refNum = document.getElementById('popReferenceNum').value.trim();
-            if (!refNum) { showToast("Please provide a payment reference number.", "warning"); return; }
+            if (!refNum) {
+                showToast("Please provide a payment reference number.", "warning");
+                return;
+            }
+
             const name = document.getElementById('clientNameDisplay').textContent;
             const account = document.getElementById('clientAccDisplay').textContent;
             const plan = document.getElementById('planDisplay').textContent;
@@ -1513,144 +1692,6 @@
 
             closeProofModal();
             showToast("Message copied! Once Messenger opens, just PASTE the text in the chat.", "success");
-            navigator.clipboard.writeText(structuredMessage).then(() => { setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
-            }).catch(() => { window.open("https://m.me/ramirez.technician", "_blank"); });
-        }
-
-        function openSupportModal() { document.getElementById('issueDescription').value = ''; document.getElementById('issueCategory').selectedIndex = 0; supportModal.style.display = 'flex'; playSound('info'); }
-        function closeSupportModal() { supportModal.style.display = 'none'; }
-
-        function submitSupportTicket() {
-            const category = document.getElementById('issueCategory').value;
-            const description = document.getElementById('issueDescription').value.trim();
-            const name = document.getElementById('clientNameDisplay').textContent;
-            const account = document.getElementById('clientAccDisplay').textContent;
-
-            const structuredMessage = `N'RTECH SUPPORT REQUEST\n\nSubscriber: ${name}\nAccount No: ${account}\nIssue: ${category}\nDetails: ${description || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
-
-            closeSupportModal();
-            showToast("Message copied! Once Messenger opens, just PASTE the text in the chat.", "success");
-            navigator.clipboard.writeText(structuredMessage).then(() => { setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
-            }).catch(() => { window.open("https://m.me/ramirez.technician", "_blank"); });
-        }
-
-        // --- UPDATED: Dynamic Plan Selection with Active Plan Safeguard + Mini UPS Integration ---
-        function openUpgradeModal() {
-            document.getElementById('upgradeNotes').value = '';
-            const activePlanName = document.getElementById('planDisplay').textContent.trim().toLowerCase();
-
-            const planGridContainer = document.getElementById('planSelectionGrid');
-            selectedUpgradePackage = { name: "", speed: "", price: "" };
-            upgradeModal.style.display = 'flex';
-            playSound('info');
-
-            // Construct and filter Subscription Plans
-            planGridContainer.innerHTML = '';
-            embeddedPlansData.plans.forEach(plan => {
-                const card = document.createElement('div');
-                card.className = 'plan-tier-card';
-                
-                const isCurrentPlan = plan.name.toLowerCase() === activePlanName;
-                if(isCurrentPlan) {
-                    card.classList.add('disabled');
-                }
-
-                let badgeClass = "plan-badge";
-                if(plan.badge && plan.badge.includes("POWERED")) badgeClass += " accent";
-                
-                let badgeHTML = '';
-                if(isCurrentPlan) {
-                    badgeHTML = `<div class="plan-badge" style="background: var(--text-light); box-shadow:none;">CURRENT PLAN</div>`;
-                } else if (plan.badge) {
-                    badgeHTML = `<div class="${badgeClass}">${plan.badge}</div>`;
-                }
-
-                let featuresHTML = plan.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('');
-                
-                card.innerHTML = `
-                    ${badgeHTML}
-                    <div class="plan-tier-name">${plan.name}</div>
-                    <div class="plan-tier-speed">${plan.speed}</div>
-                    <div class="plan-tier-price">${plan.price} <span style="font-size:0.75rem; color:var(--text-light); font-weight: 500;">${plan.billing_cycle}</span></div>
-                    <ul class="plan-features-list">${featuresHTML}</ul>
-                `;
-
-                if(!isCurrentPlan) {
-                    card.onclick = () => selectUpgradePlan(card, plan.name, plan.speed, plan.price);
-                }
-                planGridContainer.appendChild(card);
-            });
-
-            // Construct UPS Cards Section dynamically from JSON
-            const upsGridContainer = document.getElementById('upsSelectionGrid');
-            upsGridContainer.innerHTML = '';
-            
-            embeddedUpsData.products.forEach(prod => {
-                const card = document.createElement('div');
-                card.className = 'ups-card';
-                
-                let badgeHTML = prod.tag ? `<div class="ups-badge">${prod.tag}</div>` : '';
-                let featuresHTML = prod.key_features.map(f => `<li><i class="fas fa-shield-alt" style="color:var(--info); font-size:0.7rem;"></i> ${f}</li>`).join('');
-                
-                card.innerHTML = `
-                    <div>
-                        ${badgeHTML}
-                        <div class="ups-capacity">${prod.model_capacity}</div>
-                        <div class="ups-design">${prod.design_type}</div>
-                        <p class="ups-desc">${prod.description}</p>
-                    </div>
-                    <ul class="plan-features-list" style="margin-top:auto; border-top:1px dashed #e2e8f0; padding-top:8px;">
-                        ${featuresHTML}
-                    </ul>
-                `;
-                
-                card.onclick = () => {
-                    card.classList.toggle('selected');
-                    playSound('success');
-                };
-                
-                upsGridContainer.appendChild(card);
-            });
-        }
-
-        function closeUpgradeModal() { upgradeModal.style.display = 'none'; }
-
-        function selectUpgradePlan(element, planName, speed, price) {
-            const cards = document.querySelectorAll('.plan-tier-card:not(.disabled)');
-            cards.forEach(c => c.classList.remove('selected'));
-            element.classList.add('selected');
-            selectedUpgradePackage = { name: planName, speed: speed, price: price };
-            playSound('success');
-        }
-
-        function submitUpgradeRequest() {
-            if (!selectedUpgradePackage.name) {
-                showToast("Please choose a subscription package tier first.", "warning");
-                return;
-            }
-
-            // Harvest selected backup power units from product cards
-            const selectedUpsCards = document.querySelectorAll('.ups-card.selected');
-            const chosenUpsProducts = [];
-            selectedUpsCards.forEach(card => {
-                const capacity = card.querySelector('.ups-capacity').textContent;
-                chosenUpsProducts.push(`Mini UPS (${capacity})`);
-            });
-
-            let upsString = "None";
-            let priceNoteString = "";
-            if(chosenUpsProducts.length > 0) {
-                upsString = chosenUpsProducts.join(', ');
-                priceNoteString = `\nNote: Please provide pricing metrics for the selected backup power accessories.`;
-            }
-
-            const notes = document.getElementById('upgradeNotes').value.trim();
-            const currentPlan = document.getElementById('planDisplay').textContent;
-
-            const structuredMessage = `N'RTECH SUBSCRIPTION UPGRADE REQUEST\n\nSubscriber: ${sessionClientName}\nAccount No: ${sessionClientAcc}\nCurrent Tier: ${currentPlan}\nRequested Package: ${selectedUpgradePackage.name} (${selectedUpgradePackage.speed})\nPackage Pricing: ${selectedUpgradePackage.price}/mo\nRequested Add-ups: ${upsString}${priceNoteString}\nUser Notes: ${notes || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
-
-            closeUpgradeModal();
-            showToast("Upgrade bundle compiled! Paste into Messenger chat when prompted.", "success");
 
             navigator.clipboard.writeText(structuredMessage).then(() => {
                 setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
@@ -1659,9 +1700,155 @@
             });
         }
 
+        // --- Support Modal Logic ---
+        function openSupportModal() {
+            document.getElementById('issueDescription').value = '';
+            document.getElementById('issueCategory').selectedIndex = 0;
+            supportModal.style.display = 'flex';
+            playSound('info');
+        }
+        function closeSupportModal() { supportModal.style.display = 'none'; }
+
+        function submitSupportTicket() {
+            const category = document.getElementById('issueCategory').value;
+            const description = document.getElementById('issueDescription').value.trim();
+            
+            const name = document.getElementById('clientNameDisplay').textContent;
+            const account = document.getElementById('clientAccDisplay').textContent;
+
+            const structuredMessage = `N'RTECH SUPPORT REQUEST\n\nSubscriber: ${name}\nAccount No: ${account}\nIssue: ${category}\nDetails: ${description || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
+
+            closeSupportModal();
+            showToast("Message copied! Once Messenger opens, just PASTE the text in the chat.", "success");
+
+            navigator.clipboard.writeText(structuredMessage).then(() => {
+                setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
+            }).catch(() => {
+                window.open("https://m.me/ramirez.technician", "_blank");
+            });
+        }
+
+        // --- Plan Upgrade & Addons UI Rendering ---
+        function openUpgradeModal() {
+            document.getElementById('upgradeNotes').value = '';
+            const gridContainer = document.getElementById('planSelectionGrid');
+            const addonContainer = document.getElementById('addonContainer');
+            
+            // Current Plan Logic
+            const currentPlan = document.getElementById('planDisplay').textContent.trim();
+            
+            gridContainer.innerHTML = '';
+            addonContainer.innerHTML = '';
+            selectedUpgradePackage = { name: "", speed: "", price: "" };
+            selectedAddons = [];
+            
+            // Auto hide current plan
+            const availablePlans = sysPlans.filter(p => !currentPlan.toLowerCase().includes(p.name.toLowerCase()));
+
+            if(availablePlans.length === 0) {
+                 gridContainer.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; grid-column: 1/-1; text-align:center;">You are currently on the highest tier plan!</p>';
+            }
+
+            availablePlans.forEach(plan => {
+                const card = document.createElement('div');
+                card.className = 'plan-tier-card';
+                
+                let badgeHTML = plan.badge ? `<div class="plan-badge">${plan.badge}</div>` : '';
+                let featuresHTML = `<ul class="features-list">` + plan.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('') + `</ul>`;
+                
+                card.innerHTML = `
+                    ${badgeHTML}
+                    <div class="plan-tier-name">${plan.name}</div>
+                    <div class="plan-tier-speed">${plan.speed}</div>
+                    <div class="plan-tier-price">${plan.price} <span style="font-size:0.8rem; font-weight:normal; color:var(--text-light)">${plan.cycle}</span></div>
+                    ${featuresHTML}
+                `;
+                card.onclick = () => selectUpgradePlan(card, plan.name, plan.speed, plan.price);
+                gridContainer.appendChild(card);
+            });
+
+            // Render UPS Add-ons
+            sysAddons.forEach(addon => {
+                const ac = document.createElement('div');
+                ac.className = 'addon-card';
+                ac.innerHTML = `
+                    <div><i class="fas fa-car-battery" style="font-size: 1.8rem; color: var(--primary);"></i></div>
+                    <div style="flex:1;">
+                        <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-dark);">${addon.name}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-light); margin-top:3px; line-height: 1.4;">${addon.desc}</div>
+                    </div>
+                    <div class="addon-checkbox"><i class="far fa-circle" style="font-size: 1.4rem; color: #cbd5e1; transition: all 0.3s;"></i></div>
+                `;
+                ac.onclick = () => toggleAddon(ac, addon);
+                addonContainer.appendChild(ac);
+            });
+
+            upgradeModal.style.display = 'flex';
+            playSound('info');
+        }
+
+        function closeUpgradeModal() { upgradeModal.style.display = 'none'; }
+
+        function selectUpgradePlan(element, planName, speed, price) {
+            const cards = document.querySelectorAll('.plan-tier-card');
+            cards.forEach(c => c.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedUpgradePackage = { name: planName, speed: speed, price: price };
+            playSound('success');
+        }
+
+        function toggleAddon(element, addon) {
+            const idx = selectedAddons.findIndex(a => a.id === addon.id);
+            const checkbox = element.querySelector('.addon-checkbox i');
+            
+            if (idx > -1) {
+                selectedAddons.splice(idx, 1);
+                element.classList.remove('selected');
+                checkbox.className = 'far fa-circle';
+                checkbox.style.color = '#cbd5e1';
+            } else {
+                selectedAddons.push(addon);
+                element.classList.add('selected');
+                checkbox.className = 'fas fa-check-circle';
+                checkbox.style.color = 'var(--info)';
+                playSound('success');
+            }
+        }
+
+        function submitUpgradeRequest() {
+            if (!selectedUpgradePackage.name && selectedAddons.length === 0) {
+                showToast("Please choose a subscription package or hardware add-on.", "warning");
+                return;
+            }
+            
+            const notes = document.getElementById('upgradeNotes').value.trim();
+            const currentPlan = document.getElementById('planDisplay').textContent;
+            
+            const packageString = selectedUpgradePackage.name 
+                                    ? `${selectedUpgradePackage.name} (${selectedUpgradePackage.speed}) at ${selectedUpgradePackage.price}/mo`
+                                    : "Keep Current Plan";
+
+            const addOnText = selectedAddons.length > 0 
+                                ? selectedAddons.map(a => a.name).join(", ") + " (Please provide pricing details)" 
+                                : "None";
+
+            const structuredMessage = `N'RTECH SUBSCRIPTION / ADD-ON REQUEST\n\nSubscriber: ${sessionClientName}\nAccount No: ${sessionClientAcc}\nCurrent Tier: ${currentPlan}\nRequested Package: ${packageString}\nHardware Add-ons: ${addOnText}\nUser Notes: ${notes || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
+
+            closeUpgradeModal();
+            showToast("Request data compiled! Paste into Messenger chat when prompted.", "success");
+
+            navigator.clipboard.writeText(structuredMessage).then(() => {
+                setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
+            }).catch(() => {
+                window.open("https://m.me/ramirez.technician", "_blank");
+            });
+        }
+
+        // --- FAQ Modal Logic ---
         function openFaqModal() { faqModal.style.display = 'flex'; playSound('info'); }
         function closeFaqModal() { faqModal.style.display = 'none'; }
 
+        // --- Other Modal Views ---
         function openReceiptModal(payment) {
             document.getElementById('modalPaymentMethod').innerHTML = `<i class="fas fa-wallet"></i> ${payment.method} Transaction`;
             document.getElementById('modalPaymentDate').textContent = payment.date;
@@ -1670,7 +1857,9 @@
             
             const paymentDateObj = new Date(payment.date);
             let coveredMonthString = "Unknown";
-            if (!isNaN(paymentDateObj.getTime())) { coveredMonthString = paymentDateObj.toLocaleString('default', { month: 'long', year: 'numeric' }); }
+            if (!isNaN(paymentDateObj.getTime())) {
+                coveredMonthString = paymentDateObj.toLocaleString('default', { month: 'long', year: 'numeric' });
+            }
             document.getElementById('modalCoveredMonth').textContent = coveredMonthString;
             
             receiptModal.style.display = 'flex';
