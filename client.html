@@ -147,12 +147,14 @@
             margin-top: 5vh;
         }
 
+        /* UPADTED: Dynamically adjusting logo */
         .login-logo {
             display: block;
             margin: 0 auto 25px auto;
-            width: 100%;
-            max-width: 180px; /* Modified to 180px */
+            width: clamp(120px, 40%, 200px); 
             height: auto;
+            max-height: 120px;
+            object-fit: contain;
             filter: drop-shadow(0 10px 20px rgba(212, 154, 55, 0.2));
         }
 
@@ -687,7 +689,17 @@
         .close-modal-btn:hover { background: var(--danger); color: white; transform: rotate(90deg) scale(1.1); }
 
         .receipt-header { text-align: center; border-bottom: 2px dashed #e2e8f0; padding-bottom: 25px; margin-bottom: 25px; position: relative; z-index: 2; }
-        .receipt-logo { display: block; margin: 0 auto 15px auto; max-height: 120px; width: auto; object-fit: contain; }
+        
+        /* UPDATED: Dynamically adjusting receipt modal logo */
+        .receipt-logo { 
+            display: block; 
+            margin: 0 auto 15px auto; 
+            width: clamp(100px, 40%, 150px);
+            height: auto;
+            max-height: 100px; 
+            object-fit: contain; 
+        }
+        
         .receipt-details { position: relative; z-index: 2; }
         .receipt-details div { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
         .receipt-details div span:first-child { color: var(--text-light); font-weight: 500; }
@@ -834,6 +846,9 @@
         .plan-tier-name { font-weight: 800; font-size: 1rem; color: #0f172a; margin-bottom: 4px; }
         .plan-tier-speed { font-size: 0.85rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 8px; }
         .plan-tier-price { font-weight: 800; font-size: 1.15rem; color: var(--text-dark); }
+        
+        /* UPDATED: New Class for Plan Descriptions */
+        .plan-tier-desc { font-size: 0.8rem; color: var(--text-light); margin-top: 10px; line-height: 1.3; }
 
         /* --- Toast Notifications --- */
         #toastContainer { position: fixed; bottom: 25px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; }
@@ -1646,12 +1661,11 @@
             });
         }
 
-        // --- Dynamic Subscription Plan Loading Strategy from plans.json ---
+        // --- UPDATED: Dynamic Subscription Plan Loading Strategy from plans.json ---
         async function openUpgradeModal() {
             document.getElementById('upgradeNotes').value = '';
             const gridContainer = document.querySelector('.plan-selection-grid');
             
-            // Display visual placeholder loading screen inside modal layout framework
             gridContainer.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; grid-column: 1/-1; text-align:center;"><i class="fas fa-spinner fa-spin"></i> Retrieving service tiers...</p>';
             selectedUpgradePackage = { name: "", speed: "", price: "" };
             upgradeModal.style.display = 'flex';
@@ -1668,29 +1682,37 @@
                     card.className = 'plan-tier-card';
                     
                     const priceValue = plan.fee || plan.price || 0;
+                    // UPDATED: Added plan description rendering
+                    const descValue = plan.description || "High-speed reliable connection perfect for daily usage.";
+                    
                     card.innerHTML = `
                         <div class="plan-tier-name">${plan.name}</div>
                         <div class="plan-tier-speed">${plan.speed}</div>
                         <div class="plan-tier-price">₱${parseFloat(priceValue).toLocaleString()} / mo</div>
+                        <div class="plan-tier-desc">${descValue}</div>
                     `;
                     card.onclick = () => selectUpgradePlan(card, plan.name, plan.speed, priceValue);
                     gridContainer.appendChild(card);
                 });
             } catch (error) {
                 console.log("Fallback execution triggered due to plans.json parsing anomaly.");
-                // Static high fidelity array configuration fallback mechanism
+                // UPDATED: Static array fallback configuration now includes descriptions
                 gridContainer.innerHTML = `
                     <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Lite Plan', '10 Mbps', '500')">
                         <div class="plan-tier-name">Lite Plan</div><div class="plan-tier-speed">10 Mbps</div><div class="plan-tier-price">₱500 / mo</div>
+                        <div class="plan-tier-desc">Great for casual browsing and social media.</div>
                     </div>
                     <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Family Plan', '15 Mbps', '699')">
                         <div class="plan-tier-name">Family Plan</div><div class="plan-tier-speed">15 Mbps</div><div class="plan-tier-price">₱699 / mo</div>
+                        <div class="plan-tier-desc">Perfect for small families streaming movies.</div>
                     </div>
                     <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Boost Plan', '25 Mbps', '999')">
                         <div class="plan-tier-name">Boost Plan</div><div class="plan-tier-speed">25 Mbps</div><div class="plan-tier-price">₱999 / mo</div>
+                        <div class="plan-tier-desc">Ideal for moderate gaming and HD streaming.</div>
                     </div>
                     <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Pro Plan', '50 Mbps', '1299')">
                         <div class="plan-tier-name">Pro Plan</div><div class="plan-tier-speed">50 Mbps</div><div class="plan-tier-price">₱1,299 / mo</div>
+                        <div class="plan-tier-desc">High performance for heavy downloads and remote work.</div>
                     </div>`;
             }
         }
