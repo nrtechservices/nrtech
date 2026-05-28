@@ -548,10 +548,37 @@
             gap: 12px;
         }
 
-        .table-responsive { overflow-x: auto; border-radius: 12px; }
-        table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
-        th { padding: 0 15px 10px 15px; text-align: left; font-weight: 600; color: var(--text-light); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f1f5f9; }
-        td { padding: 16px 15px; font-size: 0.95rem; background: #ffffff; border-top: 1px solid #f8fafc; border-bottom: 1px solid #f8fafc; transition: var(--transition-smooth); }
+        .table-responsive { 
+            overflow-x: auto; 
+            border-radius: 12px; 
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+        table { 
+            width: 100%; 
+            min-width: 750px; /* Ensures scrolling on phone screens */
+            border-collapse: separate; 
+            border-spacing: 0 8px; 
+        }
+        th { 
+            padding: 0 15px 10px 15px; 
+            text-align: left; 
+            font-weight: 600; 
+            color: var(--text-light); 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            border-bottom: 2px solid #f1f5f9; 
+            white-space: nowrap; 
+        }
+        td { 
+            padding: 16px 15px; 
+            font-size: 0.95rem; 
+            background: #ffffff; 
+            border-top: 1px solid #f8fafc; 
+            border-bottom: 1px solid #f8fafc; 
+            transition: var(--transition-smooth); 
+        }
         td:first-child { border-left: 1px solid #f8fafc; border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
         td:last-child { border-right: 1px solid #f8fafc; border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
         
@@ -809,7 +836,7 @@
         @keyframes pulseBar { 0%, 100% { background-color: #475569; } 50% { background-color: var(--info); } }
 
         /* --- Interactive Plan Grid --- */
-        .plan-selection-grid {
+        .plan-selection-grid, .ups-selection-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
@@ -930,7 +957,7 @@
             .modal-content { padding: 30px 20px; border-radius: 20px; max-width: 500px; }
             #toastContainer { bottom: 20px; left: 20px; right: 20px; align-items: center; }
             .toast { width: 100%; min-width: unset; max-width: 100%; }
-            .plan-selection-grid { grid-template-columns: 1fr; }
+            .plan-selection-grid, .ups-selection-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1057,6 +1084,16 @@
                     <i class="fas fa-arrow-circle-up"></i> Request Plan Upgrade
                 </button>
             </div>
+
+            <div class="stat-card" style="border-top: 4px solid #f59e0b;">
+                <h4>Mini UPS Power Backup <i class="fas fa-battery-three-quarters" style="color:#f59e0b;"></i></h4>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px; margin-bottom: 15px; line-height: 1.4;">
+                    Keep your network running during continuous outages. Browse backups and inquire about device prices via Messenger.
+                </p>
+                <button class="proof-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); margin-top: auto;" onclick="openUpsModal()">
+                    <i class="fas fa-plug"></i> Request Mini UPS
+                </button>
+            </div>
         </div>
 
         <div class="history-section">
@@ -1066,6 +1103,7 @@
                     <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Covered Month</th>
                             <th>Amount</th>
                             <th>Method</th>
                             <th>Reference</th>
@@ -1262,6 +1300,34 @@
         </div>
     </div>
 
+    <div id="upsModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 540px;">
+            <button class="close-modal-btn" onclick="closeUpsModal()"><i class="fas fa-times"></i></button>
+            <div class="receipt-header">
+                <div style="background: #fef3c7; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #fde68a;">
+                    <i class="fas fa-car-battery" style="font-size: 2rem; color: #d97706;"></i>
+                </div>
+                <h2>Order N'RTECH Mini UPS</h2>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Choose a backup capacity package below to inquire about real-time pricing configurations.</p>
+            </div>
+            
+            <label style="display:block; font-weight:700; font-size:0.95rem; margin-bottom:10px;"><i class="fas fa-cubes" style="color:var(--primary)"></i> Select Backup Capacity</label>
+            
+            <div class="ups-selection-grid">
+                <p style="color:var(--text-light); font-size:0.9rem; font-style:italic; grid-column:1/-1; text-align:center;">Initializing backup units...</p>
+            </div>
+
+            <div class="modal-form-group">
+                <label for="upsNotes"><i class="far fa-comment-alt" style="color: var(--primary);"></i> Inquiries / Special Instructions</label>
+                <textarea id="upsNotes" rows="3" placeholder="Provide extra delivery details or questions regarding continuous device installations..." style="resize: none; font-family: inherit; outline: none;"></textarea>
+            </div>
+
+            <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--messenger), var(--messenger-dark));" onclick="submitUpsRequest()">
+                <i class="fab fa-facebook-messenger"></i> Inquire Price via Messenger
+            </button>
+        </div>
+    </div>
+
     <div id="faqModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 520px;">
             <button class="close-modal-btn" onclick="closeFaqModal()"><i class="fas fa-times"></i></button>
@@ -1337,6 +1403,7 @@
         let sessionClientAcc = "N/A";
         let sessionCurrentPlanName = ""; // Auto-hides existing matching profile plans
         let selectedUpgradePackage = { name: "", speed: "", price: "" };
+        let selectedUpsPackage = { model: "", design: "" }; // Mini UPS storage tracker
 
         // --- Custom Toast Notification Function ---
         function showToast(message, type = 'success') {
@@ -1421,6 +1488,7 @@
         const supportModal = document.getElementById('supportModal');
         const upgradeModal = document.getElementById('upgradeModal');
         const faqModal = document.getElementById('faqModal');
+        const upsModal = document.getElementById('upsModal');
 
         document.getElementById('forgotPassLink').addEventListener('click', (e) => {
             e.preventDefault();
@@ -1608,18 +1676,25 @@
                     tr.style.animation = `fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.2 + (index * 0.1)}s`;
                     tr.style.opacity = '0';
                     
+                    const paymentDateObj = new Date(pay.date);
+                    let coveredMonthString = "Unknown";
+                    if (!isNaN(paymentDateObj.getTime())) {
+                        coveredMonthString = paymentDateObj.toLocaleString('default', { month: 'short', year: 'numeric' });
+                    }
+                    
                     tr.innerHTML = `
-                        <td style="font-weight: 600;">${pay.datew}</td>
-                        <td style="color: var(--success); font-weight: 800;">₱${pay.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
-                        <td style="font-weight: 500;">${pay.method}</td>
-                        <td><span class="ref-badge"><i class="fas fa-hashtag" style="font-size: 0.75rem; color: var(--text-light);"></i> ${pay.referenceNumber || 'N/A'}</span></td>
+                        <td style="font-weight: 600; white-space: nowrap;">${pay.date || 'N/A'}</td>
+                        <td style="color: var(--primary-dark); font-weight: 700; white-space: nowrap;">${coveredMonthString}</td>
+                        <td style="color: var(--success); font-weight: 800; white-space: nowrap;">₱${pay.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                        <td style="font-weight: 500; white-space: nowrap;">${pay.method}</td>
+                        <td style="white-space: nowrap;"><span class="ref-badge"><i class="fas fa-hashtag" style="font-size: 0.75rem; color: var(--text-light);"></i> ${pay.referenceNumber || 'N/A'}</span></td>
                         <td style="color: var(--text-light); font-size: 0.9rem;">${pay.note || '-'}</td>
                     `;
                     tr.onclick = () => openReceiptModal(pay);
                     tableBody.appendChild(tr);
                 });
             } else {
-                tableBody.innerHTML = '<tr><td colspan="5" class="no-data">No payment history found on this node.</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="6" class="no-data">No payment history found on this node.</td></tr>';
             }
         }
 
@@ -1693,7 +1768,7 @@
             });
         }
 
-        // --- Updated: Subscription Array Structural Builders from plans.json ---
+        // --- Subscription Array Structural Builders from plans.json ---
         async function openUpgradeModal() {
             document.getElementById('upgradeNotes').value = '';
             const gridContainer = document.querySelector('.plan-selection-grid');
@@ -1730,7 +1805,6 @@
             let printedPlansCount = 0;
 
             plansArray.forEach(plan => {
-                // Auto-hide configuration choices matching the subscriber's current tier
                 if (sessionCurrentPlanName && plan.name.toLowerCase().trim() === sessionCurrentPlanName.toLowerCase().trim()) {
                     return; 
                 }
@@ -1797,6 +1871,116 @@
             });
         }
 
+        // --- Mini UPS Structural Request Modal Modules ---
+        async function openUpsModal() {
+            document.getElementById('upsNotes').value = '';
+            const gridContainer = document.querySelector('.ups-selection-grid');
+            
+            gridContainer.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; grid-column: 1/-1; text-align:center;"><i class="fas fa-spinner fa-spin"></i> Loading product matrix specifications...</p>';
+            selectedUpsPackage = { model: "", design: "" };
+            upsModal.style.display = 'flex';
+            playSound('info');
+
+            const staticUpsData = [
+                {
+                    "model_capacity": "3600mAh",
+                    "tag": null,
+                    "design_type": "Wall-plug adapter with integrated power cord",
+                    "description": "Base model mini UPS suitable for keeping essential low-power devices running during brief power interruptions.",
+                    "key_features": ["3-Meters Power Line", "Ultra-Long Endurance", "Water Resistant", "Fire Prevention", "Charge and Discharge", "Quick Switching"]
+                },
+                {
+                    "model_capacity": "6000mAh",
+                    "tag": "HOT! / 10K+ sold",
+                    "design_type": "Wall-plug adapter with integrated power cord",
+                    "description": "Highly popular mid-tier model with increased battery capacity for longer backup endurance. A highly rated seller with over 10,000 units sold.",
+                    "key_features": ["3-Meters Power Line", "Ultra-Long Endurance", "Water Resistant", "Fire Prevention", "Charge and Discharge", "Quick Switching"]
+                },
+                {
+                    "model_capacity": "7800mAh",
+                    "tag": "HOT!",
+                    "design_type": "Wall-plug adapter with integrated power cord",
+                    "description": "High-capacity adapter-style UPS for extended power backup needs, ideal for continuous security camera or router operation.",
+                    "key_features": ["3-Meters Power Line", "Ultra-Long Endurance", "Water Resistant", "Fire Prevention", "Charge and Discharge", "Quick Switching"]
+                },
+                {
+                    "model_capacity": "10400mAh",
+                    "tag": "TOP SALE",
+                    "design_type": "Desktop block unit with integrated ports (12V DC)",
+                    "description": "Large capacity indoor UPS designed for maximum backup power. Features a different desktop form factor with dedicated ports rather than a wall-plug design.",
+                    "key_features": ["Overcharge Protection", "Overcurrent Protection", "Short Circuit Protection", "Fire Prevention", "Ultra-Long Endurance", "Quick Switching"]
+                }
+            ];
+
+            try {
+                const response = await fetch("ups.json", { cache: "no-store" });
+                if (!response.ok) throw new Error("File context missing");
+                const resData = await response.json();
+                renderUpsInGrid(resData.products || staticUpsData, gridContainer);
+            } catch (error) {
+                console.log("Fallback execution triggered due to ups.json parsing anomaly.");
+                renderUpsInGrid(staticUpsData, gridContainer);
+            }
+        }
+
+        function renderUpsInGrid(productsArray, containerElement) {
+            containerElement.innerHTML = '';
+            productsArray.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = 'plan-tier-card';
+                
+                let badgeMarkup = prod.tag ? `<div class="plan-tier-badge">${prod.tag}</div>` : '';
+                let featuresListMarkup = '';
+                
+                if (prod.key_features && prod.key_features.length > 0) {
+                    featuresListMarkup = `<ul class="plan-tier-features">`;
+                    prod.key_features.forEach(feature => {
+                        featuresListMarkup += `<li><i class="fas fa-check-circle"></i> ${feature}</li>`;
+                    });
+                    featuresListMarkup += `</ul>`;
+                }
+
+                card.innerHTML = `
+                    ${badgeMarkup}
+                    <div class="plan-tier-name">${prod.model_capacity} Capacity</div>
+                    <div class="plan-tier-speed" style="font-size:0.8rem; line-height:1.2; height:32px; overflow:hidden; text-overflow:ellipsis;">${prod.design_type}</div>
+                    <div class="plan-tier-price" style="font-size:1.15rem; color:var(--text-light); margin-bottom:5px;">Price Check Inquiry</div>
+                    <p style="font-size:0.75rem; color:var(--text-light); margin-bottom:10px; text-align:left; line-height:1.3;">${prod.description}</p>
+                    ${featuresListMarkup}
+                `;
+                
+                card.onclick = () => {
+                    const cards = containerElement.querySelectorAll('.plan-tier-card');
+                    cards.forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    selectedUpsPackage = { model: prod.model_capacity, design: prod.design_type };
+                    playSound('success');
+                };
+                containerElement.appendChild(card);
+            });
+        }
+
+        function closeUpsModal() { upsModal.style.display = 'none'; }
+
+        function submitUpsRequest() {
+            if (!selectedUpsPackage.model) {
+                showToast("Please select a UPS backup model capacity first.", "warning");
+                return;
+            }
+            const notes = document.getElementById('upsNotes').value.trim();
+
+            const structuredMessage = `N'RTECH MINI UPS INQUIRY\n\nSubscriber: ${sessionClientName}\nAccount No: ${sessionClientAcc}\nModel Capacity: ${selectedUpsPackage.model}\nDesign Configuration: ${selectedUpsPackage.design}\nUser Notes: ${notes || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}\n\nInquiry: Requesting device unit pricing and installation deployment details.`;
+
+            closeUpsModal();
+            showToast("Inquiry string compiled! Paste into Messenger chat when prompted.", "success");
+
+            navigator.clipboard.writeText(structuredMessage).then(() => {
+                setTimeout(() => { window.open("https://m.me/ramirez.technician", "_blank"); }, 1800);
+            }).catch(() => {
+                window.open("https://m.me/ramirez.technician", "_blank");
+            });
+        }
+
         // --- FAQ Modal Logic ---
         function openFaqModal() { faqModal.style.display = 'flex'; playSound('info'); }
         function closeFaqModal() { faqModal.style.display = 'none'; }
@@ -1840,6 +2024,7 @@
             if (event.target === supportModal) closeSupportModal();
             if (event.target === upgradeModal) closeUpgradeModal();
             if (event.target === faqModal) closeFaqModal();
+            if (event.target === upsModal) closeUpsModal();
         }
 
         function logout() {
