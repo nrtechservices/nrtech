@@ -136,9 +136,10 @@
         }
 
         .dashboard-header { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both 0.1s; }
+        .notification-top-wrapper { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both 0.15s; }
         .dashboard-grid { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both 0.2s; }
-        .full-width-card { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both 0.3s; }
-        .history-section { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both 0.4s; }
+        .history-section { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both 0.3s; }
+        .bottom-support-grid { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both 0.4s; }
 
         /* --- Login View --- */
         #loginView {
@@ -150,10 +151,9 @@
             display: block;
             margin: 0 auto 25px auto;
             width: 100%;
-            max-width: 230px;
+            max-width: 180px; /* Modified to 180px */
             height: auto;
             filter: drop-shadow(0 10px 20px rgba(212, 154, 55, 0.2));
-            /* Animation loop removed to keep the logo static */
         }
 
         .form-group { margin-bottom: 22px; text-align: left; }
@@ -308,7 +308,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
             gap: 20px;
         }
@@ -360,10 +360,10 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 25px;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
         }
 
-        .stat-card, .full-width-card {
+        .stat-card {
             background: linear-gradient(145deg, #ffffff, #f8fafc);
             padding: 28px;
             border-radius: 24px;
@@ -375,16 +375,14 @@
             flex-direction: column;
             overflow: hidden;
         }
-        
-        .full-width-card { margin-bottom: 35px; }
 
-        .stat-card:hover, .full-width-card:hover {
+        .stat-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--card-hover-shadow);
             border-color: rgba(212, 154, 55, 0.4);
         }
 
-        .stat-card h4, .full-width-card h4 {
+        .stat-card h4 {
             color: var(--text-light);
             font-size: 0.95rem;
             margin-bottom: 18px;
@@ -423,7 +421,29 @@
         .proof-btn { background: var(--messenger); color: white; margin-top: 12px; }
         .proof-btn:hover { background: var(--messenger-dark); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 132, 255, 0.3); }
         .proof-btn:active { transform: scale(0.96); }
-        .faq-btn:hover { filter: brightness(1.1); transform: translateY(-3px); }
+
+        /* --- Notifications Card Top View --- */
+        .notification-top-wrapper {
+            width: 100%;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            padding: 28px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            border-top: 4px solid var(--accent);
+        }
+        .notification-top-wrapper h4 {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
 
         /* --- Notifications List --- */
         .notification-item {
@@ -457,6 +477,57 @@
         .notification-title { font-weight: 700; font-size: 1rem; color: var(--text-dark); }
         .notification-date { font-size: 0.85rem; color: var(--text-light); font-weight: 500; }
 
+        /* --- Input Custom Styling (Nice Box) --- */
+        .nice-input-box {
+            background: #f8fafc !important;
+            border: 2px solid #cbd5e1 !important;
+            font-family: 'SFMono-Regular', Consolas, Menlo, monospace !important;
+            font-size: 1.15rem !important;
+            letter-spacing: 1.5px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--text-dark);
+            border-radius: 14px;
+            padding: 16px 18px !important;
+            transition: var(--transition-smooth);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
+        }
+        .nice-input-box:focus {
+            border-color: var(--primary) !important;
+            background: #ffffff !important;
+            box-shadow: 0 0 0 5px rgba(212, 154, 55, 0.15), 0 4px 12px rgba(0,0,0,0.03) !important;
+            outline: none;
+            transform: translateY(-1px);
+        }
+
+        /* --- Flexible Adaptive GCash Component Layout --- */
+        .gcash-box-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 2px solid #e2e8f0;
+            margin-top: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            width: 100%;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 440px) {
+            .gcash-box-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .gcash-box-container button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
         /* --- Payment History Section --- */
         .history-section {
             background: linear-gradient(145deg, #ffffff, #f8fafc);
@@ -464,6 +535,7 @@
             border-radius: 24px;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
+            margin-bottom: 35px;
         }
 
         .history-section h3 {
@@ -518,13 +590,27 @@
             box-shadow: 0 4px 8px rgba(212, 154, 55, 0.15);
         }
 
+        /* --- Split Layout Bottom Grid Structure --- */
+        .bottom-support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 35px;
+        }
+        .bottom-support-grid .history-section {
+            margin-bottom: 0px !important;
+            display: flex;
+            flex-direction: column;
+        }
+
         .logout-btn {
             background: #0f172a;
             color: white;
             border: none;
             padding: 16px 35px;
             border-radius: 50px;
-            margin-top: 40px;
+            margin-top: 10px;
             cursor: pointer;
             transition: var(--transition-smooth);
             font-weight: 700;
@@ -631,7 +717,7 @@
         
         .qr-section img:hover { transform: scale(1.08) translateY(-5px); box-shadow: 0 15px 30px rgba(212, 154, 55, 0.25); }
 
-        .gcash-info { font-size: 0.95rem; line-height: 1.5; color: var(--text-dark); }
+        .gcash-info { font-size: 0.95rem; line-height: 1.5; color: var(--text-dark); width: 100%; }
         .payment-pill { display: inline-block; background: #eff6ff; color: #1d4ed8; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; margin-bottom: 20px; letter-spacing: 0.5px; }
 
         .paid-stamp {
@@ -794,8 +880,8 @@
             .dashboard-header { flex-direction: column; align-items: center; text-align: center; }
             .client-profile-wrapper { flex-direction: column; }
             .status-badge { width: 100%; justify-content: center; }
-            .stat-card, .full-width-card { padding: 25px 20px; }
-            .dashboard-grid { grid-template-columns: 1fr; }
+            .stat-card { padding: 25px 20px; }
+            .dashboard-grid, .bottom-support-grid { grid-template-columns: 1fr; }
             .modal-content { padding: 30px 20px; border-radius: 20px; }
             #toastContainer { bottom: 20px; left: 20px; right: 20px; align-items: center; }
             .toast { width: 100%; min-width: unset; max-width: 100%; }
@@ -865,6 +951,13 @@
             </div>
         </div>
 
+        <div class="notification-top-wrapper">
+            <h4>Notifications & Live Alerts <i class="fas fa-bell" style="color:var(--accent);"></i></h4>
+            <div id="notificationList" style="display: flex; flex-direction: column; max-height: 200px; overflow-y: auto; padding-right: 5px; overflow-x: hidden;">
+                <p style="color: var(--text-light); font-size: 0.95rem;">Loading notifications...</p>
+            </div>
+        </div>
+
         <div class="dashboard-grid">
             <div class="stat-card" style="border-top: 4px solid var(--primary);">
                 <h4>Subscription Plan <i class="fas fa-network-wired" style="color:var(--primary);"></i></h4>
@@ -910,28 +1003,14 @@
                 </button>
             </div>
 
-            <div class="stat-card" style="border-top: 4px solid var(--accent);">
-                <h4>Account Actions & Support <i class="fas fa-headset" style="color:var(--accent);"></i></h4>
+            <div class="stat-card" style="border-top: 4px solid var(--primary);">
+                <h4>Network Package Upgrades <i class="fas fa-rocket" style="color:var(--primary);"></i></h4>
                 <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px; margin-bottom: 15px; line-height: 1.4;">
-                    Troubleshoot connection alerts, request technical help, or upgrade network tier speed.
+                    Maximize digital potential by boosting server speed metrics. Request scalable dynamic tier migrations here.
                 </p>
-                
-                <button class="proof-btn faq-btn" style="background: linear-gradient(135deg, var(--info), #2563eb); margin-bottom: 10px; margin-top: auto;" onclick="openFaqModal()">
-                    <i class="fas fa-question-circle"></i> Troubleshooting FAQ
-                </button>
-                <button class="proof-btn" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); margin-bottom: 10px; margin-top: 0;" onclick="openUpgradeModal()">
+                <button class="proof-btn" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); margin-top: auto;" onclick="openUpgradeModal()">
                     <i class="fas fa-arrow-circle-up"></i> Request Plan Upgrade
                 </button>
-                <button class="proof-btn" style="background: linear-gradient(135deg, var(--accent), #7c3aed); margin-top: 0;" onclick="openSupportModal()">
-                    <i class="fas fa-ticket-alt"></i> Request Support Ticket
-                </button>
-            </div>
-        </div>
-
-        <div class="full-width-card" style="border-top: 4px solid var(--accent);">
-            <h4>Notifications <i class="fas fa-bell" style="color:var(--accent);"></i></h4>
-            <div id="notificationList" style="display: flex; flex-direction: column; max-height: 280px; overflow-y: auto; padding-right: 15px; overflow-x: hidden;">
-                <p style="color: var(--text-light); font-size: 0.95rem;">Loading notifications...</p>
             </div>
         </div>
 
@@ -951,6 +1030,28 @@
                     <tbody id="paymentHistoryBody">
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <div class="bottom-support-grid">
+            <div class="history-section" style="border-top: 4px solid var(--info);">
+                <h3><i class="fas fa-question-circle" style="color: var(--info);"></i> Connection Diagnostics</h3>
+                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">
+                    Review standard troubleshooting steps for line anomalies, link issues, and secure cycle operations.
+                </p>
+                <button class="proof-btn" style="background: linear-gradient(135deg, var(--info), #2563eb); margin-top: auto;" onclick="openFaqModal()">
+                    <i class="fas fa-book-open"></i> Open Troubleshooting FAQ
+                </button>
+            </div>
+            
+            <div class="history-section" style="border-top: 4px solid var(--accent);">
+                <h3><i class="fas fa-ticket-alt" style="color: var(--accent);"></i> Helpdesk Support Ticket</h3>
+                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">
+                    Report physical cable breaks, equipment damage, or connection loss directly to active dispatch operators.
+                </p>
+                <button class="proof-btn" style="background: linear-gradient(135deg, var(--accent), #7c3aed); margin-top: auto;" onclick="openSupportModal()">
+                    <i class="fas fa-headset"></i> Request Support Ticket
+                </button>
             </div>
         </div>
 
@@ -1021,9 +1122,11 @@
                 <div class="gcash-info">
                     <strong style="display: block; margin-bottom: 5px; font-size: 1rem;">Account Name: Noruel John Ramirez</strong>
                     
-                    <div style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; background: white; padding: 10px 18px; border-radius: 10px; border: 2px solid #e2e8f0; margin-top: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-                        <span style="font-size: 0.95rem; color: var(--text-light); font-weight: 700;">GCash:</span>
-                        <span id="gcashNumberText" style="color: var(--primary-dark); font-size: 1.25rem; font-weight: 800; letter-spacing: 1px;">09317926807</span>
+                    <div class="gcash-box-container">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 0.95rem; color: var(--text-light); font-weight: 700;">GCash:</span>
+                            <span id="gcashNumberText" style="color: var(--primary-dark); font-size: 1.25rem; font-weight: 800; letter-spacing: 1px;">09317926807</span>
+                        </div>
                         <button onclick="copyGCashNumber()" style="background: var(--bg-light); border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; gap: 6px; font-size: 0.85rem; transition: var(--transition-smooth); font-weight: 700;">
                             <i class="far fa-copy"></i> Copy
                         </button>
@@ -1038,14 +1141,14 @@
             <button class="close-modal-btn" onclick="closeProofModal()"><i class="fas fa-times"></i></button>
             <div class="receipt-header">
                 <div style="background: #e0f2fe; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 2px solid #bae6fd;">
-                    <i class="fab fa-facebook-messenger" style="font-size: 2rem; color: var(--messenger);"></i>
+                    <i class="fas fa-receipt" style="font-size: 2rem; color: var(--messenger);"></i>
                 </div>
                 <h2>Verify Transaction</h2>
                 <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 5px;">Submit your advance payment reference string.</p>
             </div>
             <div class="modal-form-group">
                 <label for="popReferenceNum"><i class="fas fa-receipt" style="color: var(--primary);"></i> Reference / Trans. Number</label>
-                <input type="text" id="popReferenceNum" placeholder="e.g. 5012 3456 7890" maxlength="40">
+                <input type="text" id="popReferenceNum" class="nice-input-box" placeholder="5012 3456 7890" maxlength="40">
             </div>
             <button type="button" class="btn-primary" style="background: linear-gradient(135deg, var(--messenger), var(--messenger-dark));" onclick="submitProofOfPayment()">
                 Confirm & Launch Messenger
@@ -1098,27 +1201,9 @@
             </div>
             
             <label style="display:block; font-weight:700; font-size:0.95rem; margin-bottom:10px;"><i class="fas fa-cubes" style="color:var(--primary)"></i> Select Available Packages</label>
+            
             <div class="plan-selection-grid">
-                <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Lite Plan', '10 Mbps', '500')">
-                    <div class="plan-tier-name">Lite Plan</div>
-                    <div class="plan-tier-speed">10 Mbps</div>
-                    <div class="plan-tier-price">₱500 / mo</div>
-                </div>
-                <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Family Plan', '15 Mbps', '699')">
-                    <div class="plan-tier-name">Family Plan</div>
-                    <div class="plan-tier-speed">15 Mbps</div>
-                    <div class="plan-tier-price">₱699 / mo</div>
-                </div>
-                <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Boost Plan', '25 Mbps', '999')">
-                    <div class="plan-tier-name">Boost Plan</div>
-                    <div class="plan-tier-speed">25 Mbps</div>
-                    <div class="plan-tier-price">₱999 / mo</div>
-                </div>
-                <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Pro Plan', '50 Mbps', '1299')">
-                    <div class="plan-tier-name">Pro Plan</div>
-                    <div class="plan-tier-speed">50 Mbps</div>
-                    <div class="plan-tier-price">₱1,299 / mo</div>
-                </div>
+                <p style="color:var(--text-light); font-size:0.9rem; font-style:italic; grid-column:1/-1; text-align:center;">Initializing modules...</p>
             </div>
 
             <div class="modal-form-group">
@@ -1274,7 +1359,7 @@
                     gainNode.gain.linearRampToValueAtTime(0, now + 0.2);
                     oscillator.start(now); oscillator.stop(now + 0.2);
                 }
-            } catch (err) { console.log("Audio parameters disabled by host safety rules."); }
+            } catch (err) { console.log("Audio contextual drivers muted."); }
         }
 
         const loginForm = document.getElementById('loginForm');
@@ -1370,7 +1455,7 @@
             }
             
             if(userNotifs.length === 0) {
-                notifList.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; font-style:italic; padding-top: 10px;">No notification recorded</p>';
+                notifList.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; font-style:italic; padding-top: 5px;">No notifications recorded</p>';
                 return;
             }
 
@@ -1379,7 +1464,7 @@
             userNotifs.forEach((n, index) => {
                 const item = document.createElement('div');
                 item.className = 'notification-item';
-                item.style.animation = `slideInNotification 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.3 + (index * 0.1)}s`;
+                item.style.animation = `slideInNotification 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.1 + (index * 0.1)}s`;
                 
                 item.innerHTML = `
                     <div class="notification-title">${n.title}</div>
@@ -1473,7 +1558,7 @@
                 sortedPayments.forEach((pay, index) => {
                     const tr = document.createElement('tr');
                     tr.className = 'payment-row';
-                    tr.style.animation = `fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.4 + (index * 0.1)}s`;
+                    tr.style.animation = `fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.2 + (index * 0.1)}s`;
                     tr.style.opacity = '0';
                     
                     tr.innerHTML = `
@@ -1561,15 +1646,55 @@
             });
         }
 
-        // --- Plan Upgrade Interaction Logic ---
-        function openUpgradeModal() {
+        // --- Dynamic Subscription Plan Loading Strategy from plans.json ---
+        async function openUpgradeModal() {
             document.getElementById('upgradeNotes').value = '';
-            const cards = document.querySelectorAll('.plan-tier-card');
-            cards.forEach(c => c.classList.remove('selected'));
+            const gridContainer = document.querySelector('.plan-selection-grid');
+            
+            // Display visual placeholder loading screen inside modal layout framework
+            gridContainer.innerHTML = '<p style="color:var(--text-light); font-size:0.95rem; grid-column: 1/-1; text-align:center;"><i class="fas fa-spinner fa-spin"></i> Retrieving service tiers...</p>';
             selectedUpgradePackage = { name: "", speed: "", price: "" };
             upgradeModal.style.display = 'flex';
             playSound('info');
+
+            try {
+                const response = await fetch("plans.json", { cache: "no-store" });
+                if (!response.ok) throw new Error("File context missing");
+                const plans = await response.json();
+                
+                gridContainer.innerHTML = '';
+                plans.forEach(plan => {
+                    const card = document.createElement('div');
+                    card.className = 'plan-tier-card';
+                    
+                    const priceValue = plan.fee || plan.price || 0;
+                    card.innerHTML = `
+                        <div class="plan-tier-name">${plan.name}</div>
+                        <div class="plan-tier-speed">${plan.speed}</div>
+                        <div class="plan-tier-price">₱${parseFloat(priceValue).toLocaleString()} / mo</div>
+                    `;
+                    card.onclick = () => selectUpgradePlan(card, plan.name, plan.speed, priceValue);
+                    gridContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.log("Fallback execution triggered due to plans.json parsing anomaly.");
+                // Static high fidelity array configuration fallback mechanism
+                gridContainer.innerHTML = `
+                    <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Lite Plan', '10 Mbps', '500')">
+                        <div class="plan-tier-name">Lite Plan</div><div class="plan-tier-speed">10 Mbps</div><div class="plan-tier-price">₱500 / mo</div>
+                    </div>
+                    <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Family Plan', '15 Mbps', '699')">
+                        <div class="plan-tier-name">Family Plan</div><div class="plan-tier-speed">15 Mbps</div><div class="plan-tier-price">₱699 / mo</div>
+                    </div>
+                    <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Boost Plan', '25 Mbps', '999')">
+                        <div class="plan-tier-name">Boost Plan</div><div class="plan-tier-speed">25 Mbps</div><div class="plan-tier-price">₱999 / mo</div>
+                    </div>
+                    <div class="plan-tier-card" onclick="selectUpgradePlan(this, 'Pro Plan', '50 Mbps', '1299')">
+                        <div class="plan-tier-name">Pro Plan</div><div class="plan-tier-speed">50 Mbps</div><div class="plan-tier-price">₱1,299 / mo</div>
+                    </div>`;
+            }
         }
+
         function closeUpgradeModal() { upgradeModal.style.display = 'none'; }
 
         function selectUpgradePlan(element, planName, speed, price) {
@@ -1588,7 +1713,7 @@
             const notes = document.getElementById('upgradeNotes').value.trim();
             const currentPlan = document.getElementById('planDisplay').textContent;
 
-            const structuredMessage = `N'RTECH SUBSCRIPTION UPGRADE REQUEST\n\nSubscriber: ${sessionClientName}\nAccount No: ${sessionClientAcc}\nCurrent Tier: ${currentPlan}\nRequested Package: ${selectedUpgradePackage.name} (${selectedUpgradePackage.speed})\nPackage Pricing: ₱${selectedUpgradePackage.price}/mo\nUser Notes: ${notes || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
+            const structuredMessage = `N'RTECH SUBSCRIPTION UPGRADE REQUEST\n\nSubscriber: ${sessionClientName}\nAccount No: ${sessionClientAcc}\nCurrent Tier: ${currentPlan}\nRequested Package: ${selectedUpgradePackage.name} (${selectedUpgradePackage.speed})\nPackage Pricing: ₱${parseFloat(selectedUpgradePackage.price).toLocaleString()}/mo\nUser Notes: ${notes || 'None provided'}\nTimestamp: ${new Date().toLocaleString()}`;
 
             closeUpgradeModal();
             showToast("Upgrade data compiled! Paste into Messenger chat when prompted.", "success");
@@ -1631,8 +1756,8 @@
         }
 
         function closeReceiptModal() { receiptModal.style.display = 'none'; }
-        function openBillModal() { billModal.style.display = 'flex'; }
-        function closeBillModal() { billModal.style.display = 'none'; }
+        window.openBillModal = function() { billModal.style.display = 'flex'; };
+        window.closeBillModal = function() { billModal.style.display = 'none'; };
         function closeNotifModal() { notifModal.style.display = 'none'; }
 
         window.onclick = function(event) {
