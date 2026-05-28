@@ -11,8 +11,7 @@
         "Good for Browsing",
         "Social Media Ready",
         "3-7 Devices"
-      ],
-      "install_fee": "Install Starts at: ₱1,500*"
+      ]
     },
     {
       "name": "Family",
@@ -25,8 +24,7 @@
         "HD Streaming",
         "Online Classes",
         "5-12 Devices"
-      ],
-      "install_fee": "Install Starts at: ₱1,500*"
+      ]
     },
     {
       "name": "Gamer",
@@ -39,8 +37,7 @@
         "4K Streaming",
         "Work from Home",
         "12+ Devices"
-      ],
-      "install_fee": "Install Starts at: ₱1,800*"
+      ]
     },
     {
       "name": "Premium",
@@ -53,8 +50,7 @@
         "Multiple HD Streams",
         "Fast Downloads",
         "Priority Support"
-      ],
-      "install_fee": "Install Starts at: ₱2,000*"
+      ]
     },
     {
       "name": "Business",
@@ -67,8 +63,7 @@
         "Maximum Reliability",
         "Connect 15+ Devices",
         "Dedicated Line"
-      ],
-      "install_fee": "Install Starts at: ₱2,000*"
+      ]
     },
     {
       "name": "VIP ULTIMATE",
@@ -81,8 +76,7 @@
         "Priority Bandwidth",
         "30+ Devices",
         "FREE Mini UPS!"
-      ],
-      "install_fee": "Install Starts at: ₱2,500*"
+      ]
     }
   ]
 }
